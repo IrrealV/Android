@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programas/GitHub/Android/AppBasica/app/src/main/res/drawable/fondoresultado.xml" value="0.1405" />
+        <entry key="..\:/Programas/GitHub/Android/AppBasica/app/src/main/res/drawable/fondoresultadonegro.xml" value="0.1" />
+        <entry key="..\:/Programas/GitHub/Android/AppBasica/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1875" />
+        <entry key="..\:/Programas/GitHub/Android/AppBasica/app/src/main/res/drawable/transparente.xml" value="0.196" />
+        <entry key="..\:/Programas/GitHub/Android/AppBasica/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/victor.heras/AndroidStudioProjects/AppBasica/app/src/main/res/drawable/fondoresultado.xml" value="0.1845" />
         <entry key="..\:/Users/victor.heras/AndroidStudioProjects/AppBasica/app/src/main/res/drawable/fondoresultadonegro.xml" value="0.1845" />
         <entry key="..\:/Users/victor.heras/AndroidStudioProjects/AppBasica/app/src/main/res/drawable/transparente.xml" value="0.2985" />
@@ -19,7 +24,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.33" />
+        <option name="scale" value="0.2" />
       </ProjectState>
     </option>
   </component>
