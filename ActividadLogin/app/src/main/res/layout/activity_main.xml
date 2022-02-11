@@ -87,7 +87,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:indeterminate="true"
+        android:indeterminate="false"
         android:max="5000"
         android:thumb="@drawable/dolars"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
@@ -151,6 +151,7 @@
         app:backgroundTint="#ff9f03"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/login"
-        app:srcCompat="@drawable/telephone" />
+        app:srcCompat="@drawable/telephone"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
