@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programas/GitHub/Android/Layout2/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Programas/GitHub/Android/Layout2/app/src/main/res/layout/scroll.xml" value="0.25" />
         <entry key="..\:/Users/victor.heras/AndroidStudioProjects/Layout2/app/src/main/res/drawable/fondo.xml" value="0.37083333333333335" />
         <entry key="..\:/Users/victor.heras/AndroidStudioProjects/Layout2/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.37083333333333335" />
         <entry key="..\:/Users/victor.heras/AndroidStudioProjects/Layout2/app/src/main/res/drawable/ic_baseline_remove_red_eye_24.xml" value="0.37083333333333335" />
