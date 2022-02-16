@@ -5,10 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.SeekBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.w3c.dom.Text
 
@@ -27,8 +24,14 @@ class MainActivity : AppCompatActivity() {
         val slider = findViewById<SeekBar>(R.id.cantIngres)
         val inver = findViewById<TextView>(R.id.inversion)
         val restart = findViewById<Button>(R.id.reiniciar)
+        val min = findViewById<TextView>(R.id.precmin)
+        val max = findViewById<TextView>(R.id.precmax)
+        val spin = findViewById<Spinner>(R.id.spinner)
         val proguess = 100
 
+        val dineros = arrayOf("Euro", "Dolar", "Libra", "Rupia")
+        val adapterDineros = ArrayAdapter(this, android.R.layout.simple_spinner_item,dineros)
+        spin.adapter = adapterDineros
 
 
         call.setOnClickListener {
@@ -41,13 +44,13 @@ class MainActivity : AppCompatActivity() {
 
                 if(proguess < 5000 && proguess > 100){
                     var currentprogress = proguess + 1
-                    inver.text = "$currentprogress"+"€"
+                    inver.text = "$currentprogress"+""
                 }
                 else if(proguess >= 5000){
-                    inver.text = "5000€"
+                    inver.text = "5000"+""
                 }
                 else if(proguess <= 100){
-                    inver.text = "100€"
+                    inver.text = "100"+""
                 }
 
             }

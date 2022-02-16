@@ -76,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="39dp"
         android:layout_marginStart="24dp"
-        android:text="100€"
+        android:text="100"
         android:textColor="@color/black"
         android:textSize="27sp"
         app:layout_constraintBottom_toTopOf="@+id/cantIngres"
@@ -153,5 +153,14 @@
         app:layout_constraintEnd_toEndOf="@+id/login"
         app:srcCompat="@drawable/telephone"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="@+id/inversion"
+        app:layout_constraintStart_toEndOf="@+id/inversion"
+        app:layout_constraintTop_toTopOf="@+id/inversion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

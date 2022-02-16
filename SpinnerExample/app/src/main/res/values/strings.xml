@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">SpinnerExample</string>
+
+    <array name="lista">
+        <item>Antonio Villar</item>
+        <item>Jesús Vidal</item>
+        <item>María Cortés</item>
+    </array>
+
+    <array name="planetas">
+        <item>Mercurio</item>
+        <item>Venus</item>
+        <item>La Tierra</item>
+        <item>Marte</item>
+        <item>Júpiter</item>
+        <item>Saturno</item>
+        <item>Urano</item>
+        <item>Neptuno</item>
+    </array>
+</resources>
