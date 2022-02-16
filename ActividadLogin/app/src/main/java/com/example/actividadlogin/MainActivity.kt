@@ -1,10 +1,16 @@
 package com.example.actividadlogin
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.SeekBar
+import android.widget.TextView
+import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,43 +21,63 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val login = findViewById<Button>(R.id.login)
-        login.setOnClickListener {
-            val cambio = Intent(this, SecondActivity::class.java)
+        val user = findViewById<TextView>(R.id.user)
+        val passwd = findViewById<TextView>(R.id.passwd)
+        val call = findViewById<FloatingActionButton>(R.id.llamada)
+        val slider = findViewById<SeekBar>(R.id.cantIngres)
+        val inver = findViewById<TextView>(R.id.inversion)
+        val restart = findViewById<Button>(R.id.reiniciar)
+        val proguess = 100
 
-            cambio.putExtra("user","victor.heras" )
-            cambio.putExtra("pass", "qwerasdf")
 
-            startActivity(cambio)
-            finish()
+
+        call.setOnClickListener {
+            val marca = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + "658204691"))
+            startActivity(marca)
         }
-    }
-    override fun onStart() {
-        super.onStart()
-        Log.d(TAG, "onStart")
-    }
 
-    override fun onResume() {
-        super.onResume()
-        Log.d(TAG, "onResume")
-    }
+        slider.setOnSeekBarChangeListener( object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(SeekBar: SeekBar, proguess: Int, fromUser: Boolean) {
 
-    override fun onPause() {
-        Log.d(TAG, "onPause")
-        super.onPause()
-    }
+                if(proguess < 5000 && proguess > 100){
+                    var currentprogress = proguess + 1
+                    inver.text = "$currentprogress"+"€"
+                }
+                else if(proguess >= 5000){
+                    inver.text = "5000€"
+                }
+                else if(proguess <= 100){
+                    inver.text = "100€"
+                }
 
-    override fun onStop() {
-        Log.d(TAG, "onStop")
-        super.onStop()
-    }
+            }
+            override fun onStartTrackingTouch(SeekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(SeekBar: SeekBar?) {}
+        })
 
-    override fun onRestart() {
-        super.onRestart()
-        Log.d(TAG, "onRestart")
-    }
+        login.setOnClickListener {
+            if (passwd.text.toString() == "qwerasdf") {
+                val cambio = Intent(this, SecondActivity::class.java)
+                val value = user.text.toString()
+                val inversion = inver.text.toString()
+                cambio.putExtra("user", value)
+                cambio.putExtra("inver",inversion)
 
-    override fun onDestroy() {
-        Log.d(TAG, "onDestroy")
-        super.onDestroy()
+
+
+                startActivity(cambio)
+                finish()
+            }
+            else {
+                Toast.makeText(this, "La contraseña es incorrecta" , Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        restart.setOnClickListener {
+            finish()
+            startActivity(getIntent())
+        }
+
+
     }
 }
