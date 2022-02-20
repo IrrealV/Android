@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.w3c.dom.Text
@@ -32,6 +33,22 @@ class MainActivity : AppCompatActivity() {
         val dineros = arrayOf("Euro", "Dolar", "Libra", "Rupia")
         val adapterDineros = ArrayAdapter(this, android.R.layout.simple_spinner_item,dineros)
         spin.adapter = adapterDineros
+        spin.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                Toast.makeText(this@MainActivity, dineros[p2], Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                // funcion llamada cuando no se selecciona nada del spinner
+            }
+
+        }
+
+
+
+
+
+
 
 
         call.setOnClickListener {
