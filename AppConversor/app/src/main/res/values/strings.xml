@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">App Conversor</string>
+
+    <array name="tiempocorto">
+        <item>Serie</item>
+        <item>Youtube</item>
+        <item>Tik Tok</item>
+    </array>
+
+    <array name="tiempomedio">
+        <item>Partida</item>
+        <item>Ducha</item>
+        <item>Tarea</item>
+    </array>
+
+    <array name="tiempolargo">
+        <item>Cocinar</item>
+        <item>Programar</item>
+        <item>Siesta</item>
+    </array>
+
+    <array name="tiempo">
+        <item>prueba</item>
+    </array>
 </resources>
