@@ -46,11 +46,24 @@
         app:srcCompat="@drawable/fondores" />
 
     <TextView
-        android:id="@+id/tiempototal"
-        android:layout_width="203dp"
-        android:layout_height="79dp"
-        android:maxLength="5"
-        android:text="00:00"
+        android:id="@+id/totalhoras"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLength="2"
+        android:text="00"
+        android:textAlignment="center"
+        android:textColor="#EE3625"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/dospuntos"
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+    <TextView
+        android:id="@+id/dospuntos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLength="2"
+        android:text=":"
         android:textAlignment="center"
         android:textColor="#EE3625"
         android:textSize="60sp"
@@ -59,29 +72,82 @@
         app:layout_constraintStart_toStartOf="@+id/imageView5"
         app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
+    <TextView
+        android:id="@+id/totalmin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLength="2"
+        android:text="00"
+        android:textAlignment="center"
+        android:textColor="#EE3625"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/dospuntos"
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+    <TextView
+        android:id="@+id/dospuntos2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLength="2"
+        android:text=":"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout4"
+        app:layout_constraintEnd_toStartOf="@+id/textInputLayout4"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout"
+        app:layout_constraintTop_toTopOf="@+id/textInputLayout" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/tiempototal">
+        app:layout_constraintEnd_toEndOf="@+id/totalhoras"
+        app:layout_constraintStart_toStartOf="@+id/totalhoras"
+        app:layout_constraintTop_toBottomOf="@+id/totalhoras">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiempo"
+            android:id="@+id/horas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:inputType="number"
+            android:hint="00"
+            android:inputType="number|phone"
             android:maxLength="2"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:textColorHint="@color/white"
+            android:textSize="24sp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintEnd_toEndOf="@+id/totalmin"
+        app:layout_constraintStart_toEndOf="@+id/dospuntos"
+        app:layout_constraintTop_toBottomOf="@+id/totalmin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/minutos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:hint="00"
+            android:inputType="number|phone"
+            android:maxLength="2"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="24sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView

@@ -21,20 +21,41 @@ import com.google.android.material.navigation.NavigationBarView
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //Esto hace que el EditTexView y el TextView cambien a la vez
-        binding.tiempo.addTextChangedListener(this)
-        //Esto hace que el EditTexView y el TextView cambien a la vez
 
 
 
-
-
-
-
-
-        if(binding.tiempototal.text == null){
-            binding.tiempototal.text = "00:00"
+    //Esto hace que el EditTexView y el TextView cambien a la vez
+        binding.horas.addTextChangedListener(){
+            @Override
+            binding.totalhoras.text = binding.horas.text
+            if(binding.horas.text == null || binding.horas.text.toString() == ""){
+                binding.totalhoras.text = "00"
+            }
+            else if(binding.horas.text.toString().toInt() >= 24){
+                binding.totalhoras.text = "23"
+            }
         }
+
+        binding.minutos.addTextChangedListener(){
+            @Override
+            binding.totalmin.text = binding.minutos.text
+            if(binding.minutos.text == null || binding.minutos.text.toString() == ""){
+                binding.totalmin.text = "00"
+            }
+            else if(binding.minutos.text.toString().toInt() >= 60){
+                binding.totalmin.text = "59"
+            }
+        }
+    //Esto hace que el EditTexView y el TextView cambien a la vez
+
+
+
+
+
+
+
+
+
 
 
     //Actividades que duran poco tiempo-------------------------------------------------------------
@@ -69,17 +90,8 @@ import com.google.android.material.navigation.NavigationBarView
 
 
         }
-
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-        }
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            binding.tiempototal.text = p0
-        }
-
-        override fun afterTextChanged(p0: Editable?) {
-
-        }
+    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int){}
+    override fun afterTextChanged(p0: Editable?) {}
     }
 
