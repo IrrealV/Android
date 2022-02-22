@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         //Esto hace que el resultado se oculte cuando el switch es activado
         ocultar.setOnCheckedChangeListener {_, isChecked ->
             if (isChecked){
-                ressum.visibility = View.GONE
+                ressum.visibility = View.INVISIBLE
             }
             else{
                 ressum.visibility = View.VISIBLE

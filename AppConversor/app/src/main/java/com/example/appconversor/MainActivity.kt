@@ -31,8 +31,8 @@ import com.google.android.material.navigation.NavigationBarView
             if(binding.horas.text == null || binding.horas.text.toString() == ""){
                 binding.totalhoras.text = "00"
             }
-            else if(binding.horas.text.toString().toInt() >= 24){
-                binding.totalhoras.text = "23"
+            else if(binding.horas.text.toString().toInt() >= 12){
+                binding.totalhoras.text = "11"
             }
         }
 
@@ -49,6 +49,44 @@ import com.google.android.material.navigation.NavigationBarView
     //Esto hace que el EditTexView y el TextView cambien a la vez
 
 
+    //Condiciones para el array principal cambiante
+        if(binding.totalhoras.text.toString().toInt() == 0 && binding.totalmin.text.toString().toInt() == 0 ){
+    //Recuerda hacerlo invisible en esta linea para luego mostrarlo
+        }
+        //Actividades que duran poco tiempo---------------------------------------------------------
+        else if(binding.totalhoras.text.toString().toInt() <= 2 && binding.totalmin.text.toString().toInt() <= 59 ){
+            val tiempocorto = ArrayAdapter.createFromResource(
+                this,
+                R.array.tiempocorto,
+                R.layout.spinner_color
+            )
+            binding.accion.adapter = tiempocorto
+            tiempocorto.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
+        }
+        //Actividades que duran poco tiempo-------------------------------------------------------------
+        //Actividades que duran tiempo medio------------------------------------------------------------
+        else if(binding.totalhoras.text.toString().toInt() <= 6 && binding.totalmin.text.toString().toInt() <= 59){
+            val tiempomedio = ArrayAdapter.createFromResource(
+                this,
+                R.array.tiempomedio,
+                R.layout.spinner_color
+            )
+            binding.accion.adapter = tiempomedio
+            tiempomedio.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
+        }
+        //Actividades que duran tiempo medio------------------------------------------------------------
+        //Actividades que duran mucho tiempo------------------------------------------------------------
+        else{
+            val tiempolargo = ArrayAdapter.createFromResource(
+                this,
+                R.array.tiempolargo,
+                R.layout.spinner_color
+            )
+            binding.accion.adapter = tiempolargo
+            tiempolargo.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
+        }
+        //Actividades que duran mucho tiempo------------------------------------------------------------
+    //Condiciones para el array principal cambiante
 
 
 
@@ -58,35 +96,16 @@ import com.google.android.material.navigation.NavigationBarView
 
 
 
-    //Actividades que duran poco tiempo-------------------------------------------------------------
-        val tiempocorto = ArrayAdapter.createFromResource(
-            this,
-            R.array.tiempocorto,
-            R.layout.spinner_color
-        )
-        binding.accion.adapter = tiempocorto
-        tiempocorto.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
-    //Actividades que duran poco tiempo-------------------------------------------------------------
 
-    //Actividades que duran tiempo medio------------------------------------------------------------
-        val tiempomedio = ArrayAdapter.createFromResource(
-            this,
-            R.array.tiempomedio,
-            R.layout.spinner_color
-        )
-        binding.accion.adapter = tiempomedio
-        tiempomedio.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
-    //Actividades que duran tiempo medio------------------------------------------------------------
 
-    //Actividades que duran mucho tiempo------------------------------------------------------------
-        val tiempolargo = ArrayAdapter.createFromResource(
-            this,
-            R.array.tiempolargo,
-            R.layout.spinner_color
-        )
-        binding.accion.adapter = tiempolargo
-        tiempolargo.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
-    //Actividades que duran mucho tiempo------------------------------------------------------------
+
+
+
+
+
+
+
+
 
 
         }
