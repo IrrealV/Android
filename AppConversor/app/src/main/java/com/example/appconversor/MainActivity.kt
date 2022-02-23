@@ -14,9 +14,10 @@ import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doOnTextChanged
 import com.example.appconversor.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationBarView
-    class MainActivity : AppCompatActivity(), TextWatcher {
-    private lateinit var binding: ActivityMainBinding
+import kotlin.properties.Delegates
 
+class MainActivity : AppCompatActivity(), TextWatcher {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -28,75 +29,96 @@ import com.google.android.material.navigation.NavigationBarView
         binding.horas.addTextChangedListener(){
             @Override
             binding.totalhoras.text = binding.horas.text
-            if(binding.horas.text == null || binding.horas.text.toString() == ""){
-                binding.totalhoras.text = "00"
+            if(binding.horas.text.toString() == ""){
+                binding.totalhoras.text = "0"
             }
-            else if(binding.horas.text.toString().toInt() >= 12){
-                binding.totalhoras.text = "11"
+            else if(binding.horas.text.toString().toInt() > 12){
+                "11".also { binding.totalhoras.text = it }
             }
+
         }
 
         binding.minutos.addTextChangedListener(){
             @Override
+
             binding.totalmin.text = binding.minutos.text
-            if(binding.minutos.text == null || binding.minutos.text.toString() == ""){
-                binding.totalmin.text = "00"
+            if(binding.minutos.text.toString() == ""){
+                binding.totalmin.text = "0"
             }
-            else if(binding.minutos.text.toString().toInt() >= 60){
-                binding.totalmin.text = "59"
+
+            else if(binding.minutos.text.toString().toInt() > 60){
+                "59".also { binding.totalmin.text = it }
             }
+
+
         }
     //Esto hace que el EditTexView y el TextView cambien a la vez
 
 
-    //Condiciones para el array principal cambiante
-        if(binding.totalhoras.text.toString().toInt() == 0 && binding.totalmin.text.toString().toInt() == 0 ){
-    //Recuerda hacerlo invisible en esta linea para luego mostrarlo
+    //Esto hace que el spinner se vuelva visible dependiendo de la cantidad de horas que hayamos metido
+
+        binding.totalhoras.addTextChangedListener(){
+            @Override
+            //Condiciones para el array principal cambiante
+
+                if(binding.totalhoras.text.toString()== "0" && binding.totalmin.text.toString()== "0"||binding.totalhoras.text.toString()== "" && binding.totalmin.text.toString()== ""){
+                    binding.accion.visibility = View.INVISIBLE
+                    Toast.makeText(this,binding.totalhoras.toString().toInt(), Toast.LENGTH_SHORT).show()
+
+
+                }
+                //Condiciones para el array principal cambiante
+                //Actividades que duran poco tiempo---------------------------------------------------------
+                else{
+                    var total = binding.totalhoras.text.toString().toInt()/60 + binding.totalhoras.text.toString().toInt()
+                    if(total <= 180){
+                        binding.accion.visibility = View.VISIBLE
+                        val tiempocorto = ArrayAdapter.createFromResource(
+                            this,
+                            R.array.tiempocorto,
+                            R.layout.spinner_color
+                        )
+                        binding.accion.adapter = tiempocorto
+                        tiempocorto.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
+
+                    }
+                    //Actividades que duran poco tiempo-------------------------------------------------------------
+                    //Actividades que duran tiempo medio------------------------------------------------------------
+                    else if(total <= 420){
+                        binding.accion.visibility = View.VISIBLE
+                        val tiempomedio = ArrayAdapter.createFromResource(
+                            this,
+                            R.array.tiempomedio,
+                            R.layout.spinner_color
+                        )
+                        binding.accion.adapter = tiempomedio
+                        tiempomedio.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
+
+                    }
+                    //Actividades que duran tiempo medio------------------------------------------------------------
+                    //Actividades que duran mucho tiempo------------------------------------------------------------
+                    else if(total<=720){
+                        binding.accion.visibility = View.VISIBLE
+                        val tiempolargo = ArrayAdapter.createFromResource(
+                            this,
+                            R.array.tiempolargo,
+                            R.layout.spinner_color
+                        )
+                        binding.accion.adapter = tiempolargo
+                        tiempolargo.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
+
+                    }
+
+                }
+
+
+            //Actividades que duran mucho tiempo------------------------------------------------------------
+            //Condiciones para el array principal cambiante
+
         }
-        //Actividades que duran poco tiempo---------------------------------------------------------
-        else if(binding.totalhoras.text.toString().toInt() <= 2 && binding.totalmin.text.toString().toInt() <= 59 ){
-            val tiempocorto = ArrayAdapter.createFromResource(
-                this,
-                R.array.tiempocorto,
-                R.layout.spinner_color
-            )
-            binding.accion.adapter = tiempocorto
-            tiempocorto.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
-        }
-        //Actividades que duran poco tiempo-------------------------------------------------------------
-        //Actividades que duran tiempo medio------------------------------------------------------------
-        else if(binding.totalhoras.text.toString().toInt() <= 6 && binding.totalmin.text.toString().toInt() <= 59){
-            val tiempomedio = ArrayAdapter.createFromResource(
-                this,
-                R.array.tiempomedio,
-                R.layout.spinner_color
-            )
-            binding.accion.adapter = tiempomedio
-            tiempomedio.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
-        }
-        //Actividades que duran tiempo medio------------------------------------------------------------
-        //Actividades que duran mucho tiempo------------------------------------------------------------
-        else{
-            val tiempolargo = ArrayAdapter.createFromResource(
-                this,
-                R.array.tiempolargo,
-                R.layout.spinner_color
-            )
-            binding.accion.adapter = tiempolargo
-            tiempolargo.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
-        }
-        //Actividades que duran mucho tiempo------------------------------------------------------------
-    //Condiciones para el array principal cambiante
 
 
-
-
-
-
-
-
-
-
+    //Esto hace que el spinner se vuelva visible dependiendo de la cantidad de horas que hayamos metido
 
 
 
