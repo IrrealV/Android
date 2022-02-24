@@ -2,14 +2,14 @@
     <string name="app_name">App Conversor</string>
 
     <array name="tiempocorto">
-        <item>Serie</item>
+        <item>Ducha</item>
         <item>Youtube</item>
-        <item>Tik Tok</item>
+        <item>TikTok</item>
     </array>
 
     <array name="tiempomedio">
         <item>Partida</item>
-        <item>Ducha</item>
+        <item>Serie</item>
         <item>Tarea</item>
     </array>
 
@@ -19,7 +19,57 @@
         <item>Siesta</item>
     </array>
 
-    <array name="tiempo">
-
+    <array name="Ducha">
+        <item>AudioLibro</item>
+        <item>Podcast</item>
+        <item>Cancion</item>
     </array>
+
+    <array name="Youtube">
+        <item>Midudev</item>
+        <item>Veggetta777</item>
+        <item>ZellenDust</item>
+    </array>
+
+    <array name="TikTok">
+        <item>pongamoslo_a_prueba</item>
+        <item>kfc_es</item>
+        <item>informativoangelmartin</item>
+    </array>
+
+    <array name="Partida">
+        <item>LoL</item>
+        <item>CS:GO</item>
+        <item>Apex</item>
+    </array>
+
+    <array name="Serie">
+        <item>Peaky Blinders</item>
+        <item>Jojos</item>
+        <item>Hora_de_Aventuras</item>
+    </array>
+
+    <array name="Tarea">
+        <item>Programacion</item>
+        <item>Android</item>
+        <item>BBDD</item>
+    </array>
+
+    <array name="Cocinar">
+        <item>Macarrones</item>
+        <item>Pizza</item>
+        <item>Carne_con_Tomate</item>
+    </array>
+
+    <array name="Programar">
+        <item>Kotlin</item>
+        <item>JavaScript</item>
+        <item>C#</item>
+    </array>
+
+    <array name="Siesta">
+        <item>Suerte</item>
+    </array>
+
+
 </resources>
