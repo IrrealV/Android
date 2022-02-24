@@ -166,18 +166,6 @@
         app:layout_constraintTop_toTopOf="@+id/imageView6"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <VideoView
-        android:id="@+id/trabajar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/transparent"
-        app:layout_constraintBottom_toTopOf="@+id/medicion"
-        app:layout_constraintEnd_toEndOf="@+id/accion"
-        app:layout_constraintStart_toStartOf="@+id/accion"
-        app:layout_constraintTop_toBottomOf="@+id/accion" />
-
     <ImageView
         android:id="@+id/accionfoto"
         android:layout_width="0dp"
@@ -191,9 +179,21 @@
         app:layout_constraintStart_toStartOf="@+id/accion"
         app:layout_constraintTop_toBottomOf="@+id/accion" />
 
+    <VideoView
+        android:id="@+id/trabajar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toTopOf="@+id/medicion"
+        app:layout_constraintEnd_toEndOf="@+id/accion"
+        app:layout_constraintStart_toStartOf="@+id/accion"
+        app:layout_constraintTop_toBottomOf="@+id/accion" />
+
     <Spinner
         android:id="@+id/medicion"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         android:minHeight="48dp"
