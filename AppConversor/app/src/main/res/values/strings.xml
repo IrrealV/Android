@@ -32,9 +32,9 @@
     </array>
 
     <array name="TikTok">
-        <item>pongamoslo_a_prueba</item>
+        <item>pongamoslo a prueba</item>
         <item>kfc_es</item>
-        <item>informativoangelmartin</item>
+        <item>InformativoAngelMartin</item>
     </array>
 
     <array name="Partida">
@@ -46,7 +46,7 @@
     <array name="Serie">
         <item>Peaky Blinders</item>
         <item>Jojos</item>
-        <item>Hora_de_Aventuras</item>
+        <item>Hora de Aventuras</item>
     </array>
 
     <array name="Tarea">
@@ -58,7 +58,7 @@
     <array name="Cocinar">
         <item>Macarrones</item>
         <item>Pizza</item>
-        <item>Carne_con_Tomate</item>
+        <item>Carne con Tomate</item>
     </array>
 
     <array name="Programar">
@@ -68,7 +68,7 @@
     </array>
 
     <array name="Siesta">
-        <item>Suerte</item>
+        <item>suerte</item>
     </array>
 
 

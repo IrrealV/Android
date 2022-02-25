@@ -1,30 +1,27 @@
 package com.example.appconversor
 
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
+import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doAfterTextChanged
-import androidx.core.widget.doOnTextChanged
 import com.example.appconversor.databinding.ActivityMainBinding
-import com.google.android.material.navigation.NavigationBarView
-import kotlin.properties.Delegates
+
 
 class MainActivity() : AppCompatActivity(){
     var minutosTotales = 0
     var min = 0
     var horas = 0
     var secspin = String()
+    var duracion = 0
+    var resultado = 0
+    var quecrack = String()
+    var checker = false
+
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,11 +29,9 @@ class MainActivity() : AppCompatActivity(){
         setContentView(binding.root)
         Toast.makeText(this,"Porfavor Introduzca su tiempo libre", Toast.LENGTH_SHORT).show()
 //Ocultamos todos los valores que no queremos que aparezcan por ahora
-        binding.medicion.visibility = View.GONE
-        binding.trabajar.visibility = View.GONE
-        binding.medicionfoto.visibility = View.GONE
-        binding.accion.visibility = View.GONE
+        desaparece()
 //Ocultamos todos los valores que no queremos que aparezcan por ahora
+
 
  //Esto hace que el EditTexView y el TextView cambien a la vez
         binding.horas.addTextChangedListener(){
@@ -80,9 +75,6 @@ class MainActivity() : AppCompatActivity(){
             if((binding.totalhoras.text.toString()== "00")||(binding.totalhoras.text.toString()== "")){desaparece()}
             else{checkMinutos()}
         }
-
-
-
 //Esto hace que el spinner se vuelva visible dependiendo de la cantidad de horas que hayamos metido
 
 
@@ -251,7 +243,159 @@ class MainActivity() : AppCompatActivity(){
         }
         binding.medicion.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                when(binding.medicion.selectedItem.toString()){
+                    "AudioLibro"->{
+                        duracion = 120
+                        binding.medicionfoto.setBackgroundResource(R.drawable.audiolibro)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "Podcast"->{
+                        duracion = 60
+                        binding.medicionfoto.setBackgroundResource(R.drawable.podcast)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "Cancion"->{
+                        duracion = 3
+                        binding.medicionfoto.setBackgroundResource(R.drawable.cancion)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "Midudev"->{
+                        duracion = 30
+                        binding.medicionfoto.setBackgroundResource(R.drawable.midudev)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "Veggetta777"->{
+                        duracion = 15
+                        binding.medicionfoto.setBackgroundResource(R.drawable.veggetta777)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "ZellenDust"->{
+                        duracion = 10
+                        binding.medicionfoto.setBackgroundResource(R.drawable.zellen)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "pongamoslo a prueba"->{
+                        duracion = 1
+                        binding.medicionfoto.setBackgroundResource(R.drawable.pongamosloaprueba)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "kfc_es"->{
+                        minutosTotales *= 60
+                        duracion = 10
+                        binding.medicionfoto.setBackgroundResource(R.drawable.kfces)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "InformativoAngelMartin"->{
+                        duracion = 1
+                        binding.medicionfoto.setBackgroundResource(R.drawable.angelmartin)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "LoL"->{
+                        duracion = 40
+                        binding.medicionfoto.setBackgroundResource(R.drawable.lol)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "CS:GO"->{
+                        duracion = 30
+                        binding.medicionfoto.setBackgroundResource(R.drawable.csgo)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "Apex"->{
+                        duracion = 20
+                        binding.medicionfoto.setBackgroundResource(R.drawable.apex)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "Peaky Blinders"->{
+                        duracion = 60
+                        binding.medicionfoto.setBackgroundResource(R.drawable.peakyblinder)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "Jojos"->{
+                        duracion = 18
+                        binding.medicionfoto.setBackgroundResource(R.drawable.jojos)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "Hora de Aventuras"->{
+                        duracion = 11
+                        binding.medicionfoto.setBackgroundResource(R.drawable.horadeaventura)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "Programacion"->{
+                        duracion = 190
+                        binding.medicionfoto.setBackgroundResource(R.drawable.programacion)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "Android"->{
+                        duracion = 300
+                        binding.medicionfoto.setBackgroundResource(R.drawable.android)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "BBDD"->{
+                        duracion = 120
+                        binding.medicionfoto.setBackgroundResource(R.drawable.bbdd)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "Macarrones"->{
+                        duracion = 30
+                        binding.medicionfoto.setBackgroundResource(R.drawable.macarrones)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "Pizza"->{
+                        duracion = 120
+                        binding.medicionfoto.setBackgroundResource(R.drawable.pizza)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "Carne con Tomate"->{
+                        duracion = 50
+                        binding.medicionfoto.setBackgroundResource(R.drawable.carne_con_tomate)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "Kotlin"->{
+                        duracion = 420
+                        binding.medicionfoto.setBackgroundResource(R.drawable.kotlin)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "JavaScript"->{
+                        duracion = 225
+                        binding.medicionfoto.setBackgroundResource(R.drawable.js)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "C#"->{
+                        duracion = 120
+                        binding.medicionfoto.setBackgroundResource(R.drawable.csharp)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                        total()
+                    }
+                    "suerte"->{
+                        quecrack = "Epico, vas a dormir"
+                        binding.medicionfoto.setBackgroundResource(R.drawable.epico)
+                        binding.medicionfoto.visibility = View.VISIBLE
+                    }
 
+                }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -261,6 +405,30 @@ class MainActivity() : AppCompatActivity(){
 
         }
 //Esto hace que el segundo spinner cambie de valor dependiendo de la elección
+
+
+//Esto hace que el boton envie los datos a la segunda pantalla
+
+        binding.reload.setOnClickListener{
+            if(checker){
+                val cambio = Intent(this, SecondActivity::class.java)
+                val horas = binding.totalhoras.text.toString()
+                val minutos = binding.totalmin.text.toString()
+                cambio.putExtra("resultado", resultado.toString())
+                cambio.putExtra("accion", binding.accion.selectedItem.toString())
+                cambio.putExtra("medicion", binding.medicion.selectedItem.toString())
+                cambio.putExtra("minutos", minutos)
+                cambio.putExtra("horas",horas)
+
+                startActivity(cambio)
+                finish()
+            }
+            else{
+                Toast.makeText(this, "No ha introducido suficientes datos" , Toast.LENGTH_SHORT).show()
+            }
+        }
+
+//Esto hace que el boton envie los datos a la segunda pantalla
     }
     fun checkMinutos () {
         horas =  binding.totalhoras.text.toString().toInt()*60
@@ -272,7 +440,7 @@ class MainActivity() : AppCompatActivity(){
                 0->{
                     desaparece()
                 }
-                in 1..239 ->{
+                in 1..240 ->{
                     binding.accion.visibility = View.VISIBLE
                     val tiempocorto = ArrayAdapter.createFromResource(
                         this,
@@ -283,7 +451,7 @@ class MainActivity() : AppCompatActivity(){
                     tiempocorto.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
 
                 }
-                in 240..479 ->{
+                in 241..480 ->{
                     binding.accion.visibility = View.VISIBLE
                     val tiempomedio = ArrayAdapter.createFromResource(
                         this,
@@ -294,7 +462,7 @@ class MainActivity() : AppCompatActivity(){
                     tiempomedio.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
 
                 }
-                in 480..720 ->{
+                in 481..720 ->{
                     binding.accion.visibility = View.VISIBLE
                     val tiempolargo = ArrayAdapter.createFromResource(
                         this,
@@ -322,6 +490,15 @@ class MainActivity() : AppCompatActivity(){
         binding.trabajar.visibility = View.GONE
     }
 
+    fun total(){
+        if(binding.medicion.selectedItem.toString() == "kfc_es"){
+            resultado = (minutosTotales*60) / duracion
+        }
+        else{
+            resultado = minutosTotales / duracion
+        }
+        checker = true
+    }
 
 }
 

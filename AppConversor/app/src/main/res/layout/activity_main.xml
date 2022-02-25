@@ -210,22 +210,11 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/reload"
         app:layout_constraintEnd_toEndOf="@+id/medicion"
         app:layout_constraintStart_toStartOf="@+id/medicion"
         app:layout_constraintTop_toBottomOf="@+id/medicion" />
-
-    <ImageView
-        android:id="@+id/sombratruco"
-        android:layout_width="129dp"
-        android:layout_height="99dp"
-        app:layout_constraintBottom_toBottomOf="@+id/reload"
-        app:layout_constraintEnd_toEndOf="@+id/reload"
-        app:layout_constraintHorizontal_bias="0.282"
-        app:layout_constraintStart_toStartOf="@+id/reload"
-        app:layout_constraintTop_toTopOf="@+id/reload"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/sobra" />
 
     <ImageButton
         android:id="@+id/reload"
@@ -240,5 +229,17 @@
         app:layout_constraintStart_toStartOf="@+id/imageView6"
         app:layout_constraintTop_toBottomOf="@+id/imageView6"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/sombratruco"
+        android:layout_width="129dp"
+        android:layout_height="99dp"
+        app:layout_constraintBottom_toBottomOf="@+id/reload"
+        app:layout_constraintEnd_toEndOf="@+id/reload"
+        app:layout_constraintHorizontal_bias="0.282"
+        app:layout_constraintStart_toStartOf="@+id/reload"
+        app:layout_constraintTop_toTopOf="@+id/reload"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/sobra" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
