@@ -28,6 +28,7 @@ class MainActivity() : AppCompatActivity(){
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Toast.makeText(this,"Porfavor Introduzca su tiempo libre", Toast.LENGTH_SHORT).show()
+
 //Ocultamos todos los valores que no queremos que aparezcan por ahora
         desaparece()
 //Ocultamos todos los valores que no queremos que aparezcan por ahora
@@ -301,13 +302,13 @@ class MainActivity() : AppCompatActivity(){
                     }
                     "LoL"->{
                         duracion = 40
-                        binding.medicionfoto.setBackgroundResource(R.drawable.lol)
+                        binding.medicionfoto.setBackgroundResource(R.drawable.LoL)
                         binding.medicionfoto.visibility = View.VISIBLE
                         total()
                     }
                     "CS:GO"->{
                         duracion = 30
-                        binding.medicionfoto.setBackgroundResource(R.drawable.csgo)
+                        binding.medicionfoto.setBackgroundResource(R.drawable.CSGO)
                         binding.medicionfoto.visibility = View.VISIBLE
                         total()
                     }
@@ -385,7 +386,7 @@ class MainActivity() : AppCompatActivity(){
                     }
                     "C#"->{
                         duracion = 120
-                        binding.medicionfoto.setBackgroundResource(R.drawable.csharp)
+                        binding.medicionfoto.setBackgroundResource(R.drawable.Csharp)
                         binding.medicionfoto.visibility = View.VISIBLE
                         total()
                     }
@@ -408,7 +409,6 @@ class MainActivity() : AppCompatActivity(){
 
 
 //Esto hace que el boton envie los datos a la segunda pantalla
-
         binding.reload.setOnClickListener{
             if(checker){
                 val cambio = Intent(this, SecondActivity::class.java)
@@ -427,7 +427,6 @@ class MainActivity() : AppCompatActivity(){
                 Toast.makeText(this, "No ha introducido suficientes datos" , Toast.LENGTH_SHORT).show()
             }
         }
-
 //Esto hace que el boton envie los datos a la segunda pantalla
     }
     fun checkMinutos () {

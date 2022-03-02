@@ -65,12 +65,12 @@ class SecondActivity() : AppCompatActivity() {
             }
             "LoL"->{
 
-                binding.imagenresultado.setBackgroundResource(R.drawable.lol)
+                binding.imagenresultado.setBackgroundResource(R.drawable.LoL)
 
             }
             "CS:GO"->{
 
-                binding.imagenresultado.setBackgroundResource(R.drawable.csgo)
+                binding.imagenresultado.setBackgroundResource(R.drawable.CSGO)
 
             }
             "Apex"->{
@@ -135,7 +135,7 @@ class SecondActivity() : AppCompatActivity() {
             }
             "C#"->{
 
-                binding.imagenresultado.setBackgroundResource(R.drawable.csharp)
+                binding.imagenresultado.setBackgroundResource(R.drawable.Csharp)
 
             }
             "suerte"->{
