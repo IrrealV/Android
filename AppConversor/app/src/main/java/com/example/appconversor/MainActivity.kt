@@ -302,13 +302,13 @@ class MainActivity() : AppCompatActivity(){
                     }
                     "LoL"->{
                         duracion = 40
-                        binding.medicionfoto.setBackgroundResource(R.drawable.LoL)
+                        binding.medicionfoto.setBackgroundResource(R.drawable.lol)
                         binding.medicionfoto.visibility = View.VISIBLE
                         total()
                     }
                     "CS:GO"->{
                         duracion = 30
-                        binding.medicionfoto.setBackgroundResource(R.drawable.CSGO)
+                        binding.medicionfoto.setBackgroundResource(R.drawable.csgo)
                         binding.medicionfoto.visibility = View.VISIBLE
                         total()
                     }
@@ -386,7 +386,7 @@ class MainActivity() : AppCompatActivity(){
                     }
                     "C#"->{
                         duracion = 120
-                        binding.medicionfoto.setBackgroundResource(R.drawable.Csharp)
+                        binding.medicionfoto.setBackgroundResource(R.drawable.csharp)
                         binding.medicionfoto.visibility = View.VISIBLE
                         total()
                     }

@@ -11,13 +11,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/holo_red_light"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/titulo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="@+id/titulo" />
 
     <ProgressBar
-        android:id="@+id/progressBar2"
+        android:id="@+id/progreso"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -34,56 +34,65 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar2">
+        app:layout_constraintTop_toBottomOf="@+id/progreso">
 
     </WebView>
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/retroceder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/flecha_derecha" />
+        app:srcCompat="@drawable/flecha_derecha"
+        app:tint="#7E3F3F"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/avanzar"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:backgroundTint="@android:color/transparent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintStart_toEndOf="@+id/retroceder"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/fleecha_izquierda" />
+        app:srcCompat="@drawable/fleecha_izquierda"
+        tools:ignore="SpeakableTextPresentCheck"
+        app:tint="#7E3F3F" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/oninbrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/open_in_browser" />
+        app:srcCompat="@drawable/open_in_browser"
+        app:tint="@color/black"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/reload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/transparent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton3"
+        app:layout_constraintEnd_toStartOf="@+id/oninbrow"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/reload_page" />
+        app:srcCompat="@drawable/reload_page"
+        app:tint="@color/black"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/titulo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Gitanos roban tanque ruso"
         android:textColor="@color/white"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
-        app:layout_constraintStart_toEndOf="@+id/imageButton2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/avanzar"
+        app:layout_constraintEnd_toStartOf="@+id/reload"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/avanzar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
