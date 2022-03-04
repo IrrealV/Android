@@ -17,40 +17,18 @@ import com.estech.recyclerviewexample.databinding.HolderPlayerBinding
 class MyAdapter(val dataList: MutableList<String>) :
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
-    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView
-
-        init {
-            textView = view.findViewById(R.id.holder_name)
-        }
-
+    inner class MyViewHolder(private val binding: HolderPlayerBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun setMyData(jugador: String) {
-            textView.text = jugador
-            textView.setOnClickListener {
-                Toast.makeText(textView.context, "$jugador en posicion ${adapterPosition}", Toast.LENGTH_SHORT).show()
-            }
+            binding.holderName.text = jugador
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.holder_player, parent, false)
-        return MyViewHolder(view)
+        val binding = HolderPlayerBinding.inflate(layoutInflater, parent, false)
+        return MyViewHolder(binding)
     }
-
-
-//    inner class MyViewHolder(private val binding: HolderPlayerBinding) :
-//        RecyclerView.ViewHolder(binding.root) {
-//        fun setMyData(jugador: String) {
-//            binding.holderName.text = jugador
-//        }
-//    }
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-//        val layoutInflater = LayoutInflater.from(parent.context)
-//        val binding = HolderPlayerBinding.inflate(layoutInflater, parent, false)
-//        return MyViewHolder(binding)
-//    }
 
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -62,4 +40,43 @@ class MyAdapter(val dataList: MutableList<String>) :
         return dataList.size
     }
 
+    fun addItem(item: String) {
+        if (!dataList.contains(item)) {
+            dataList.add(item)
+            notifyDataSetChanged()
+        }
+        //notify
+    }
+    fun removeItem(position: Int) {
+        if (position < dataList.size) {
+            dataList.removeAt(position)
+            notifyDataSetChanged()
+        }
+    }
+
 }
+
+
+
+
+
+//    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+//        val textView: TextView
+//
+//        init {
+//            textView = view.findViewById(R.id.holder_name)
+//        }
+//
+//        fun setMyData(jugador: String) {
+//            textView.text = jugador
+//            textView.setOnClickListener {
+//                Toast.makeText(textView.context, "$jugador en posicion ${adapterPosition}", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//    }
+//
+//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+//        val layoutInflater = LayoutInflater.from(parent.context)
+//        val view = layoutInflater.inflate(R.layout.holder_player, parent, false)
+//        return MyViewHolder(view)
+//    }

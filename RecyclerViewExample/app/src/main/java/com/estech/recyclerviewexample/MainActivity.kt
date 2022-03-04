@@ -15,6 +15,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val jugador1 = Jugador("Casillas", 1, "Portero")
+        val jugador2 = Jugador("Casillas", 1, "Portero")
+        val jugador3 = Jugador("Casillas", 1, "Portero")
+        val jugador4 = Jugador("Casillas", 1, "Portero")
+        val seleccion = mutableListOf(jugador1, jugador2, jugador3, jugador4)
+
         val jugadores = mutableListOf("Casillas", "Iniesta", "Villa", "Busquets", "Fernando Torres")
         jugadores.add("Xavi")
         jugadores.add("Capdevila")
@@ -26,5 +32,13 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = llm
         val adapter = MyAdapter(jugadores)
         recyclerView.adapter = adapter
+
+        binding.button.setOnClickListener {
+            adapter.addItem("Sergio Ramos")
+        }
+
+        binding.button2.setOnClickListener {
+            adapter.removeItem(0)
+        }
     }
 }

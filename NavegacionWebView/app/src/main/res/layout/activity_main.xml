@@ -14,7 +14,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/avanzar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/titulo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/progreso"
@@ -90,9 +90,10 @@
         android:lines="1"
         android:textColor="@color/white"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/avanzar"
         app:layout_constraintEnd_toStartOf="@+id/reload"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/avanzar"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/avanzar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
