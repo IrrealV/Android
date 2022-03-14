@@ -37,9 +37,9 @@ class MainActivity : AppCompatActivity() {
         binding.button.setOnClickListener {
             adapter.aniadirJugador(Jugador("SErgio Ramos", 15, "Defensa"))
         }
-//
-//        binding.button2.setOnClickListener {
-//            adapter.removeItem(0)
-//        }
+
+        binding.button2.setOnClickListener {
+            adapter.removeItem(0)
+        }
     }
 }

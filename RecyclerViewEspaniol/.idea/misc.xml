@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programas/GitHub/Android/RecyclerViewEspaniol/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1975" />
+        <entry key="..\:/Programas/GitHub/Android/RecyclerViewEspaniol/app/src/main/res/layout/activity_main.xml" value="0.18297101449275363" />
+        <entry key="..\:/Programas/GitHub/Android/RecyclerViewEspaniol/app/src/main/res/layout/layout_del_jugador.xml" value="0.25" />
         <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema3/RecyclerViewExample/app/src/main/res/layout/activity_main.xml" value="0.35989583333333336" />
         <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema3/RecyclerViewExample/app/src/main/res/layout/holder_player.xml" value="0.35989583333333336" />
         <entry key="..\:/Users/sergio.velasco/Downloads/RecyclerViewExample - copia/RecyclerViewExample/app/src/main/res/layout/activity_main.xml" value="0.33" />

@@ -1,5 +1,6 @@
 package com.example.recicler_personalizado
 
+import android.media.metrics.Event
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,4 +38,5 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 }
