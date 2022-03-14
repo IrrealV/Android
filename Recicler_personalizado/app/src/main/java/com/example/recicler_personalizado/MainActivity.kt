@@ -20,11 +20,21 @@ class MainActivity : AppCompatActivity() {
 
         val leyendas = mutableListOf<Leyenda>()
         leyendas.add(Leyenda("Bangalore",34,"Lanzahumo"))
+        leyendas.add(Leyenda("Gibraltar",34,"Lanzahumo"))
+        leyendas.add(Leyenda("Bangalore",34,"Lanzahumo"))
+        leyendas.add(Leyenda("Bangalore",34,"Lanzahumo"))
+        leyendas.add(Leyenda("Bangalore",34,"Lanzahumo"))
+        leyendas.add(Leyenda("Bangalore",34,"Lanzahumo"))
+
 
 
         val llm = LinearLayoutManager(this)
         recyclerView.layoutManager = llm
+
         val adapter = MiAdaptador(leyendas)
         recyclerView.adapter = adapter
+
+
+
     }
 }
