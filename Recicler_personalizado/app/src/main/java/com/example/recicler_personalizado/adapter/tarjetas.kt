@@ -7,16 +7,4 @@ import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recicler_personalizado.databinding.HolderLeyendaBinding
 
-class tarjetas(val binding: HolderLeyendaBinding): RecyclerView.ViewHolder(binding.root){
-    fun updateTarjeta(event : Event){
-            binding.borrar.setOnClickListener {
-                deleteEvent(event)
-            }
-    }
-
-    private fun deleteEvent(event: Event) {
-        ViewModel.removeItem()
-    }
-
-
-}
+class tarjetas(val binding: HolderLeyendaBinding): RecyclerView.ViewHolder(binding.root)

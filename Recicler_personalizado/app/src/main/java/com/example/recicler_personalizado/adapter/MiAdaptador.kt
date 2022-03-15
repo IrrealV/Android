@@ -26,10 +26,19 @@ class MiAdaptador(val listado: MutableList<Leyenda>): RecyclerView.Adapter<tarje
         holder.binding.name.text = leyenda.nombre
         holder.binding.habilidad.text = leyenda.habilidad
         holder.binding.edad.text = leyenda.edad.toString()
-
+        holder.binding.borrar.setOnClickListener{
+            deleteItem(position)
+        }
 
     }
 
+    private fun deleteItem(position: Int) {
+        if (position < listado.size){
+            listado.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, listado.size)
+        }
+    }
 
 
     override fun getItemCount(): Int {
