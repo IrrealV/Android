@@ -5,24 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.estech.fragmentsample.databinding.FragmentBlankBinding
 
-class BlankFragment : Fragment() {
-
-    private lateinit var binding: FragmentBlankBinding
+class BlankFragment3 : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentBlankBinding.inflate(inflater, container, false)
-        return binding.root
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_blank3, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.textView.text = "Este es el fragment 1"
-        binding.button.setOnClickListener {
-        }
+
     }
 }
