@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "C:\\Users\\garvi\\AndroidStudioProjects\\Ejercicio10\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\third_acticity.xml",
+        "source": "C:\\Users\\garvi\\AndroidStudioProjects\\Ejercicio10\\app\\src\\main\\res\\layout\\third_acticity.xml"
+    },
+    {
+        "merged": "C:\\Users\\garvi\\AndroidStudioProjects\\Ejercicio10\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "C:\\Users\\garvi\\AndroidStudioProjects\\Ejercicio10\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\garvi\\AndroidStudioProjects\\Ejercicio10\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\second_activity.xml",
+        "source": "C:\\Users\\garvi\\AndroidStudioProjects\\Ejercicio10\\app\\src\\main\\res\\layout\\second_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\garvi\\AndroidStudioProjects\\Ejercicio10\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\edicion_activity.xml",
+        "source": "C:\\Users\\garvi\\AndroidStudioProjects\\Ejercicio10\\app\\src\\main\\res\\layout\\edicion_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\garvi\\AndroidStudioProjects\\Ejercicio10\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\holder_name.xml",
+        "source": "C:\\Users\\garvi\\AndroidStudioProjects\\Ejercicio10\\app\\src\\main\\res\\layout\\holder_name.xml"
+    }
+]
