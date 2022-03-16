@@ -26,8 +26,14 @@ class MiAdaptador(val listado: MutableList<Leyenda>): RecyclerView.Adapter<tarje
         holder.binding.name.text = leyenda.nombre
         holder.binding.habilidad.text = leyenda.habilidad
         holder.binding.edad.text = leyenda.edad.toString()
+
         holder.binding.borrar.setOnClickListener{
             deleteItem(position)
+        }
+
+        holder.binding.card.setOnLongClickListener {
+            deleteItem(position)
+            true
         }
 
     }

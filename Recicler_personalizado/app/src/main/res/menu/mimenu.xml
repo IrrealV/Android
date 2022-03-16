@@ -2,7 +2,14 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Item" />
+    <item
+        android:id="@+id/contacto"
+        android:title="Contacto" />
+    <item
+        android:id="@+id/aniadir"
+        android:icon="@drawable/crear"
+        android:title="aniadir"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/restall"
         android:icon="@drawable/basura"
