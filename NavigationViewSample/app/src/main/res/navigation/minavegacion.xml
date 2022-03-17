@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/minavegacion"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.estech.myapplication.ui.home.HomeFragment"
+        android:label="Home" />
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.estech.myapplication.ui.slideshow.VideoFragment"
+        android:label="Video" />
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.estech.myapplication.ui.gallery.GalleryFragment"
+        android:label="Galería" >
+        <action
+            android:id="@+id/action_nav_gallery_to_blankFragment"
+            app:destination="@id/blankFragment"
+            app:popUpTo="@id/nav_gallery" />
+    </fragment>
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.estech.navigationviewsample.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" />
+</navigation>
