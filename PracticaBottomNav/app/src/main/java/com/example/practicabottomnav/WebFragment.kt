@@ -72,27 +72,6 @@ class WebFragment : Fragment() {
         }
     }
 
-//    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-//        if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
-//            webView.goBack();
-//            return true;
-//        }
-//        val builder = AlertDialog.Builder(requireContext())
-//        builder.setTitle("¿Quieres salir de la aplicación?")
-//        builder.setPositiveButton("Si") { dialog, which ->
-//            Toast.makeText(requireContext(), "Has salido de la aplicación", Toast.LENGTH_SHORT).show()
-//            requireActivity().finish()
-//        }
-//        builder.setNegativeButton("No") { dialog, which ->
-//            Toast.makeText(requireContext(), "¡Gracias por quedarte!", Toast.LENGTH_SHORT).show()
-//        }
-//        val dialog = builder.create()
-//        dialog.show()
-//        return true
-//    }
-
-
-
     inner class MyWebViewClient: WebViewClient(){
         override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
             val uri = request?.url
