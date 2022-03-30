@@ -1,10 +1,12 @@
 package com.estech.examen2trimestre
 
+import android.app.ActionBar
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.estech.examen2trimestre.databinding.ActivityLoginBinding
+import com.estech.examen2trimestre.databinding.ActivityMainBinding
 import com.google.android.material.textfield.TextInputEditText
 
 
@@ -26,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
         // click boton entrar
         binding.loginBtnLogin.setOnClickListener {
             val usertext = binding.loginEdUser.text.toString()
-            val passtext = binding.loginEdPass.toString()
+            val passtext = binding.loginEdPass.text.toString()
             compruebaLogin(usertext, passtext)
         }
 
@@ -55,14 +57,16 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        abrirMainActivity()
+        abrirMainActivity(user,pass)
     }
 
     /**
      * Función que abre la actividad MainActivity cuando es llamada
      */
-    private fun abrirMainActivity() {
+    private fun abrirMainActivity(user: String, pass: String) {
         val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("user", user)
+        intent.putExtra("pass",pass)
         startActivity(intent)
         finish()
     }

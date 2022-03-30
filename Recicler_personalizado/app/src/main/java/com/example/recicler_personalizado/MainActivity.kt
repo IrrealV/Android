@@ -21,10 +21,9 @@ import com.example.recicler_personalizado.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    val llm = LinearLayoutManager(this)
+    val llm = LinearLayoutManager(this, RecyclerView.VERTICAL, true)
     val leyendas = mutableListOf<Leyenda>()
     val adapter = MiAdaptador(leyendas)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

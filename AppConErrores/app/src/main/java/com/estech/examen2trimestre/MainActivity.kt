@@ -1,6 +1,11 @@
 package com.estech.examen2trimestre
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +23,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+        val bundle = intent.extras
+
+
+        supportActionBar?.title = "Tareas de " + bundle?.getString("user")
 
         // crear lista de mensajes fijos
         val mensaje1 = Mensaje("Entregar tarea Android", "2022/03/22 23:59:33")
@@ -26,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         val listado = mutableListOf(mensaje1, mensaje2, mensaje3)
 
         // configuración del adapter
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, true)
         adapter = MyAdapter(listado)
         binding.recyclerview.layoutManager = layoutManager
         binding.recyclerview.adapter = adapter
@@ -54,7 +64,6 @@ class MainActivity : AppCompatActivity() {
 
             val mensaje = Mensaje(tarea, textoFecha)
             adapter.aniadirTarea(mensaje)
-
             binding.campotexto.setText("")
         }
     }
@@ -76,6 +85,28 @@ class MainActivity : AppCompatActivity() {
 
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
             adapter.eliminarTarea(viewHolder.adapterPosition)
+
+        }
+    }
+
+    @SuppressLint("RestrictedApi")
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.mimenu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            R.id.Acercade -> {
+                val intent = Intent(this, AcercaDe::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> return super.onOptionsItemSelected(item)
         }
     }
 }

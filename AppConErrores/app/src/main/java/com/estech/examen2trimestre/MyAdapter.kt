@@ -24,8 +24,13 @@ class MyAdapter(val listado: MutableList<Mensaje>) : RecyclerView.Adapter<MyAdap
 
     override fun onBindViewHolder(holder: MiCelda, position: Int) {
         val mensaje = listado[position]
-        holder.binding.tvMessage.text = mensaje.toString()
+        holder.binding.tvMessage.text = mensaje.mensaje
         holder.binding.tvDate.text = mensaje.fecha
+
+        holder.binding.cardview.setOnLongClickListener {
+            eliminarTarea(position)
+            true
+        }
     }
 
     override fun getItemCount(): Int {
@@ -34,9 +39,11 @@ class MyAdapter(val listado: MutableList<Mensaje>) : RecyclerView.Adapter<MyAdap
 
     fun aniadirTarea(mensaje: Mensaje) {
         listado.add(mensaje)
+        notifyDataSetChanged()
     }
 
     fun eliminarTarea(position: Int) {
-        //TODO implementa esta función
+        listado.removeAt(position)
+        notifyDataSetChanged()
     }
 }

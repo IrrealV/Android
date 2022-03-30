@@ -1,7 +1,9 @@
 package com.estech.examen2trimestre
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.estech.examen2trimestre.databinding.ActivityAcercaDeBinding
@@ -15,6 +17,9 @@ class AcercaDe : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAcercaDeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar2)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         Glide
             .with(this)
@@ -38,7 +43,7 @@ class AcercaDe : AppCompatActivity() {
         fechaFinal.set(Calendar.MINUTE, 40)
 
         // con esta operación se obtienen los milisegundos restantes hasta la fecha tope
-        // TODO valor diferencia = introduce aquí el valor que has leido haciendo debug
+        // TODO valor diferencia = -3479999
         val diferencia = fechaFinal.timeInMillis - fechaActual.timeInMillis
 
         // función para hacer una cuenta atrás, se activa cada segundo, dura el valor de diferencia
@@ -68,5 +73,16 @@ class AcercaDe : AppCompatActivity() {
             }
         }
         counter.start()
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+                true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 }
