@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Examen trimestre 2 carpeta/AppConErrores/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1485" />
+        <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Examen trimestre 2 carpeta/AppConErrores/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1485" />
+        <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Examen trimestre 2 carpeta/AppConErrores/app/src/main/res/layout/activity_acerca_de.xml" value="0.19739583333333333" />
+        <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Examen trimestre 2 carpeta/AppConErrores/app/src/main/res/layout/activity_login.xml" value="0.19739583333333333" />
+        <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Examen trimestre 2 carpeta/AppConErrores/app/src/main/res/layout/activity_main.xml" value="0.19739583333333333" />
+        <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Examen trimestre 2 carpeta/AppConErrores/app/src/main/res/layout/vista_celda.xml" value="0.1897644927536232" />
+        <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Examen trimestre 2 carpeta/AppConErrores/app/src/main/res/menu/menu.xml" value="0.19739583333333333" />
+        <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Examen trimestre 2 carpeta/AppConErrores/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1485" />
+        <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema3/Examen2Trimestre/app/src/main/res/drawable/roundback.xml" value="0.1535" />
+        <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema3/Examen2Trimestre/app/src/main/res/layout/activity_acerca_de.xml" value="0.35989583333333336" />
+        <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema3/Examen2Trimestre/app/src/main/res/layout/activity_login.xml" value="0.35989583333333336" />
+        <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema3/Examen2Trimestre/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema3/Examen2Trimestre/app/src/main/res/layout/login_activity.xml" value="0.25" />
+        <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema3/Examen2Trimestre/app/src/main/res/layout/vista_celda.xml" value="0.33" />
+        <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema3/Examen2Trimestre/app/src/main/res/menu/menu.xml" value="0.125" />
+        <entry key="..\:/Users/victor.heras/AndroidStudioProjects/AppConErrores/app/src/main/res/layout/activity_acerca_de.xml" value="0.3546875" />
+        <entry key="..\:/Users/victor.heras/AndroidStudioProjects/AppConErrores/app/src/main/res/layout/activity_login.xml" value="0.3546875" />
+        <entry key="..\:/Users/victor.heras/AndroidStudioProjects/AppConErrores/app/src/main/res/layout/activity_main.xml" value="0.3546875" />
+        <entry key="..\:/Users/victor.heras/AndroidStudioProjects/AppConErrores/app/src/main/res/layout/vista_celda.xml" value="0.3546875" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
