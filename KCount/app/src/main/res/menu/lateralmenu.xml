@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+    <group android:id="@+id/home">
+        <item
+            android:id="@+id/mainFragment"
+            android:icon="@drawable/home"
+            android:title="Home" />
+    </group>
+    <group android:id="@+id/img">
+
+        <item
+            android:id="@+id/demoniosFragment"
+            android:icon="@drawable/demon"
+            android:title="Doom" />
+        <item
+            android:id="@+id/galeriaFragment"
+            android:icon="@drawable/galeria"
+            android:title="Galeria" />
+    </group>
+    <group android:id="@+id/contact">
+        <item
+            android:id="@+id/contacFragment"
+            android:icon="@drawable/mail"
+            android:title="Contacto" />
+    </group>
+</menu>
