@@ -101,6 +101,7 @@ class LoginActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("user", user)
         startActivity(intent)
+
         finish()
     }
 

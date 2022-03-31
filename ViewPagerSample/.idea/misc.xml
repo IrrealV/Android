@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programas/GitHub/Android/ViewPagerSample/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programas/GitHub/Android/ViewPagerSample/app/src/main/res/layout/celda_para_galeria.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programas/GitHub/Android/ViewPagerSample/app/src/main/res/layout/fragment_galeria.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programas/GitHub/Android/ViewPagerSample/app/src/main/res/layout/fragment_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema3/ViewPagerSample/app/src/main/res/layout/activity_main.xml" value="0.29981884057971014" />
         <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema3/ViewPagerSample/app/src/main/res/layout/celda_para_avanzada.xml" value="0.35989583333333336" />
         <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema3/ViewPagerSample/app/src/main/res/layout/celda_para_galeria.xml" value="0.29981884057971014" />

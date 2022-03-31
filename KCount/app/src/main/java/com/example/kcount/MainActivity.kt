@@ -3,6 +3,7 @@ package com.example.kcount
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
@@ -10,12 +11,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.kcount.databinding.ActivityMainBinding
+import com.example.kcount.databinding.FragmentMainBinding
 import com.google.android.material.navigation.NavigationView
 import java.text.SimpleDateFormat
 import java.util.*
@@ -34,11 +37,13 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.fragmentContainerView)
 
 
+
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.mainFragment, R.id.contacFragment, R.id.galeriaFragment, R.id.demoniosFragment
             ), drawerLayout
         )
+
 
 
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -70,6 +75,7 @@ class MainActivity : AppCompatActivity() {
 
         if(user!!.isNotEmpty()){
             usuario.text = user
+
         }
 
 
@@ -103,5 +109,20 @@ class MainActivity : AppCompatActivity() {
             }
             else -> return super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("¿Quieres salir de la aplicación?")
+        builder.setPositiveButton("Si") { dialog, which ->
+            Toast.makeText(this@MainActivity, "Has salido de la aplicación", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+        builder.setNegativeButton("No") { dialog, which ->
+            Toast.makeText(this@MainActivity, "¡Gracias por quedarte!", Toast.LENGTH_SHORT).show()
+        }
+        val dialog = builder.create()
+        dialog.show()
+        return true
     }
 }
