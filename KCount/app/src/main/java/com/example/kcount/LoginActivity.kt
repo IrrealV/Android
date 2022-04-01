@@ -17,9 +17,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val preferencias = getSharedPreferences("pref", MODE_PRIVATE) //acabo de aprender a usar las preferences a 30/30/2022 a las 21:22
+        val preferencias = getSharedPreferences("pref", MODE_PRIVATE)//acabo de aprender a usar las preferences a 30/30/2022 a las 21:22
         val usuario = preferencias.getString("user","")
         binding.user.setText(usuario)
+
+
 
 
         //Click cara slayer
@@ -42,7 +44,6 @@ class LoginActivity : AppCompatActivity() {
 
                 builder.setTitle("Vas a continuar como invitado ¿Estas de acuerdo?")
                 builder.setPositiveButton("Si") { dialog, which ->
-                    Toast.makeText(this, "Se abre el Main Activity", Toast.LENGTH_SHORT).show()
                     binding.caraslayer.setBackgroundResource(R.drawable.facedead)
                     abrirMain(user)
                 }
@@ -95,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
 
     //Esta funcion guarda en prefs el usuario si no está vacío y abre la siguiente actividad
     private  fun abrirMain(user: String){
-        if(user.isNotEmpty()){
+        if(user.isNotEmpty()) {
             guardarpref(user)
         }
         val intent = Intent(this, MainActivity::class.java)
@@ -108,8 +109,9 @@ class LoginActivity : AppCompatActivity() {
     //Esta funcion guarda en prefs el user, independientemente si está o no vacio
     private fun guardarpref(user: String){
         val preferencias = getSharedPreferences("pref", MODE_PRIVATE)
-        val editor =preferencias.edit()
+        val editor = preferencias.edit()
         editor.putString("user",user)
         editor.apply()
+
     }
 }
