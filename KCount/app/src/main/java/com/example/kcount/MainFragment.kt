@@ -49,12 +49,13 @@ class MainFragment : Fragment() {
         }
 
         binding.slayer.setOnClickListener {
+            Toast.makeText(requireContext(),"Pulsó 10 veces", Toast.LENGTH_SHORT).show()
             var contExt = preferences.getInt("cuenta", 0)
             var contInt = 0
             if(contExt.toString().toInt() == 0){
                 contInt += 1
                 if (contInt == 10){
-                    Toast.makeText(requireContext(),"Pulsó 10 veces", Toast.LENGTH_SHORT).show()
+
                     contador.putInt("cuenta",1)
                 }
             }
