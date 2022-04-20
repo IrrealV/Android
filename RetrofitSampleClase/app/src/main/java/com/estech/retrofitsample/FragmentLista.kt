@@ -4,12 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.estech.retrofitsample.PersonajeAdapter
 import com.estech.retrofitsample.databinding.ListaFragmentBinding
 import com.estech.retrofitsample.modelos.Personaje
+import com.estech.retrofitsample.retrofit.Repositorio
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.IOException
 import java.io.InputStream
 
@@ -35,13 +41,31 @@ class FragmentLista : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val jsonString = getJsonFromAsset()
+        val repositorio = Repositorio()
 
-        jsonString.let {
-            val gson = Gson()
-            val plantilla = gson.fromJson(it, Array<Personaje>::class.java).asList()
-            configRecycler(plantilla)
+        CoroutineScope(Dispatchers.IO).launch {
+            val respuesta = repositorio.dameTodosLosPersonajes()
+
+            withContext(Dispatchers.Main){
+                if(respuesta.isSuccessful){
+                    val exito = respuesta.body()
+                    val info = exito?.info
+                    val listaPersonajes = exito?.results
+                    listaPersonajes?.let { configRecycler(listaPersonajes) }
+                }else{
+                    val error = respuesta.message()
+                    Toast.makeText(requireContext(), "Error : $error", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
+
+//        val jsonString = getJsonFromAsset()
+//
+//        jsonString.let {
+//            val gson = Gson()
+//            val plantilla = gson.fromJson(it, Array<Personaje>::class.java).asList()
+//            configRecycler(plantilla)
+//        }
     }
 
     private fun getJsonFromAsset(): String? {
