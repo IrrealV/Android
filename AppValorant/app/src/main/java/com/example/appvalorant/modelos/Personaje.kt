@@ -17,7 +17,7 @@ data class Personaje (
     val fondo: String,
 
     @SerializedName("role")
-    val rol : rol?,
+    val rol : rol,
 
 
 

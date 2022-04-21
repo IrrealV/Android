@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programas/GitHub/Android/JsonSampleClass/app/src/main/res/layout/lista_fragment.xml" value="0.21195652173913043" />
+        <entry key="..\:/Programas/GitHub/Android/JsonSampleClass/app/src/main/res/layout/personaje_fragment.xml" value="0.21195652173913043" />
+        <entry key="..\:/Programas/GitHub/Android/JsonSampleClass/app/src/main/res/layout/vista_celda.xml" value="0.21195652173913043" />
         <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema3/JsonSample/app/src/main/res/drawable/circle_green.xml" value="0.221" />
         <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema3/JsonSample/app/src/main/res/drawable/ic_baseline_help_center_24.xml" value="0.221" />
         <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema3/JsonSample/app/src/main/res/layout/activity_main.xml" value="0.17119565217391305" />
