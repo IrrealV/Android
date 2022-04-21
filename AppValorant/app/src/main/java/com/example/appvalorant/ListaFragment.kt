@@ -43,7 +43,7 @@ class ListaFragment : Fragment() {
     private fun getJsonFromAsset2(): String? {
         var jsonString: String? = null
         try {
-            val inputStream: InputStream = requireContext().assets.open("personajes.json")
+            val inputStream: InputStream = requireContext().assets.open("valorant.json")
             jsonString = inputStream.bufferedReader().use {
                 it.readText()
             }
@@ -55,7 +55,7 @@ class ListaFragment : Fragment() {
 
     private fun configRecicler(listaPersonaje: List<Personaje>){
         val reciclerView = binding.recicler
-        val adapter = personajeAdapter(listaPersonaje)
+        val adapter = PersonajeAdapter(listaPersonaje)
         val layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
         reciclerView.layoutManager = layoutManager
         reciclerView.adapter = adapter

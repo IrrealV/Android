@@ -20,7 +20,7 @@ import java.io.InputStream
  * Copyright (c) 2022 Qastusoft. All rights reserved.
  */
 
-class FragmentLista : Fragment() {
+class   FragmentLista : Fragment() {
 
     private lateinit var binding: ListaFragmentBinding
 

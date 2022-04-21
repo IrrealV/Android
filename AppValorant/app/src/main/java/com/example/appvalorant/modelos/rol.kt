@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class rol (
     @SerializedName("displayName")
-        val Nrol: String,
+    val Nrol: String,
 
     @SerializedName("description")
     val descriptcion: String,
