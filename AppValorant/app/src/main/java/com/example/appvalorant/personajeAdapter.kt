@@ -20,7 +20,7 @@ import java.net.URI
 import java.net.URL
 import kotlin.coroutines.coroutineContext
 
-class PersonajeAdapter(val personaje: List<Personaje>) :
+class PersonajeAdapter(val personaje: ArrayList<Personaje>) :
     RecyclerView.Adapter<PersonajeAdapter.MiCelda>() {
 
         inner class MiCelda(val binding: VistaPersonajeBinding):RecyclerView.ViewHolder(binding.root)
@@ -39,7 +39,6 @@ class PersonajeAdapter(val personaje: List<Personaje>) :
                 "Duelista" -> creacion(holder,position)
                 "Centinela" -> creacion(holder,position)
                 "Controlador" -> creacion(holder,position)
-
             }
         holder.itemView.setOnClickListener {
             val bundle = bundleOf("personaje" to personaje)
@@ -62,6 +61,7 @@ class PersonajeAdapter(val personaje: List<Personaje>) :
         Glide.with(holder.itemView).load(personaje.fondo).into(holder.binding.ivFondo)
         Glide.with(holder.itemView).load(personaje.rol.icono).into(holder.binding.ivIcono)
     }
+
 
 }
 

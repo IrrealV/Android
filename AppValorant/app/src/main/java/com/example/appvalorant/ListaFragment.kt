@@ -36,7 +36,8 @@ class ListaFragment : Fragment() {
         if(!jsonEnString.isNullOrEmpty()){
             val gson = Gson()
             val  listaPersonaje = gson.fromJson(jsonEnString, Array<Personaje>::class.java).asList()
-                configRecicler(listaPersonaje)
+            val otraLista = listaPersonaje.toCollection(ArrayList())
+            configRecicler(otraLista)
             }
     }
 
@@ -53,12 +54,25 @@ class ListaFragment : Fragment() {
         return jsonString
     }
 
-    private fun configRecicler(listaPersonaje: List<Personaje>){
+    private fun configRecicler(listaPersonaje: ArrayList<Personaje>){
         val reciclerView = binding.recicler
+        listaPersonaje.removeAt(filtro(listaPersonaje))
         val adapter = PersonajeAdapter(listaPersonaje)
         val layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
         reciclerView.layoutManager = layoutManager
         reciclerView.adapter = adapter
     }
+
+    private fun filtro(listaPersonaje: ArrayList<Personaje>) : Int{
+        var i = 0
+        while (i <= listaPersonaje.size){
+            if(listaPersonaje[i].nombre == listaPersonaje[i + 1].nombre) {
+                break
+            }
+            i++
+        }
+        return i
+    }
+
 
 }
