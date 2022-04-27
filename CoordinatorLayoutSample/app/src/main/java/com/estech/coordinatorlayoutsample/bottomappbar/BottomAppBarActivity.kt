@@ -27,7 +27,7 @@ class BottomAppBarActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.floatingActionButton.setOnClickListener {
-            Toast.makeText(this@BottomAppBarActivity, "OK", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show()
         }
     }
 
