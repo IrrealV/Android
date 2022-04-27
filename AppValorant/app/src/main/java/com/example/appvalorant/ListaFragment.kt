@@ -5,11 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.appvalorant.databinding.ActivityMainBinding
 import com.example.appvalorant.databinding.FragmentListaBinding
 import com.example.appvalorant.modelos.Personaje
+import com.example.appvalorant.retrofit.Repositorio
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.IOException
 import java.io.InputStream
 
@@ -32,13 +38,22 @@ class ListaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val jsonEnString = getJsonFromAsset2()
-        if(!jsonEnString.isNullOrEmpty()){
-            val gson = Gson()
-            val  listaPersonaje = gson.fromJson(jsonEnString, Array<Personaje>::class.java).asList()
-            val otraLista = listaPersonaje.toCollection(ArrayList())
-            configRecicler(otraLista)
+        val repositorio = Repositorio()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val respuesta = repositorio.todosLosPersonajes()
+
+            withContext(Dispatchers.Main){
+                if(respuesta.isSuccessful){
+                    val exito = respuesta.body()
+                    val listaPersonajes = exito?.results
+                    listaPersonajes?.let { configRecycler(listaPersonajes) }
+                }else{
+                    val error = respuesta.message()
+                    Toast.makeText(requireContext(), "Error : $error", Toast.LENGTH_SHORT).show()
+                }
             }
+        }
     }
 
     private fun getJsonFromAsset2(): String? {
@@ -54,7 +69,7 @@ class ListaFragment : Fragment() {
         return jsonString
     }
 
-    private fun configRecicler(listaPersonaje: ArrayList<Personaje>){
+    private fun configRecycler(listaPersonaje: ArrayList<Personaje>){
         val reciclerView = binding.recicler
         listaPersonaje.removeAt(filtro(listaPersonaje))
         val adapter = PersonajeAdapter(listaPersonaje)

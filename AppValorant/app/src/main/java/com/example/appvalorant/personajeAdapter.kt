@@ -34,12 +34,8 @@ class PersonajeAdapter(val personaje: ArrayList<Personaje>) :
     override fun onBindViewHolder(holder: MiCelda, position: Int) {
         val personaje: Personaje = personaje.get(position)
 
-            when (personaje.rol?.Nrol){
-                "Iniciador" -> creacion(holder,position)
-                "Duelista" -> creacion(holder,position)
-                "Centinela" -> creacion(holder,position)
-                "Controlador" -> creacion(holder,position)
-            }
+        creacion(holder,position)
+
         holder.itemView.setOnClickListener {
             val bundle = bundleOf("personaje" to personaje)
             val navigation = holder.itemView.findNavController()
