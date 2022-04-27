@@ -6,9 +6,9 @@ import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
 
 @Parcelize
-data class Weight(
-    @SerializedName("imperial")
-    val imperial: String,
-    @SerializedName("metric")
-    val metric: String
+data class RespuestaVoto(
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("message")
+    val message: String
 ) : Parcelable
