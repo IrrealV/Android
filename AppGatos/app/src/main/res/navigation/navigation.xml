@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/fragmentLista">
+
+    <fragment
+        android:id="@+id/fragmentLista"
+        android:name="com.example.appgatos.FragmentLista"
+        android:label="Gatos"
+        tools:layout="@layout/fragment_lista">
+        <action
+            android:id="@+id/action_fragmentLista_to_fragmentGato"
+            app:destination="@id/fragmentGato" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentGato"
+        android:name="com.example.appgatos.fragmentGato"
+        android:label="fragment_gato"
+        tools:layout="@layout/fragment_gato" />
+</navigation>
