@@ -9,7 +9,7 @@ object RetrofitHelper {
     fun getRetrofit (): RetrofitService {
         if (retrofitService == null) {
             val retrofit = Retrofit.Builder()
-                .baseUrl( "hhttps://api.thecatapi.com/v1/" )
+                .baseUrl( "https://api.thecatapi.com/v1/" )
                 .addConverterFactory( GsonConverterFactory .create())
                 .build()
             retrofitService = retrofit.create(RetrofitService ::class.java)

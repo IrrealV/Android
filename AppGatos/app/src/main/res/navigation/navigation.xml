@@ -9,7 +9,7 @@
         android:id="@+id/fragmentLista"
         android:name="com.example.appgatos.FragmentLista"
         android:label="Gatos"
-        tools:layout="@layout/fragment_lista">
+        tools:layout="@layout/lista_fragment">
         <action
             android:id="@+id/action_fragmentLista_to_fragmentGato"
             app:destination="@id/fragmentGato" />

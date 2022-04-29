@@ -8,11 +8,11 @@ import android.os.Parcelable
 @Parcelize
 data class Image(
     @SerializedName("height")
-    val height: Int,
+    val height: Int?,
     @SerializedName("id")
-    val id: String,
+    val id: String?,
     @SerializedName("url")
-    val url: String,
+    val url: String?,
     @SerializedName("width")
-    val width: Int
+    val width: Int?
 ) : Parcelable

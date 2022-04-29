@@ -8,79 +8,79 @@ import android.os.Parcelable
 @Parcelize
 data class Gato(
     @SerializedName("adaptability")
-    val adaptability: Int,
+    val adaptability: Int?,
     @SerializedName("affection_level")
-    val affectionLevel: Int,
+    val affectionLevel: Int?,
     @SerializedName("alt_names")
-    val altNames: String,
+    val altNames: String?,
     @SerializedName("cfa_url")
-    val cfaUrl: String,
+    val cfaUrl: String?,
     @SerializedName("child_friendly")
-    val childFriendly: Int,
+    val childFriendly: Int?,
     @SerializedName("country_code")
-    val countryCode: String,
+    val countryCode: String?,
     @SerializedName("country_codes")
-    val countryCodes: String,
+    val countryCodes: String?,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("dog_friendly")
-    val dogFriendly: Int,
+    val dogFriendly: Int?,
     @SerializedName("energy_level")
-    val energyLevel: Int,
+    val energyLevel: Int?,
     @SerializedName("experimental")
-    val experimental: Int,
+    val experimental: Int?,
     @SerializedName("grooming")
-    val grooming: Int,
+    val grooming: Int?,
     @SerializedName("hairless")
-    val hairless: Int,
+    val hairless: Int?,
     @SerializedName("health_issues")
-    val healthIssues: Int,
+    val healthIssues: Int?,
     @SerializedName("hypoallergenic")
-    val hypoallergenic: Int,
+    val hypoallergenic: Int?,
     @SerializedName("id")
-    val id: String,
+    val id: String?,
     @SerializedName("image")
     val image: Image,
     @SerializedName("indoor")
-    val indoor: Int,
-    @SerializedName("intelligence")
-    val intelligence: Int,
+    val indoor: Int?,
+    @SerializedName("Int?elligence")
+    val Intelligence: Int?,
     @SerializedName("lap")
-    val lap: Int,
+    val lap: Int?,
     @SerializedName("life_span")
-    val lifeSpan: String,
+    val lifeSpan: String?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("natural")
-    val natural: Int,
+    val natural: Int?,
     @SerializedName("origin")
-    val origin: String,
+    val origin: String?,
     @SerializedName("rare")
-    val rare: Int,
+    val rare: Int?,
     @SerializedName("reference_image_id")
-    val referenceImageId: String,
+    val referenceImageId: String?,
     @SerializedName("rex")
-    val rex: Int,
+    val rex: Int?,
     @SerializedName("shedding_level")
-    val sheddingLevel: Int,
+    val sheddingLevel: Int?,
     @SerializedName("short_legs")
-    val shortLegs: Int,
+    val shortLegs: Int?,
     @SerializedName("social_needs")
-    val socialNeeds: Int,
+    val socialNeeds: Int?,
     @SerializedName("stranger_friendly")
-    val strangerFriendly: Int,
+    val strangerFriendly: Int?,
     @SerializedName("suppressed_tail")
-    val suppressedTail: Int,
+    val suppressedTail: Int?,
     @SerializedName("temperament")
-    val temperament: String,
+    val temperament: String?,
     @SerializedName("vcahospitals_url")
-    val vcahospitalsUrl: String,
+    val vcahospitalsUrl: String?,
     @SerializedName("vetstreet_url")
-    val vetstreetUrl: String,
+    val vetstreetUrl: String?,
     @SerializedName("vocalisation")
-    val vocalisation: Int,
+    val vocalisation: Int?,
     @SerializedName("weight")
-    val weight: Weight,
+    val weight: Weight?,
     @SerializedName("wikipedia_url")
-    val wikipediaUrl: String
+    val wikipediaUrl: String?
 ) : Parcelable

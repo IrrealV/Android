@@ -1,24 +1,14 @@
 package com.example.appvalorant
 
-import android.annotation.SuppressLint
-import android.app.Person
-import android.content.Context
-import android.os.Bundle
+
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.appvalorant.databinding.VistaPersonajeBinding
 import com.example.appvalorant.modelos.Personaje
-import com.google.gson.Gson
-import kotlinx.coroutines.withContext
-import java.net.URI
-import java.net.URL
-import kotlin.coroutines.coroutineContext
 
 class PersonajeAdapter(val personaje: ArrayList<Personaje>) :
     RecyclerView.Adapter<PersonajeAdapter.MiCelda>() {
