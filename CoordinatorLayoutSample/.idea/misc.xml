@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programas/GitHub/Android/CoordinatorLayoutSample/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Programas/GitHub/Android/CoordinatorLayoutSample/app/src/main/res/layout/bottomappbar.xml" value="0.25" />
+        <entry key="..\:/Programas/GitHub/Android/CoordinatorLayoutSample/app/src/main/res/layout/collapsing_fab.xml" value="0.25" />
+        <entry key="..\:/Programas/GitHub/Android/CoordinatorLayoutSample/app/src/main/res/layout/content_main.xml" value="0.25" />
+        <entry key="..\:/Programas/GitHub/Android/CoordinatorLayoutSample/app/src/main/res/layout/fab_y_snackbar.xml" value="0.25" />
+        <entry key="..\:/Programas/GitHub/Android/CoordinatorLayoutSample/app/src/main/res/layout/tab_layout_fragments.xml" value="0.25" />
+        <entry key="..\:/Programas/GitHub/Android/CoordinatorLayoutSample/app/src/main/res/layout/tablayout_activity.xml" value="0.25" />
+        <entry key="..\:/Programas/GitHub/Android/CoordinatorLayoutSample/app/src/main/res/menu/menu_bottomappbar.xml" value="0.27291666666666664" />
         <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema4/CoordinatorLayoutSample/app/src/main/res/drawable/ic_done_black_24dp.xml" value="0.248" />
         <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema4/CoordinatorLayoutSample/app/src/main/res/layout/activity_main.xml" value="0.35989583333333336" />
         <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema4/CoordinatorLayoutSample/app/src/main/res/layout/bottomappbar.xml" value="0.35989583333333336" />
