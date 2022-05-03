@@ -13,30 +13,24 @@
         <action
             android:id="@+id/action_fragmentLista_to_fragmentGato"
             app:destination="@id/fragmentGato"
-            app:enterAnim="@android:anim/fade_in" />
+            app:enterAnim="@android:anim/fade_in"
+            app:popUpTo="@id/fragmentLista"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_fragmentLista_to_fragmentVoto"
             app:destination="@id/fragmentVoto"
-            app:enterAnim="@android:anim/fade_in" />
+            app:enterAnim="@android:anim/fade_in"
+            app:popUpTo="@id/fragmentLista"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/fragmentGato"
-        android:name="com.example.appgatos.fragmentGato"
+        android:name="com.example.appgatos.FragmentGato"
         android:label="fragment_gato"
-        tools:layout="@layout/fragment_gato" >
-        <action
-            android:id="@+id/action_fragmentGato_to_fragmentLista"
-            app:destination="@id/fragmentLista"
-            app:enterAnim="@android:anim/fade_in" />
-    </fragment>
+        tools:layout="@layout/fragment_gato" />
     <fragment
         android:id="@+id/fragmentVoto"
-        android:name="com.example.appgatos.fragmentVoto"
+        android:name="com.example.appgatos.FragmentVoto"
         android:label="fragment_voto"
-        tools:layout="@layout/fragment_voto" >
-        <action
-            android:id="@+id/action_fragmentVoto_to_fragmentLista"
-            app:destination="@id/fragmentLista"
-            app:enterAnim="@android:anim/fade_in" />
-    </fragment>
+        tools:layout="@layout/fragment_voto" />
 </navigation>

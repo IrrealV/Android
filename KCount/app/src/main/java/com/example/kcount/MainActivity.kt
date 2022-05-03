@@ -11,14 +11,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.kcount.databinding.ActivityMainBinding
-import com.example.kcount.databinding.FragmentMainBinding
 import com.google.android.material.navigation.NavigationView
 import java.text.SimpleDateFormat
 import java.util.*

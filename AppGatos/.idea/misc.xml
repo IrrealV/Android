@@ -5,11 +5,17 @@
       <map>
         <entry key="..\:/Programas/GitHub/Android/AppGatos/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.29" />
         <entry key="..\:/Programas/GitHub/Android/AppGatos/app/src/main/res/drawable/ic_baseline_how_to_vote_24.xml" value="0.29" />
+        <entry key="..\:/Programas/GitHub/Android/AppGatos/app/src/main/res/drawable/ic_baseline_upload_24.xml" value="0.29" />
         <entry key="..\:/Programas/GitHub/Android/AppGatos/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programas/GitHub/Android/AppGatos/app/src/main/res/layout/fragment_desc.xml" value="0.36666666666666664" />
         <entry key="..\:/Programas/GitHub/Android/AppGatos/app/src/main/res/layout/fragment_gato.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programas/GitHub/Android/AppGatos/app/src/main/res/layout/fragment_info.xml" value="0.33" />
+        <entry key="..\:/Programas/GitHub/Android/AppGatos/app/src/main/res/layout/fragment_stats.xml" value="0.36666666666666664" />
         <entry key="..\:/Programas/GitHub/Android/AppGatos/app/src/main/res/layout/fragment_voto.xml" value="0.36666666666666664" />
         <entry key="..\:/Programas/GitHub/Android/AppGatos/app/src/main/res/layout/lista_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Programas/GitHub/Android/AppGatos/app/src/main/res/layout/vista_gato.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programas/GitHub/Android/AppGatos/app/src/main/res/layout/vista_stats.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programas/GitHub/Android/AppGatos/app/src/main/res/layout/vistas_info.xml" value="0.36666666666666664" />
         <entry key="..\:/Programas/GitHub/Android/AppGatos/app/src/main/res/menu/menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/victor.heras/Documents/GitHub/Android/AppGatos/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/victor.heras/Documents/GitHub/Android/AppGatos/app/src/main/res/layout/fragment_gato.xml" value="0.36666666666666664" />

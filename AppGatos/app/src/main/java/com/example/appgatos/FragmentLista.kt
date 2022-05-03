@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.appgatos.adapter.GatoAdapter
 import com.example.appgatos.databinding.ListaFragmentBinding
 import com.example.appgatos.dataclass.Gato
 import com.example.appgatos.retrofit.Repositorio
@@ -73,7 +73,7 @@ class FragmentLista : Fragment() {
 
     private fun configRecycler(listGato: List<Gato>){
         val reciclerView = binding.recicler
-        val adapter = gatoAdapter(listGato)
+        val adapter = GatoAdapter(listGato)
         val layoutManager =  LinearLayoutManager(reciclerView.context)
         reciclerView.layoutManager = layoutManager
         reciclerView.adapter = adapter

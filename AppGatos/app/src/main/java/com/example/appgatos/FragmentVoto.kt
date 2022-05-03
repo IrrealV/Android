@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class fragmentVoto : Fragment() {
+class FragmentVoto : Fragment() {
     private lateinit var binding: FragmentVotoBinding
 
     override fun onCreateView(
@@ -31,9 +31,9 @@ class fragmentVoto : Fragment() {
         binding.toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
 
         binding.toolbar.setOnClickListener {
-            nav.navigate(R.id.action_fragmentVoto_to_fragmentLista)
+            nav.navigate(R.id.fragmentLista)
 
         }
 
-        }
+    }
 }

@@ -2,8 +2,8 @@ package com.example.appgatos.dataclass
 
 
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Gato(

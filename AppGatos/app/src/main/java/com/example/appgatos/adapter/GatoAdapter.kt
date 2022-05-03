@@ -1,4 +1,5 @@
-package com.example.appgatos
+package com.example.appgatos.adapter
+
 
 
 import android.view.LayoutInflater
@@ -7,11 +8,14 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.appgatos.R
 import com.example.appgatos.databinding.VistaGatoBinding
 import com.example.appgatos.dataclass.Gato
 
-class gatoAdapter (val gato: List<Gato>) :
-    RecyclerView.Adapter<gatoAdapter.MiCelda>() {
+
+
+class GatoAdapter (val gato: List<Gato>) :
+    RecyclerView.Adapter<GatoAdapter.MiCelda>() {
         inner class MiCelda(val binding: VistaGatoBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MiCelda {
@@ -19,6 +23,7 @@ class gatoAdapter (val gato: List<Gato>) :
         val binding = VistaGatoBinding.inflate(layoutInflater,parent,false)
         return  MiCelda(binding)
     }
+
     override fun onBindViewHolder(holder: MiCelda, position: Int) {
         val gato: Gato = gato.get(position)
 
@@ -44,3 +49,4 @@ class gatoAdapter (val gato: List<Gato>) :
     }
 
 }
+
