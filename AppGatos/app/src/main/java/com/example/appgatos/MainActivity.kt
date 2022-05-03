@@ -1,12 +1,19 @@
 package com.example.appgatos
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuInflater
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.appgatos.adapter.GatoAdapter
 import com.example.appgatos.databinding.ActivityMainBinding
+import com.example.appgatos.dataclass.Gato
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
 
     }
@@ -32,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
         return true
     }
+
 
 
 

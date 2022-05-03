@@ -13,7 +13,7 @@ interface RetrofitService {
 
     @Headers("x-api-key:$Token")
     @GET("breeds")
-    suspend fun getCatsList() : Response<List<Gato>>
+    suspend fun getCatsList() : Response<ArrayList<Gato>>
 
     @Headers("x-api-key:$Token")
     @GET("votes")

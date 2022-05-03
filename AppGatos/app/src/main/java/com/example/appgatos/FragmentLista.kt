@@ -1,10 +1,12 @@
 package com.example.appgatos
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.*
+import android.widget.Toolbar
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.get
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +22,8 @@ import kotlinx.coroutines.withContext
 class FragmentLista : Fragment() {
 
     private lateinit var binding: ListaFragmentBinding
+    private lateinit var adapter: GatoAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +38,7 @@ class FragmentLista : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //Establece el titulo al string introducido
         binding.toolbar.title = "Gaticos y sus razas"
+        binding.toolbar.inflateMenu(R.menu.menu)
 
         val repo = Repositorio()
         val nav = findNavController()
@@ -69,11 +74,28 @@ class FragmentLista : Fragment() {
             }
         })
 
+        //asdfklñasdfhasdfhjkdfjklñssdfhjksdfhjkljikolñasdf
+        val item = binding.toolbar.menu.findItem(R.id.app_bar_search)
+        val searchView = item.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                adapter.filter.filter(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return true
+            }
+
+        })
+
     }
 
     private fun configRecycler(listGato: List<Gato>){
         val reciclerView = binding.recicler
-        val adapter = GatoAdapter(listGato)
+        adapter = GatoAdapter(listGato as ArrayList<Gato>)
         val layoutManager =  LinearLayoutManager(reciclerView.context)
         reciclerView.layoutManager = layoutManager
         reciclerView.adapter = adapter

@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programas/GitHub/Android/PokemonApiFinal/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Programas/GitHub/Android/PokemonApiFinal/app/src/main/res/layout/item_list.xml" value="0.358695652173913" />
+        <entry key="..\:/Programas/GitHub/Android/PokemonApiFinal/app/src/main/res/menu/menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema4/PokemonApi/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.248" />
         <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema4/PokemonApi/app/src/main/res/drawable/shape.xml" value="0.248" />
         <entry key="..\:/Sergio/AndroidStudioProjects/_Estech/Tema4/PokemonApi/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />

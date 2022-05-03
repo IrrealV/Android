@@ -1,20 +1,22 @@
 package com.example.appgatos
 
 
+import android.annotation.SuppressLint
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Filter
+import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.appgatos.adapter.GatoAdapter
 import com.example.appgatos.databinding.FragmentGatoBinding
 import com.example.appgatos.dataclass.Gato
 import com.example.appgatos.tablayout.info_fragment
@@ -25,6 +27,7 @@ import com.google.android.material.tabs.TabLayout
 class FragmentGato : Fragment() {
 
     private lateinit var binding : FragmentGatoBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -102,5 +105,7 @@ class FragmentGato : Fragment() {
         transaction?.commit()
 
     }
+
+
 
 }
