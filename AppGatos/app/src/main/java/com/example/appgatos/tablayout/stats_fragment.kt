@@ -27,13 +27,12 @@ class stats_fragment : Fragment() {
 
         binding.Adapt.text = gato?.adaptability.toString()
         binding.Affect.text = gato?.affectionLevel.toString()
-        binding.Intel.text = gato?.Intelligence.toString()
         binding.Social.text = gato?.socialNeeds.toString()
         binding.chld.text = gato?.childFriendly.toString()
         binding.dog.text = gato?.dogFriendly.toString()
         binding.health.text = gato?.healthIssues.toString()
         binding.shedding.text = gato?.sheddingLevel.toString()
-        binding.Intel.text = gato?.Intelligence.toString()
+        binding.intel.text = gato?.Intelligence.toString()
         binding.Social.text = gato?.socialNeeds.toString()
         binding.energy.text = gato?.energyLevel.toString()
 

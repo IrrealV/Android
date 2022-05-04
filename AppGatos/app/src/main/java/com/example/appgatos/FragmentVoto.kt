@@ -6,7 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.example.appgatos.adapter.GatoAdapter
+import com.example.appgatos.adapter.VotoAdapter
 import com.example.appgatos.databinding.FragmentVotoBinding
+import com.example.appgatos.dataclass.Gato
+import com.example.appgatos.dataclass.Image
+import com.example.appgatos.dataclass.Voto
 import com.example.appgatos.retrofit.Repositorio
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,6 +22,7 @@ import kotlinx.coroutines.withContext
 
 class FragmentVoto : Fragment() {
     private lateinit var binding: FragmentVotoBinding
+    private lateinit var adapter : VotoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +42,30 @@ class FragmentVoto : Fragment() {
             nav.navigate(R.id.fragmentLista)
 
         }
+        binding.toolbar.title = "Gaticos Votados"
 
+
+
+        val repo = Repositorio()
+        CoroutineScope(Dispatchers.IO).launch {
+            val votos = repo.todosLosVotos()
+
+            withContext(Dispatchers.Main){
+                if(votos.isSuccessful){
+                    val listVOTOS = votos.body()
+                    listVOTOS?.let { configRecycler(listVOTOS) }
+                }
+            }
+
+        }
+
+    }
+
+    private fun configRecycler(listVoto: List<Voto>){
+        val reciclerView = binding.reciclerview
+        adapter = VotoAdapter(listVoto as ArrayList<Voto>)
+        val layoutManager =  LinearLayoutManager(reciclerView.context)
+        reciclerView.layoutManager = layoutManager
+        reciclerView.adapter = adapter
     }
 }

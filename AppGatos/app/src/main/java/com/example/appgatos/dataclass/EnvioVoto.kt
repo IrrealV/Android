@@ -8,9 +8,9 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class EnvioVoto(
     @SerializedName("image_id")
-    val imageId: String,
+    val imageId: String?,
     @SerializedName("sub_id")
-    val subId: String,
+    val subId: String?,
     @SerializedName("value")
-    val value: Int
+    val value: Int?
 ) : Parcelable

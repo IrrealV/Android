@@ -43,7 +43,7 @@ data class Gato(
     val image: Image,
     @SerializedName("indoor")
     val indoor: Int?,
-    @SerializedName("Int?elligence")
+    @SerializedName("intelligence")
     val Intelligence: Int?,
     @SerializedName("lap")
     val lap: Int?,

@@ -14,10 +14,10 @@ import com.example.appgatos.databinding.VistaGatoBinding
 import com.example.appgatos.dataclass.Gato
 
 
-class GatoAdapter (val gato: ArrayList<Gato>) :
+class GatoAdapter (val listaGatos: ArrayList<Gato>) :
     RecyclerView.Adapter<GatoAdapter.MiCelda>(), Filterable {
 
-    private var listaCopia = gato
+    private var listaCopia = listaGatos
 
         inner class MiCelda(val binding: VistaGatoBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -28,7 +28,7 @@ class GatoAdapter (val gato: ArrayList<Gato>) :
     }
 
     override fun onBindViewHolder(holder: MiCelda, position: Int) {
-        val gato: Gato = gato.get(position)
+        val gato: Gato = listaCopia.get(position)
 
         creacion(holder,position)
 
@@ -40,14 +40,14 @@ class GatoAdapter (val gato: ArrayList<Gato>) :
     }
 
     override fun getItemCount(): Int {
-        return gato.size
+        return listaCopia.size
     }
 
     private fun creacion(holder: MiCelda, Int: Int) {
-        val gato: Gato = gato.get(Int)
+        val gato: Gato = listaCopia[Int]
         holder.binding.GatoTxt.text = gato.name
         holder.binding.LugarTxt.text = gato.origin
-        Glide.with(holder.itemView).load(gato.image?.url).into(holder.binding.GatoImg)
+        Glide.with(holder.itemView).load(gato.image.url).into(holder.binding.GatoImg)
 
     }
 
@@ -57,9 +57,9 @@ class GatoAdapter (val gato: ArrayList<Gato>) :
                 val palabraABuscar = p0.toString()
 
                 if (palabraABuscar.isEmpty()) {
-                    listaCopia = gato
+                    listaCopia = listaGatos
                 } else {
-                    listaCopia = gato.filter {
+                    listaCopia = listaGatos.filter {
                         (it.name?.lowercase()!!.contains(palabraABuscar.lowercase()) ||
                                 it.origin.toString().lowercase().contains(palabraABuscar.lowercase()))
                     } as ArrayList<Gato>

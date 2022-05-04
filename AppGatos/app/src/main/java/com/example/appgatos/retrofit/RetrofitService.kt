@@ -19,7 +19,7 @@ interface RetrofitService {
     @GET("votes")
     suspend fun getListaVotos(@Query("sub_id") nombre: String) : Response<List<Voto>>
 
-    @Headers("x-api-key:$Token")
+    @Headers("x-api-key:$Token", "Content-Type:application/json")
     @POST("votes")
     suspend fun postVotos(@Body envioVoto: EnvioVoto) : Response <RespuestaVoto>
 

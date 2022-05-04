@@ -6,7 +6,9 @@ import android.view.*
 import android.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.SearchView
+import androidx.core.os.bundleOf
 import androidx.core.view.get
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -43,7 +45,7 @@ class FragmentLista : Fragment() {
         val repo = Repositorio()
         val nav = findNavController()
 
-        //Introduce la lista recibida de la api por el ceciler
+        //Introduce la lista recibida de la api por el recicler
         CoroutineScope(Dispatchers.IO).launch {
             val gatos = repo.todosLosGatos()
 

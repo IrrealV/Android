@@ -8,4 +8,13 @@
         android:title="Buscar"
         app:showAsAction="always|collapseActionView"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
+    <item
+        android:id="@+id/filterUp"
+        android:icon="@drawable/ic_baseline_keyboard_arrow_up_24"
+        android:title="titulo"
+        app:showAsAction="ifRoom|collapseActionView" />
+    <item
+        android:icon="@drawable/ic_baseline_keyboard_arrow_down_24"
+        android:title="filterDown"
+        app:showAsAction="ifRoom" />
 </menu>
