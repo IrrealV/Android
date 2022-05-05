@@ -33,29 +33,38 @@
                 android:id="@+id/votacion"
                 android:layout_width="52dp"
                 android:layout_height="52dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:scaleType="centerCrop"
-                android:tint="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gatoImg"
-                app:srcCompat="@drawable/ic_baseline_how_to_vote_24" />
+                app:srcCompat="@drawable/ic_baseline_how_to_vote_24"
+                app:tint="@color/black" />
 
             <ImageButton
                 android:id="@+id/delbtn"
                 android:layout_width="52dp"
                 android:layout_height="52dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/ic_baseline_remove_circle_outline_24"
                 android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/gatoImg" />
+                app:layout_constraintTop_toBottomOf="@+id/gatoImg"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/fechaTxt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:ellipsize="end"
+                android:maxLength="10"
                 android:maxLines="1"
                 android:text="fecha"
                 android:textAlignment="center"

@@ -2,17 +2,21 @@ package com.example.appgatos.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.appgatos.R
 import com.example.appgatos.databinding.VistaVotoBinding
+import com.example.appgatos.dataclass.EnvioVoto
 import com.example.appgatos.dataclass.Voto
+import com.example.appgatos.retrofit.Repositorio
+import kotlinx.coroutines.*
 
-class VotoAdapter(val listVotos : List<Voto>):
+class VotoAdapter(var listVotos : List<Voto>):
     RecyclerView.Adapter<VotoAdapter.CeldaVoto>() {
         inner class CeldaVoto(val binding: VistaVotoBinding): RecyclerView.ViewHolder(binding.root)
 
+    private lateinit var listavotos : EnvioVoto
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VotoAdapter.CeldaVoto {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -21,13 +25,13 @@ class VotoAdapter(val listVotos : List<Voto>):
     }
 
     override fun onBindViewHolder(holder: VotoAdapter.CeldaVoto, position: Int) {
-
+        val hol = holder.binding
+        val voto: Voto = listVotos[position]
         creacion(holder,position)
-
-        holder.itemView.setOnClickListener {
-            val navigation = holder.itemView.findNavController()
-            navigation.navigate(R.id.action_fragmentLista_to_fragmentGato)
+        
+        hol.delbtn.setOnClickListener{
         }
+
     }
 
     override fun getItemCount(): Int {
@@ -37,7 +41,7 @@ class VotoAdapter(val listVotos : List<Voto>):
     private fun creacion(holder: VotoAdapter.CeldaVoto, Int: Int) {
         val voto: Voto = listVotos[Int]
         val hol = holder.binding
-        Glide.with(holder.itemView).load(voto.imageId).into(hol.gatoImg)
+        Glide.with(holder.itemView).load("https://cdn2.thecatapi.com/images/${voto.imageId}.jpg").into(hol.gatoImg)
         hol.fechaTxt.text = voto.createdAt
 
         when(voto.value){
