@@ -34,17 +34,17 @@ class VotoAdapter(var listVotos : List<Voto>):
         
         hol.delbtn.setOnClickListener{
 
-            CoroutineScope(Dispatchers.IO).launch {
-                val gatos = repo.todosLosGatos()
-
-                withContext(Dispatchers.Main){
-                    if(gatos.isSuccessful){
-                        val listGatos = gatos.body()
-                        listGatos?.let { configRecycler(listGatos) }
-                    }
-                }
-
-            }
+//            CoroutineScope(Dispatchers.IO).launch {
+//                val gatos = repo.todosLosGatos()
+//
+//                withContext(Dispatchers.Main){
+//                    if(gatos.isSuccessful){
+//                        val listGatos = gatos.body()
+//                        listGatos?.let { configRecycler(listGatos) }
+//                    }
+//                }
+//
+//            }
 
         }
 

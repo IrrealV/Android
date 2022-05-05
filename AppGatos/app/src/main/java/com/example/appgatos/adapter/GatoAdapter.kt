@@ -44,10 +44,10 @@ class GatoAdapter (val listaGatos: ArrayList<Gato>) :
     }
 
     private fun creacion(holder: MiCelda, Int: Int) {
-        val gato: Gato = listaCopia[Int]
-        holder.binding.GatoTxt.text = gato.name
-        holder.binding.LugarTxt.text = gato.origin
-        Glide.with(holder.itemView).load(gato.image.url).into(holder.binding.GatoImg)
+        val gato: Gato? = listaCopia[Int]
+        holder.binding.GatoTxt.text = gato?.name
+        holder.binding.LugarTxt.text = gato?.origin
+        Glide.with(holder.itemView).load(gato?.image?.url).into(holder.binding.GatoImg)
 
     }
 
