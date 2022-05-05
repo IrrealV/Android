@@ -1,9 +1,6 @@
 package com.example.appgatos.retrofit
 
-import com.example.appgatos.dataclass.EnvioVoto
-import com.example.appgatos.dataclass.Gato
-import com.example.appgatos.dataclass.RespuestaVoto
-import com.example.appgatos.dataclass.Voto
+import com.example.appgatos.dataclass.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -22,5 +19,9 @@ interface RetrofitService {
     @Headers("x-api-key:$Token", "Content-Type:application/json")
     @POST("votes")
     suspend fun postVotos(@Body envioVoto: EnvioVoto) : Response <RespuestaVoto>
+
+    @Headers("x-api-key:$Token")
+    @POST("votes")
+    suspend fun deleteVotos(@Body delVoto: DelVoto ) : Response <RespuestaVoto>
 
 }

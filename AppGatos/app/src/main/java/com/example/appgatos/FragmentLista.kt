@@ -1,6 +1,7 @@
 package com.example.appgatos
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import android.widget.Toolbar
@@ -12,9 +13,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.appgatos.adapter.GatoAdapter
 import com.example.appgatos.databinding.ListaFragmentBinding
 import com.example.appgatos.dataclass.Gato
+import com.example.appgatos.dataclass.RespuestaVoto
 import com.example.appgatos.retrofit.Repositorio
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,6 +28,7 @@ class FragmentLista : Fragment() {
 
     private lateinit var binding: ListaFragmentBinding
     private lateinit var adapter: GatoAdapter
+    private var pullToRefreshWorking = false
 
 
     override fun onCreateView(
@@ -38,29 +42,35 @@ class FragmentLista : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Establece el titulo al string introducido
+        //Establece el titulo al string introducido e infla el menú
         binding.toolbar.title = "Gaticos y sus razas"
         binding.toolbar.inflateMenu(R.menu.menu)
 
-        val repo = Repositorio()
+        //Declaración de variables
         val nav = findNavController()
+        val item = binding.toolbar.menu.findItem(R.id.app_bar_search)
+        val searchView = item.actionView as SearchView
 
-        //Introduce la lista recibida de la api por el recicler
-        CoroutineScope(Dispatchers.IO).launch {
-            val gatos = repo.todosLosGatos()
+        //Crea el gato
+        crearGato()
 
-            withContext(Dispatchers.Main){
-                if(gatos.isSuccessful){
-                    val listGatos = gatos.body()
-                    listGatos?.let { configRecycler(listGatos) }
-                }
-            }
-
-        }
-
+        //Click listeners
         binding.fab.setOnClickListener{
             nav.navigate(R.id.action_fragmentLista_to_fragmentVoto)
         }
+
+        //Refresh de la lista de gatos
+        binding.swipe.setOnRefreshListener {
+            binding.swipe.isRefreshing = true
+            pullToRefreshWorking = true
+            crearGato()
+        }
+
+        //Estilos del refresh
+        binding.swipe.setColorSchemeColors(Color.MAGENTA, Color.YELLOW)
+        binding.swipe.setColorSchemeResources(R.color.purple_200, R.color.teal_200)
+        binding.swipe.setSize(SwipeRefreshLayout.LARGE)
+
 
         //Cuando se hace scroll en el recicler el fab se oculta, en cambio cuando se detiene se muestra
         binding.recicler.addOnScrollListener(object : RecyclerView.OnScrollListener(){
@@ -76,10 +86,9 @@ class FragmentLista : Fragment() {
             }
         })
 
-        //asdfklñasdfhasdfhjkdfjklñssdfhjksdfhjkljikolñasdf
-        val item = binding.toolbar.menu.findItem(R.id.app_bar_search)
-        val searchView = item.actionView as SearchView
 
+
+        //Recibe lo introducido por texto en el buscador y filtra la lista
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 adapter.filter.filter(query)
@@ -95,6 +104,7 @@ class FragmentLista : Fragment() {
 
     }
 
+
     private fun configRecycler(listGato: List<Gato>){
         val reciclerView = binding.recicler
         adapter = GatoAdapter(listGato as ArrayList<Gato>)
@@ -103,5 +113,33 @@ class FragmentLista : Fragment() {
         reciclerView.adapter = adapter
     }
 
+
+    private fun crearGato(){
+        val repo = Repositorio()
+
+        //Introduce la lista recibida de la api por el recicler
+        CoroutineScope(Dispatchers.IO).launch {
+            val gatos = repo.todosLosGatos()
+
+            withContext(Dispatchers.Main){
+                if(gatos.isSuccessful){
+                    val listGatos = gatos.body()
+                    listGatos?.let {
+                        if (pullToRefreshWorking) {
+                            pullToRefreshWorking = false
+                            refreshRecycler(it)
+                        } else {
+                            configRecycler(it)
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    private fun refreshRecycler(listaGatos: List<Gato>) {
+        adapter.refreshList(listaGatos as ArrayList<Gato>)
+    }
 
 }

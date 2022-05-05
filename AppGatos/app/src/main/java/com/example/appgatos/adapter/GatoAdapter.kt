@@ -77,5 +77,10 @@ class GatoAdapter (val listaGatos: ArrayList<Gato>) :
         }
     }
 
+    fun refreshList(listaPersonajes: ArrayList<Gato>) {
+        listaCopia = listaPersonajes
+        notifyDataSetChanged()
+    }
+
 }
 

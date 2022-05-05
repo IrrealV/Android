@@ -11,6 +11,7 @@ import com.example.appgatos.dataclass.EnvioVoto
 import com.example.appgatos.dataclass.Voto
 import com.example.appgatos.retrofit.Repositorio
 import kotlinx.coroutines.*
+import kotlin.coroutines.coroutineContext
 
 class VotoAdapter(var listVotos : List<Voto>):
     RecyclerView.Adapter<VotoAdapter.CeldaVoto>() {
@@ -27,9 +28,24 @@ class VotoAdapter(var listVotos : List<Voto>):
     override fun onBindViewHolder(holder: VotoAdapter.CeldaVoto, position: Int) {
         val hol = holder.binding
         val voto: Voto = listVotos[position]
+        val repo = Repositorio()
+
         creacion(holder,position)
         
         hol.delbtn.setOnClickListener{
+
+            CoroutineScope(Dispatchers.IO).launch {
+                val gatos = repo.todosLosGatos()
+
+                withContext(Dispatchers.Main){
+                    if(gatos.isSuccessful){
+                        val listGatos = gatos.body()
+                        listGatos?.let { configRecycler(listGatos) }
+                    }
+                }
+
+            }
+
         }
 
     }
@@ -37,6 +53,8 @@ class VotoAdapter(var listVotos : List<Voto>):
     override fun getItemCount(): Int {
         return listVotos.size
     }
+
+
 
     private fun creacion(holder: VotoAdapter.CeldaVoto, Int: Int) {
         val voto: Voto = listVotos[Int]
