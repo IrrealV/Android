@@ -21,7 +21,7 @@ interface RetrofitService {
     suspend fun postVotos(@Body envioVoto: EnvioVoto) : Response <RespuestaVoto>
 
     @Headers("x-api-key:$Token")
-    @POST("votes")
-    suspend fun deleteVotos(@Body delVoto: DelVoto ) : Response <RespuestaVoto>
+    @DELETE("votes/{sub_id}")
+    suspend fun deleteVotos(@Path("sub_id")id : Int): Response<DelVoto>
 
 }

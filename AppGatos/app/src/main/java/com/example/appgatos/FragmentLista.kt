@@ -1,23 +1,20 @@
 package com.example.appgatos
 
-import android.annotation.SuppressLint
+
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
-import android.widget.Toolbar
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.SearchView
-import androidx.core.os.bundleOf
-import androidx.core.view.get
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.appgatos.adapter.GatoAdapter
 import com.example.appgatos.databinding.ListaFragmentBinding
 import com.example.appgatos.dataclass.Gato
-import com.example.appgatos.dataclass.RespuestaVoto
 import com.example.appgatos.retrofit.Repositorio
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -46,10 +43,11 @@ class FragmentLista : Fragment() {
         binding.toolbar.title = "Gaticos y sus razas"
         binding.toolbar.inflateMenu(R.menu.menu)
 
+
         //Declaración de variables
         val nav = findNavController()
-        val item = binding.toolbar.menu.findItem(R.id.app_bar_search)
-        val searchView = item.actionView as SearchView
+        val itemBuscar = binding.toolbar.menu.findItem(R.id.app_bar_search)
+        val searchView = itemBuscar.actionView as SearchView
 
         //Crea el gato
         crearGato()
@@ -58,6 +56,10 @@ class FragmentLista : Fragment() {
         binding.fab.setOnClickListener{
             nav.navigate(R.id.action_fragmentLista_to_fragmentVoto)
         }
+
+
+
+
 
         //Refresh de la lista de gatos
         binding.swipe.setOnRefreshListener {
@@ -138,8 +140,22 @@ class FragmentLista : Fragment() {
         }
     }
 
-    private fun refreshRecycler(listaGatos: List<Gato>) {
-        adapter.refreshList(listaGatos as ArrayList<Gato>)
+    private fun refreshRecycler(listaGatos: ArrayList<Gato>) {
+        adapter.refreshList(listaGatos )
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        binding.toolbar.inflateMenu(R.menu.menu)
+        val itemOrdHead = menu.findItem(R.id.filterUp)
+        val itemOrdTail = menu.findItem(R.id.filterDown)
+
+        itemOrdHead.setOnMenuItemClickListener(){
+            adapter.OrdHead()
+        }
+        itemOrdTail.setOnMenuItemClickListener(){
+            adapter.OrdTail()
+        }
+
+    }
 }
+

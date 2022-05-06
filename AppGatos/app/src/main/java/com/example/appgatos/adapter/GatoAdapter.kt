@@ -37,6 +37,7 @@ class GatoAdapter (val listaGatos: ArrayList<Gato>) :
             val navigation = holder.itemView.findNavController()
             navigation.navigate(R.id.action_fragmentLista_to_fragmentGato, bundle)
         }
+
     }
 
     override fun getItemCount(): Int {
@@ -77,9 +78,24 @@ class GatoAdapter (val listaGatos: ArrayList<Gato>) :
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun refreshList(listaPersonajes: ArrayList<Gato>) {
         listaCopia = listaPersonajes
         notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun OrdHead() : Boolean{
+        listaCopia.sortedByDescending { it.name }
+        notifyDataSetChanged()
+        return true
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun OrdTail() : Boolean{
+        listaCopia.sortedBy{ it.name }
+        notifyDataSetChanged()
+        return true
     }
 
 }

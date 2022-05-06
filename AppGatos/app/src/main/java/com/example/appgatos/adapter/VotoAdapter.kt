@@ -1,5 +1,7 @@
 package com.example.appgatos.adapter
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -10,14 +12,16 @@ import com.example.appgatos.databinding.VistaVotoBinding
 import com.example.appgatos.dataclass.EnvioVoto
 import com.example.appgatos.dataclass.Voto
 import com.example.appgatos.retrofit.Repositorio
-import kotlinx.coroutines.*
-import kotlin.coroutines.coroutineContext
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.internal.notify
 
-class VotoAdapter(var listVotos : List<Voto>):
+class VotoAdapter(var listVotos : ArrayList<Voto>, val context: Context):
     RecyclerView.Adapter<VotoAdapter.CeldaVoto>() {
         inner class CeldaVoto(val binding: VistaVotoBinding): RecyclerView.ViewHolder(binding.root)
 
-    private lateinit var listavotos : EnvioVoto
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VotoAdapter.CeldaVoto {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -25,28 +29,37 @@ class VotoAdapter(var listVotos : List<Voto>):
         return  CeldaVoto(binding)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: VotoAdapter.CeldaVoto, position: Int) {
         val hol = holder.binding
-        val voto: Voto = listVotos[position]
-        val repo = Repositorio()
+        val voto : Voto = listVotos[position]
+
 
         creacion(holder,position)
         
         hol.delbtn.setOnClickListener{
+            val repo = Repositorio()
 
-//            CoroutineScope(Dispatchers.IO).launch {
-//                val gatos = repo.todosLosGatos()
-//
-//                withContext(Dispatchers.Main){
-//                    if(gatos.isSuccessful){
-//                        val listGatos = gatos.body()
-//                        listGatos?.let { configRecycler(listGatos) }
-//                    }
-//                }
-//
-//            }
+            CoroutineScope(Dispatchers.IO).launch {
+                val delmichi = repo.borrarVoto(voto.id)
+
+                withContext(Dispatchers.Main){
+                    if(delmichi.isSuccessful){
+                        Toast.makeText(context, "Item deleted", Toast.LENGTH_SHORT).show()
+                        listVotos.removeAt(position)
+                        notifyItemRemoved(position)
+                    }
+                    else{
+                        val error = delmichi.message()
+                        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+            }
 
         }
+
+
 
     }
 

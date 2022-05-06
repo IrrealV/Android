@@ -3,9 +3,13 @@ package com.example.appgatos
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.appgatos.adapter.GatoAdapter
 import com.example.appgatos.databinding.ActivityMainBinding
+import com.example.appgatos.dataclass.Gato
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
 
     }
@@ -32,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
         return true
     }
-
 
 
 

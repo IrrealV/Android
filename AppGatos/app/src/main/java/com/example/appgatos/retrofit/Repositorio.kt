@@ -8,4 +8,5 @@ class Repositorio {
     suspend fun todosLosGatos() = retrofitService.getCatsList()
     suspend fun todosLosVotos() = retrofitService.getListaVotos(String())
     suspend fun enviarVoto(voto: EnvioVoto) = retrofitService.postVotos(voto)
+    suspend fun borrarVoto(id: Int) = retrofitService.deleteVotos(id)
 }
