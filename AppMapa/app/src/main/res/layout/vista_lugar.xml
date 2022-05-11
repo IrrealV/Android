@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/sitioImg"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="168dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -19,10 +19,10 @@
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
-        android:id="@+id/fechaTxt"
+        android:id="@+id/nameTxt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ellipsize="end"
         android:maxLines="1"
@@ -30,7 +30,7 @@
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/sitioImg"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sitioImg" />
 
 <TextView
@@ -41,5 +41,5 @@ android:layout_marginTop="16dp"
 android:layout_marginBottom="16dp"
 android:text="Direccion de la calle"
 app:layout_constraintBottom_toBottomOf="parent"
-app:layout_constraintStart_toStartOf="@+id/fechaTxt"
-    app:layout_constraintTop_toBottomOf="@+id/fechaTxt" /></androidx.constraintlayout.widget.ConstraintLayout>
+app:layout_constraintStart_toStartOf="@+id/nameTxt"
+    app:layout_constraintTop_toBottomOf="@+id/nameTxt" /></androidx.constraintlayout.widget.ConstraintLayout>
