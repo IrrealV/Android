@@ -6,11 +6,13 @@ import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.estech.gatosmvvm.adapters.BreedsAdapter
 import com.estech.gatosmvvm.databinding.FragmentListaGatosBinding
+import com.estech.gatosmvvm.viewmodels.GatoViewModel
 import com.estech.retrofitsample.retrofit.Repositorio
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,6 +26,7 @@ class ListaGatosFragment : Fragment() {
 
     private lateinit var binding: FragmentListaGatosBinding
     private lateinit var adapter: BreedsAdapter
+    private val gatoVm : GatoViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,14 +45,22 @@ class ListaGatosFragment : Fragment() {
 
         configRecycler()
 
+        gatoVm.listaRazas.observe(viewLifecycleOwner){
+            adapter.actualizaLista(it)
+        }
+
+        gatoVm.errorRazas.observe(viewLifecycleOwner){
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }
+
         binding.swipe.setColorSchemeColors(Color.GREEN, Color.YELLOW)
         binding.swipe.setProgressBackgroundColorSchemeColor(Color.DKGRAY)
         binding.swipe.setSize(SwipeRefreshLayout.LARGE)
         binding.swipe.setOnRefreshListener {
-            getListaGatos()
+            gatoVm.getListRazas()
         }
 
-        getListaGatos()
+        gatoVm.getListRazas()
 
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_listaVotosFragment)
@@ -57,35 +68,35 @@ class ListaGatosFragment : Fragment() {
 
     }
 
-    private fun getListaGatos() {
-        binding.swipe.isRefreshing = true
-        val miRepositorio = Repositorio()
-
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = miRepositorio.getRazas()
-
-            withContext(Dispatchers.Main) {
-                binding.swipe.isRefreshing = false
-                if (response.isSuccessful) {
-                    val respuesta = response.body()
-                    respuesta?.let {
-                        adapter.actualizaLista(respuesta)
-                    }
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Error: ${response.message()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        }
-    }
+//    private fun getListaGatos() {
+//        binding.swipe.isRefreshing = true
+//        val miRepositorio = Repositorio()
+//
+//        CoroutineScope(Dispatchers.IO).launch {
+//            val response = miRepositorio.getRazas()
+//
+//            withContext(Dispatchers.Main) {
+//                binding.swipe.isRefreshing = false
+//                if (response.isSuccessful) {
+//                    val respuesta = response.body()
+//                    respuesta?.let {
+//                        adapter.actualizaLista(respuesta)
+//                    }
+//                } else {
+//                    Toast.makeText(
+//                        requireContext(),
+//                        "Error: ${response.message()}",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//            }
+//        }
+//    }
 
     private fun configRecycler() {
 
         val recyclerView = binding.recyclerview
-        adapter = BreedsAdapter()
+        adapter = BreedsAdapter(object : BreedsAdapter.RazaClickListener)
         val layoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
