@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/app_bar_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Buscar"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+
+
+    <item
+        android:id="@+id/menu_up"
+        android:icon="@drawable/ic_up"
+        android:title="Up"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_down"
+        android:icon="@drawable/ic_down"
+        android:title="down"
+        app:showAsAction="always" />
+</menu>
