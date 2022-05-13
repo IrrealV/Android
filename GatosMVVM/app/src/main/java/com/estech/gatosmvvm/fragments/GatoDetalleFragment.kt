@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
 import com.estech.gatosmvvm.MainActivity
 import com.estech.gatosmvvm.adapters.ViewPagerAdapter
 import com.estech.gatosmvvm.databinding.FragmentDetalleGatoBinding
 import com.estech.gatosmvvm.modelos.enviarvoto.SendVote
 import com.estech.gatosmvvm.modelos.listagatos.Breed
+import com.estech.gatosmvvm.viewmodels.GatoViewModel
 import com.estech.retrofitsample.retrofit.Repositorio
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.CoroutineScope
@@ -27,6 +29,7 @@ import kotlinx.coroutines.withContext
 class GatoDetalleFragment : Fragment() {
 
     private lateinit var binding: FragmentDetalleGatoBinding
+    private val gatosVm: GatoViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,9 +45,7 @@ class GatoDetalleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val breed: Breed? = arguments?.getParcelable("raza")
-        breed.let { raza ->
-
+        gatosVm.razaSeleccionada.observe(viewLifecycleOwner) {  raza ->
             (requireActivity() as MainActivity).changeToolbarTitle(raza!!.name!!)
 
             if (raza.image != null && raza.image.url != null) {

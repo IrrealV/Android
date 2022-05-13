@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.estech.gatosmvvm.R
 import com.estech.gatosmvvm.databinding.VoteListRowBinding
+import com.estech.gatosmvvm.modelos.listagatos.Breed
 import com.estech.gatosmvvm.modelos.listavotos.Votes
 
 
@@ -14,16 +15,18 @@ import com.estech.gatosmvvm.modelos.listavotos.Votes
  * Copyright (c) 2022 Qastusoft. All rights reserved.
  */
 
-class VotesAdapter(val listener: OnItemClickListener) :
+class VotesAdapter(val listener: EliminarVotoClickListener) :
     RecyclerView.Adapter<VotesAdapter.CeldaHolder>() {
 
     private val listaVotos = ArrayList<Votes>()
 
     inner class CeldaHolder(val binding: VoteListRowBinding) : RecyclerView.ViewHolder(binding.root)
 
-    interface OnItemClickListener {
-        fun onItemClick(vote: Votes)
+    interface EliminarVotoClickListener {
+        fun onClick(voto: Votes)
+        fun onLongClick()
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CeldaHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -51,7 +54,7 @@ class VotesAdapter(val listener: OnItemClickListener) :
 
         holder.binding.origin.text = voto.createdAt
         holder.binding.deleteButton.setOnClickListener {
-            listener.onItemClick(voto)
+            listener.onClick(voto)
         }
     }
 

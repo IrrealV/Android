@@ -23,10 +23,13 @@ import kotlin.toString
  * Copyright (c) 2022 Qastusoft. All rights reserved.
  */
 
-class BreedsAdapter : RecyclerView.Adapter<BreedsAdapter.CeldaHolder>(), Filterable {
+class BreedsAdapter(val listener: RazaClickListener) : RecyclerView.Adapter<BreedsAdapter.CeldaHolder>(), Filterable {
 
     private val listaRazas = ArrayList<Breed>()
     private var listaCopia = ArrayList<Breed>()
+    interface RazaClickListener {
+        fun OnClick(breed: Breed)
+    }
 
     inner class CeldaHolder(val binding: ItemBreedBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -41,9 +44,7 @@ class BreedsAdapter : RecyclerView.Adapter<BreedsAdapter.CeldaHolder>(), Filtera
         holder.binding.tvTitle.text = breed.name
         holder.binding.inteli.text = String.valueOf(breed.origin)
         holder.itemView.setOnClickListener {
-            val bundle = bundleOf("raza" to breed)
-            val navigation = holder.itemView.findNavController()
-            navigation.navigate(R.id.action_FirstFragment_to_SecondFragment, bundle)
+            listener.OnClick(breed)
         }
     }
 

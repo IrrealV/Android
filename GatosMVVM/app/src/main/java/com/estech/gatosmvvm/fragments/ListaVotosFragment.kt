@@ -87,10 +87,15 @@ class ListaVotosFragment : Fragment() {
     private fun configRecycler() {
 
         val recyclerView = binding.votelistRv
-        adapter = VotesAdapter(object : VotesAdapter.OnItemClickListener {
-            override fun onItemClick(vote: Votes) {
-                deleteVoto(vote.id.toString())
+        adapter = VotesAdapter(object : VotesAdapter.EliminarVotoClickListener {
+            override fun onClick(voto: Votes) {
+                deleteVoto(voto.id.toString())
             }
+
+            override fun onLongClick() {
+
+            }
+
         })
         val layoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = layoutManager
