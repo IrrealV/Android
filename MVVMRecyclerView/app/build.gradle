@@ -32,6 +32,7 @@ android {
     viewBinding {
         enabled true
     }
+    namespace 'com.estech.recyclerviewexample'
 }
 
 dependencies {

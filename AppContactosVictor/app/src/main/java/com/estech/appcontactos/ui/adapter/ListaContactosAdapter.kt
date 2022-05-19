@@ -7,9 +7,9 @@ import com.estech.appcontactos.databinding.ActivityMainBinding
 import com.estech.appcontactos.databinding.CeldaBinding
 import com.estech.appcontactos.domain.models.Contacto
 
-class ListaContactosAdapter():
-    RecyclerView.Adapter<ListaContactosAdapter.Micelda>() {
+class ListaContactosAdapter: RecyclerView.Adapter<ListaContactosAdapter.Micelda>() {
         inner class Micelda(val binding: CeldaBinding ):RecyclerView.ViewHolder(binding.root)
+    private val listaContacto = ArrayList<Contacto>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Micelda {
         val inflater = LayoutInflater.from(parent.context)
@@ -18,13 +18,21 @@ class ListaContactosAdapter():
     }
 
     override fun onBindViewHolder(holder: Micelda, position: Int) {
-        TODO("Not yet implemented")
+        val persona = listaContacto[position]
+        val bind = holder.binding
+
+        bind.Perona.text = persona.nombre
+
+
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return listaContacto.size
     }
-    fun updateList(lista: List<Contacto>){
 
+    fun updateList(lista: List<Contacto>){
+        listaContacto.clear()
+        listaContacto.addAll(lista)
+        notifyItemRangeChanged(lista.size -1, lista.size)
     }
 }

@@ -8,7 +8,8 @@ import com.estech.appcontactos.domain.models.Contacto
  * Copyright (c) 2022 Qastusoft. All rights reserved.
  */
 
-class Repositorio(private val contactosDao: ContactosDao) {
+class Repositorio {
+    private val contactosDao = ContactosDao
 
     val todosContacto = contactosDao.getAllContacto()
 

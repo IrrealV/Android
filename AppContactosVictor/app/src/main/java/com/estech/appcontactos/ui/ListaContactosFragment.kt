@@ -9,8 +9,15 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.estech.appcontactos.MyApp
 import com.estech.appcontactos.databinding.FragmentListaContactosBinding
+import com.estech.appcontactos.domain.models.Contacto
+import com.estech.appcontactos.domain.room.ContactosDao
+import com.estech.appcontactos.domain.room.Repositorio
 import com.estech.appcontactos.ui.adapter.ListaContactosAdapter
 import com.estech.appcontactos.viewmodel.MyViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 /**
@@ -47,10 +54,35 @@ class ListaContactosFragment: Fragment() {
         }
     }
 
-    private fun configRecicler(){
-        adapter = ListaContactosAdapter()
+    private fun configRecicler(listContacto : List<Contacto>){
+        adapter = ListaContactosAdapter(listContacto as ArrayList)
         binding.recycler.layoutManager = LinearLayoutManager(requireContext())
         binding.recycler.adapter = adapter
+    }
+
+    private fun crearGato(){
+
+        val repo = Repositorio()
+
+        //Introduce la lista recibida de la api por el recicler
+        CoroutineScope(Dispatchers.IO).launch {
+            val contactos = repo.todosContacto
+
+            withContext(Dispatchers.Main){
+                if(contactos.){
+                    val listGatos = gatos.body()
+                    listGatos?.let {
+                        if (pullToRefreshWorking) {
+                            pullToRefreshWorking = false
+                            refreshRecycler(it)
+                        } else {
+                            configRecycler(it)
+                        }
+                    }
+                }
+            }
+
+        }
     }
 
 }
