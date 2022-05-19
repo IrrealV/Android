@@ -6,12 +6,14 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Contacto(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+
     val nombre: String,
     val apellido: String,
     val tel: String,
     val email: String,
     val edad: Int,
     val fav: Boolean
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
+}
