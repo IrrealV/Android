@@ -1,13 +1,18 @@
 package com.estech.googlemapssample
 
+import android.Manifest.permission
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.estech.googlemapssample.databinding.ActivityMainBinding
 import com.estech.googlemapssample.databinding.CustomWindowInfoBinding
@@ -20,6 +25,42 @@ import com.google.android.gms.maps.model.*
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var binding : ActivityMainBinding
+    private lateinit var mapa : GoogleMap
+    private val granted = PackageManager.PERMISSION_GRANTED
+
+    private fun funcionalidadCamara(){
+        Toast.makeText(this, "epicardo funciona", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun permiso(context: Context, permission: String): Int {
+        return ActivityCompat.checkSelfPermission(context,permission)
+    }
+
+    private val cameraPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ){
+        if (it){
+            funcionalidadCamara()
+        }
+        else{
+            Toast.makeText(this, "epicardo no funciona", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+
+    private val ubicacionPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ){
+
+        if (permiso(this, permission.ACCESS_FINE_LOCATION) == granted
+            && permiso(this, permission.ACCESS_COARSE_LOCATION) == granted
+        ) {
+            mapa.isMyLocationEnabled = true
+
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +72,27 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onMapReady(map: GoogleMap) {
+        mapa = map
+
+
+        binding.camera.setOnClickListener{
+            if (permiso(this, permission.CAMERA)== granted){
+                funcionalidadCamara()
+            }
+            else{
+                cameraPermissionLauncher.launch(permission.CAMERA)
+            }
+        }
+
+        binding.ubicacion.setOnClickListener{
+            if(permiso(this, permission.ACCESS_COARSE_LOCATION) == granted
+                && permiso(this, permission.ACCESS_FINE_LOCATION) == granted){
+                mapa.isMyLocationEnabled = true
+            }else{
+                ubicacionPermissionLauncher.launch(arrayOf(permission.ACCESS_FINE_LOCATION, permission.ACCESS_COARSE_LOCATION ))
+            }
+
+        }
 
         /* TIPO DE MAPA */
         map.mapType = GoogleMap.MAP_TYPE_HYBRID
