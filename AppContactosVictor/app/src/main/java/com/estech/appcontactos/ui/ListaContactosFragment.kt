@@ -54,35 +54,12 @@ class ListaContactosFragment: Fragment() {
         }
     }
 
-    private fun configRecicler(listContacto : List<Contacto>){
-        adapter = ListaContactosAdapter(listContacto as ArrayList)
+    private fun configRecicler(){
+        adapter = ListaContactosAdapter()
         binding.recycler.layoutManager = LinearLayoutManager(requireContext())
         binding.recycler.adapter = adapter
     }
 
-    private fun crearGato(){
 
-        val repo = Repositorio()
-
-        //Introduce la lista recibida de la api por el recicler
-        CoroutineScope(Dispatchers.IO).launch {
-            val contactos = repo.todosContacto
-
-            withContext(Dispatchers.Main){
-                if(contactos.){
-                    val listGatos = gatos.body()
-                    listGatos?.let {
-                        if (pullToRefreshWorking) {
-                            pullToRefreshWorking = false
-                            refreshRecycler(it)
-                        } else {
-                            configRecycler(it)
-                        }
-                    }
-                }
-            }
-
-        }
-    }
 
 }

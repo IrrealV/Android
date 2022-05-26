@@ -16,12 +16,8 @@ import kotlinx.coroutines.launch
  * Copyright (c) 2022 Qastusoft. All rights reserved.
  */
 
-class MyViewModel(val repository: Repositorio) : ViewModel() {
-    val todosContactos: LiveData<List<Contacto>>
-
-    init{
-        todosContactos = repository.todosContacto
-    }
+class MyViewModel(private val repository: Repositorio) : ViewModel() {
+    val todosContactos: LiveData<List<Contacto>> = repository.todosContacto
 
     fun insertarContacto(contacto: Contacto){
         CoroutineScope(Dispatchers.IO).launch {
@@ -29,7 +25,7 @@ class MyViewModel(val repository: Repositorio) : ViewModel() {
         }
     }
 
-    class MyViewModelFactory(val repository: Repositorio) : ViewModelProvider.Factory {
+    class MyViewModelFactory(private val repository: Repositorio) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return modelClass.getConstructor(Repositorio::class.java)
                 .newInstance(repository)
