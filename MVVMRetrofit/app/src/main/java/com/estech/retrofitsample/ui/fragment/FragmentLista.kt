@@ -1,4 +1,4 @@
-package com.estech.jsonsample
+package com.estech.retrofitsample.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.estech.retrofitsample.R
 import com.estech.retrofitsample.databinding.ListaFragmentBinding
-import com.estech.retrofitsample.models.Personaje
+import com.estech.retrofitsample.domain.models.Personaje
 import com.estech.retrofitsample.ui.adapters.PersonajeAdapter
 import com.estech.retrofitsample.viewmodels.PersonajeViewModel
 
@@ -26,6 +26,8 @@ class FragmentLista : Fragment() {
     private lateinit var binding: ListaFragmentBinding
     private lateinit var adapter: PersonajeAdapter
     private val personajeViewModel: PersonajeViewModel by activityViewModels()
+    private var totalPaginas = 0
+    private var paginaActual = 1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,14 +51,32 @@ class FragmentLista : Fragment() {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
 
-        personajeViewModel.getPersonajes(adapter.itemCount)
+        personajeViewModel.getPersonajes(1)
+
+        personajeViewModel.totalPaginas.observe(viewLifecycleOwner) {
+            totalPaginas = it
+        }
+
+        binding.paginamas.setOnClickListener {
+            if (paginaActual < totalPaginas) {
+                paginaActual ++
+                personajeViewModel.getPersonajes(paginaActual)
+            }
+        }
+
+        binding.paginamenos.setOnClickListener {
+            if (paginaActual > 0) {
+                paginaActual --
+                personajeViewModel.getPersonajes(paginaActual)
+            }
+        }
+
     }
 
     private fun configRecycler() {
         val recyclerView = binding.recyclerview
         adapter = PersonajeAdapter(object : PersonajeAdapter.OnItemClickListener {
-
-            override fun onItemClick(personaje: com.estech.retrofitsample.domain.models.Personaje) {
+            override fun onItemClick(personaje: Personaje) {
                 personajeViewModel.selectPersonaje(personaje)
                 findNavController().navigate(R.id.action_fragmentLista_to_fragmentPersonaje)
             }

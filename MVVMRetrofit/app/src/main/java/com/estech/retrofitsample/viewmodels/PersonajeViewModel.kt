@@ -2,8 +2,8 @@ package com.estech.retrofitsample.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.estech.retrofitsample.models.Personaje
-import com.estech.retrofitsample.retrofit.Repositorio
+import com.estech.retrofitsample.domain.models.Personaje
+import com.estech.retrofitsample.domain.retrofit.Repositorio
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,18 +25,21 @@ class PersonajeViewModel : ViewModel() {
     }
     val personajeSeleccionado by lazy { MutableLiveData<Personaje>() }
 
-    fun getPersonajes() {
+    val totalPaginas = MutableLiveData<Int>()
+
+    fun getPersonajes(pagina: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            val response = repositorio.dameTodosPersonajes()
+            val response = repositorio.dameTodosPersonajes(pagina)
 
             if (response.isSuccessful) {
                 val respuesta = response.body()
+                totalPaginas.postValue(respuesta?.info?.pages)
                 val listaPersonajes = respuesta?.results
                 listaPersonajes?.let {
                     personajesLiveData.postValue(it)
                 }
             } else {
-                error.value = response.message()
+                error.postValue(response.message())
             }
         }
     }
@@ -44,5 +47,7 @@ class PersonajeViewModel : ViewModel() {
     fun selectPersonaje(personaje: Personaje) {
         personajeSeleccionado.value = personaje
     }
+
+
 
 }

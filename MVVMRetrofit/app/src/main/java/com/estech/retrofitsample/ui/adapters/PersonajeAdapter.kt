@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.estech.retrofitsample.R
 import com.estech.retrofitsample.databinding.VistaCeldaBinding
-import com.estech.retrofitsample.models.Personaje
+import com.estech.retrofitsample.domain.models.Personaje
 
 
 /**
