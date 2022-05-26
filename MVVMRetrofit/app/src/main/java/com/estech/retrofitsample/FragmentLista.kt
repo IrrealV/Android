@@ -49,13 +49,14 @@ class FragmentLista : Fragment() {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
 
-        personajeViewModel.getPersonajes()
+        personajeViewModel.getPersonajes(adapter.itemCount)
     }
 
     private fun configRecycler() {
         val recyclerView = binding.recyclerview
         adapter = PersonajeAdapter(object : PersonajeAdapter.OnItemClickListener {
-            override fun onItemClick(personaje: Personaje) {
+
+            override fun onItemClick(personaje: com.estech.retrofitsample.domain.models.Personaje) {
                 personajeViewModel.selectPersonaje(personaje)
                 findNavController().navigate(R.id.action_fragmentLista_to_fragmentPersonaje)
             }
