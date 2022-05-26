@@ -1,5 +1,6 @@
 package com.estech.gatosmvvm.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -52,6 +53,7 @@ class BreedsAdapter(val listener: RazaClickListener) : RecyclerView.Adapter<Bree
         return listaCopia.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun actualizaLista(lista: ArrayList<Breed>) {
         listaRazas.clear()
         listaRazas.addAll(lista)
@@ -79,6 +81,7 @@ class BreedsAdapter(val listener: RazaClickListener) : RecyclerView.Adapter<Bree
                 return filterResults
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
                 listaCopia = p1?.values as ArrayList<Breed>
                 notifyDataSetChanged()
