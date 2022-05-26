@@ -25,6 +25,12 @@ class MyViewModel(private val repository: Repositorio) : ViewModel() {
         }
     }
 
+    fun eliminarContacto(contacto: Contacto){
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.eliminarContacto(contacto)
+        }
+    }
+
     class MyViewModelFactory(private val repository: Repositorio) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return modelClass.getConstructor(Repositorio::class.java)

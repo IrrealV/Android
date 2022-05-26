@@ -29,6 +29,7 @@ class ListaContactosFragment: Fragment() {
 
     private lateinit var binding: FragmentListaContactosBinding
     private lateinit var adapter: ListaContactosAdapter
+    private lateinit var contacto: ArrayList<Contacto>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,11 +42,26 @@ class ListaContactosFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        contacto = ArrayList()
 
         val myApp = requireActivity().application as MyApp
         val vm: MyViewModel by activityViewModels{
             MyViewModel.MyViewModelFactory(myApp.repository)
         }
+        binding.fab.setOnClickListener {
+            vm.insertarContacto(
+                Contacto(
+                "Luis",
+                "Heras",
+                "",
+                "",
+                20,
+                true
+            )
+            )
+        }
+
+
 
         configRecicler()
 
