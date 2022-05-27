@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.estech.takephotosample.databinding.ActivityMainBinding
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var uri: Uri
     private lateinit var uriCam : Uri
+    private val model by viewModels<MyViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,10 @@ class MainActivity : AppCompatActivity() {
         binding.btGaleria.setOnClickListener {
             tomarImagenGaleria()
         }
+
+        model
+
+
     }
 
     private fun tomarImagenCamara() {
