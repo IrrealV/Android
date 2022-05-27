@@ -1,4 +1,4 @@
-package com.estech.retrofitsample.retrofit
+package com.estech.gatosmvvm.retrofit
 
 import com.estech.gatosmvvm.modelos.enviarvoto.SendVote
 
@@ -8,13 +8,22 @@ import com.estech.gatosmvvm.modelos.enviarvoto.SendVote
  * Copyright (c) 2022 Qastusoft. All rights reserved.
  */
 
-class Repositorio {
+class Repositorio(private val retrofitService: RetrofitService) {
 
-    private val retrofit = RetrofitHelper.getRetrofit()
+   val todasRazas = retrofitService.getRazas()
 
-    suspend fun getRazas() = retrofit.getRazas()
-    suspend fun sendVote(vote: SendVote) = retrofit.sendVote(vote)
-    suspend fun getVotesList(usuario: String) = retrofit.getVotesList(usuario)
-    suspend fun deleteVote(id: String) = retrofit.deleteVote(id)
+    suspend fun enviarVoto(vote: SendVote){
+        retrofitService.sendVote(vote)
+    }
+
+    suspend fun recibirListaVotos(usuario: String){
+        retrofitService.getVotesList(usuario)
+    }
+
+    suspend fun eliminarVoto(id: String){
+        retrofitService.deleteVote(id)
+    }
+
+
 
 }

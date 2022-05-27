@@ -16,7 +16,7 @@ import com.estech.gatosmvvm.databinding.FragmentDetalleGatoBinding
 import com.estech.gatosmvvm.modelos.enviarvoto.SendVote
 import com.estech.gatosmvvm.modelos.listagatos.Breed
 import com.estech.gatosmvvm.viewmodels.GatoViewModel
-import com.estech.retrofitsample.retrofit.Repositorio
+import com.estech.gatosmvvm.retrofit.Repositorio
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

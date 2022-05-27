@@ -1,35 +1,43 @@
 package com.estech.gatosmvvm.viewmodels
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.estech.gatosmvvm.modelos.enviarvoto.SendVote
 import com.estech.gatosmvvm.modelos.listagatos.Breed
-import com.estech.retrofitsample.retrofit.Repositorio
+import com.estech.gatosmvvm.retrofit.Repositorio
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
-class GatoViewModel : ViewModel() {
+class GatoViewModel(private val repositorio : Repositorio) : ViewModel() {
 
-    private val repositorio = Repositorio()
-    val listaRazas = MutableLiveData<ArrayList<Breed>>()
-    val errorRazas = MutableLiveData<String>()
-    val razaSeleccionada = MutableLiveData<Breed>()
-    val mostrarSimboloCarga = MutableLiveData<Boolean>()
+    val AllRazas: Response<LiveData<List<Breed>>> = repositorio.todasRazas
 
-    fun getListaRazas() {
-        mostrarSimboloCarga.value = true
+    fun enviarVoto(vote: SendVote){
         CoroutineScope(Dispatchers.IO).launch {
-            val response = repositorio.getRazas()
-
-            if (response.isSuccessful) {
-                val respuesta = response.body()
-                respuesta?.let {
-                    listaRazas.postValue(it)
-                }
-            } else {
-                errorRazas.postValue(response.message())
-            }
-            mostrarSimboloCarga.postValue(false)
+            repositorio.enviarVoto(vote)
         }
+    }
+
+    fun recibirListaVotos(usuario: String){
+        CoroutineScope(Dispatchers.IO).launch {
+            repositorio.recibirListaVotos(usuario)
+        }
+    }
+
+    fun eliminarVoto(id: String){
+        CoroutineScope(Dispatchers.IO).launch {
+            repositorio.eliminarVoto(id)
+        }
+    }
+
+    class MyViewModelFactory(private val repository: Repositorio) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return modelClass.getConstructor(Repositorio::class.java)
+                .newInstance(repository)
+        }
+
     }
 }

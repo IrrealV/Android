@@ -1,6 +1,7 @@
 package com.estech.retrofitsample.retrofit
 
 import android.util.Log
+import com.estech.gatosmvvm.retrofit.RetrofitService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

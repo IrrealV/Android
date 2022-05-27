@@ -6,8 +6,10 @@ package com.estech.gatosmvvm.modelos.eliminarvoto
  * Copyright (c) 2022 Qastusoft. All rights reserved.
  */
 
+
 data class ResponseDeleteVote(
     val message: String?,
     val level: String?,
     val status: Int?
 )
+

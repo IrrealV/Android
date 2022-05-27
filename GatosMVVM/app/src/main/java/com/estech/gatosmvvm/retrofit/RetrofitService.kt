@@ -1,10 +1,11 @@
-package com.estech.retrofitsample.retrofit
+package com.estech.gatosmvvm.retrofit
+
+import androidx.lifecycle.LiveData
 
 import com.estech.gatosmvvm.modelos.eliminarvoto.ResponseDeleteVote
 import com.estech.gatosmvvm.modelos.enviarvoto.ResponseVote
 import com.estech.gatosmvvm.modelos.enviarvoto.SendVote
 import com.estech.gatosmvvm.modelos.listagatos.Breed
-import com.estech.gatosmvvm.modelos.listavotos.Votes
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -14,26 +15,26 @@ import retrofit2.http.*
  * Copyright (c) 2022 Qastusoft. All rights reserved.
  */
 
-
+const val key = "x-api-key: 0c64027f-e9e8-4ab7-a1fc-d307611ecb5f"
 interface RetrofitService {
 
-    @Headers("x-api-key: 0c64027f-e9e8-4ab7-a1fc-d307611ecb5f")
+
+    @Headers(key)
     @GET("breeds")
-    suspend fun getRazas(): Response<ArrayList<Breed>>
+    fun getRazas():Response<LiveData<List<Breed>>>
 
-    @Headers(
-        "x-api-key:  0c64027f-e9e8-4ab7-a1fc-d307611ecb5f",
-        "Content-Type: application/json"
-    )
+    @Headers(key,"Content-Type: application/json")
     @POST("votes")
-    suspend fun sendVote(@Body vote: SendVote): Response<ResponseVote>
+    suspend fun sendVote(@Body vote: SendVote): Response<LiveData<ResponseVote>>
 
-    @Headers("x-api-key: 0c64027f-e9e8-4ab7-a1fc-d307611ecb5f")
+    @Headers(key)
     @GET("votes")
-    suspend fun getVotesList(@Query("sub_id") usuario: String): Response<ArrayList<Votes>>
+    suspend fun getVotesList(@Query("sub_id") usuario: String): Response<LiveData<ArrayList<Breed>>>
 
-    @Headers("x-api-key: 0c64027f-e9e8-4ab7-a1fc-d307611ecb5f")
+    @Headers(key)
     @DELETE("votes/{id}")
-    suspend fun deleteVote(@Path("id") id: String): Response<ResponseDeleteVote>
+    suspend fun deleteVote(@Path("id") id: String): Response<LiveData<ResponseDeleteVote>>
 
 }
+
+

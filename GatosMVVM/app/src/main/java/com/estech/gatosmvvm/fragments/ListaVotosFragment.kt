@@ -14,7 +14,7 @@ import com.estech.gatosmvvm.R
 import com.estech.gatosmvvm.adapters.VotesAdapter
 import com.estech.gatosmvvm.databinding.FragmentVoteListBinding
 import com.estech.gatosmvvm.modelos.listavotos.Votes
-import com.estech.retrofitsample.retrofit.Repositorio
+import com.estech.gatosmvvm.retrofit.Repositorio
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
