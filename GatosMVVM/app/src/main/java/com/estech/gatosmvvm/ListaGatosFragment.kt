@@ -45,9 +45,9 @@ class ListaGatosFragment : Fragment() {
             adapter.actualizaLista(it)
         }
 
-        gatoVm.errorRazas.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-        }
+//        gatoVm.errorRazas.observe(viewLifecycleOwner) {
+//            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+//        }
 
         gatoVm.mostrarSimboloCarga.observe(viewLifecycleOwner) {
             binding.swipe.isRefreshing = it
