@@ -120,8 +120,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 //         asignar max y min zoom al mapa (3 a 22)
-        map.setMinZoomPreference(6.0f)
-        map.setMaxZoomPreference(14.0f)
+//        map.setMinZoomPreference(6.0f)
+//        map.setMaxZoomPreference(14.0f)
 
 //        Mover cámara
         val latLng = LatLng(38.38, -3.78)  //LatLng es latitud y longitud en double
