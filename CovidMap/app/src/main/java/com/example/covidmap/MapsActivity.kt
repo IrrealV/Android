@@ -3,6 +3,7 @@ package com.example.covidmap
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,11 +16,9 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.example.covidmap.databinding.ActivityMapsBinding
 import com.google.android.gms.location.*
-import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -29,6 +28,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityMapsBinding
     private lateinit var locationClient: FusedLocationProviderClient
     private lateinit var locationRequest: LocationRequest
+    private lateinit var opciones:CircleOptions
+    private lateinit var circle: Circle
     private val  granted = PackageManager.PERMISSION_GRANTED
     private val ubicacionPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -36,14 +37,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         ifPermiso(mMap)
     }
-//    val contract = registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
-//        if (it.resultCode == RESULT_OK) {
-//            tomarUbicacionEnDirecto()
-//        } else {
-//            // No se puede tomar la ubicación con la configuración actual
-//        }
-//    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,21 +89,74 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
             locationClient.lastLocation.addOnSuccessListener { location ->
                 val aqui = LatLng(location.latitude,location.longitude)
+
                 val precision = LatLngBounds.builder()
                     .include(aqui)
                     .build()
                 mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(precision, 10))
-            }
 
+                val mov = MarkerOptions()
+                    .position(aqui)
+                    .title("Ratio")
+                    .snippet("De este circulo no te puedes salir")
+                        .draggable(true)
+
+                val marcador = mMap.addMarker(mov)
+                marcador?.tag = "mimarker"
+
+                //circulo
+                opciones = CircleOptions()
+                    .center(aqui)
+                    .radius(1000.0)
+                    .strokeColor(Color.BLUE)
+                    .strokeWidth(10f)
+                circle = mMap.addCircle(opciones)
+
+                mMap.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener {
+
+                    override fun onMarkerDrag(p0: Marker) {
+
+                    }
+
+                    override fun onMarkerDragEnd(marker: Marker) {
+                        if (marker.tag == "mimarker") {
+                            opciones
+                                .center(marker.position)
+                                .radius(1000.0)
+                                .strokeColor(Color.BLUE)
+                                .strokeWidth(10f)
+                            circle = mMap.addCircle(opciones)
+
+                        }
+
+                    }
+
+                    override fun onMarkerDragStart(p0: Marker) {
+                        circle.remove()
+                    }
+                })
+            }
         }
+
+
 
 
     }
 
-    private fun ifPermiso(googleMap: GoogleMap): Boolean{
+    private fun ifPermiso(googleMap: GoogleMap): Boolean {
         if (permiso(this, Manifest.permission.ACCESS_FINE_LOCATION) == granted
             && permiso(this, Manifest.permission.ACCESS_COARSE_LOCATION) == granted
         ) {
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return googleMap.isMyLocationEnabled
+            }
             googleMap.isMyLocationEnabled = true
 
 
@@ -129,37 +175,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-//    private fun tomarUbicacionEnDirecto() {
-//        if (ActivityCompat.checkSelfPermission(
-//                this,
-//                Manifest.permission.ACCESS_FINE_LOCATION
-//            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-//                this,
-//                Manifest.permission.ACCESS_COARSE_LOCATION
-//            ) != PackageManager.PERMISSION_GRANTED
-//        ) {
-//            return
-//        }
-//        locationClient.requestLocationUpdates(
-//            locationRequest,
-//            locationCallback,
-//            Looper.getMainLooper()
-//        )
-//    }
-//
-//    private val locationCallback = object : LocationCallback() {
-//        override fun onLocationResult(p0: LocationResult) {
-//            val lastLocation = p0.lastLocation
-//            imprimirUbicacion(lastLocation)
-//        }
-//    }
-//
-//    private fun imprimirUbicacion(location: Location) {
-//
-//        val latitud = location.latitude
-//        val longitud = location.longitude
-//
-//    }
 
 
 }
