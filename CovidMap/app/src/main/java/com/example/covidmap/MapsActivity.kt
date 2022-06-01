@@ -31,6 +31,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var opciones:CircleOptions
     private lateinit var circle: Circle
     private val  granted = PackageManager.PERMISSION_GRANTED
+
     private val ubicacionPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ){
@@ -72,8 +73,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             7.5f)
         mMap.moveCamera(cuZoom)
 
-
-        mMap.setMinZoomPreference(7.5f)
+        mMap.setMinZoomPreference(0.5f)
         mMap.setMaxZoomPreference(17.5f)
 
         mMap.setOnMapLoadedCallback {
