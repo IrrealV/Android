@@ -8,7 +8,7 @@ import com.example.appciudades.databinding.CervezaCeldaBinding
 import com.example.appciudades.dominio.models.Cerveza
 import com.example.appciudades.viewModel.MyVM
 
-class ListaBeerAdapter:RecyclerView.Adapter<ListaBeerAdapter.CerverzaCelda>() {
+class ListaBeerAdapter():RecyclerView.Adapter<ListaBeerAdapter.CerverzaCelda>() {
     inner class CerverzaCelda(val binding: CervezaCeldaBinding):RecyclerView.ViewHolder(binding.root)
 
     private val listaBeer = ArrayList<Cerveza>()
@@ -33,6 +33,10 @@ class ListaBeerAdapter:RecyclerView.Adapter<ListaBeerAdapter.CerverzaCelda>() {
 
         val vm= MyVM(miapp.repositorio)
 
+        bind.delete.setOnClickListener {
+            vm.eliminarCerveza(cerveza)
+            notifyItemRemoved(position)
+        }
 
 
     }

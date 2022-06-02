@@ -1,4 +1,4 @@
-package com.example.appciudades.ui.fragment
+package com.example.appciudades
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -36,12 +36,15 @@ class ListaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         servesa = ArrayList()
-        binding.CerCont.text = servesa.size.toString()
+        if(servesa.size > 0){
+            binding.CerCont.text = servesa.size.toString()
+        }
         binding.toolbar.title = "Lista de Cervezas"
 
         val madrid = LatLng(40.47883646461693, -3.7692950517063832)
+
         val myBeer = requireActivity().application as MyBeer
-        val vm: MyVM by activityViewModels{
+        val vm: MyVM by activityViewModels(){
             MyVM.MyViewModelFactory(myBeer.repositorio)
         }
 
@@ -52,6 +55,8 @@ class ListaFragment : Fragment() {
                     "Linares",
                     "España",
                     17,
+                    0,
+                    0,
                     true,
                     madrid.toString()
                 )
@@ -75,19 +80,17 @@ class ListaFragment : Fragment() {
             }
         })
 
-
+        configRecicler()
 
 
         vm.todoCerveza.observe(viewLifecycleOwner){
             adapter.updateList(it)
         }
-        configRecicler()
+
 
     }
 
-    private fun actLista(){
 
-    }
 
     private fun configRecicler(){
         adapter = ListaBeerAdapter()

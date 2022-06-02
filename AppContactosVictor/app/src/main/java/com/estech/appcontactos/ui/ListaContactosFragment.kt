@@ -46,7 +46,7 @@ class ListaContactosFragment: Fragment() {
 
         val myApp = requireActivity().application as MyApp
         val vm: MyViewModel by activityViewModels{
-            MyViewModel.MyViewModelFactory(myApp.repository)
+            MyViewModel.MyViewModelFactory(myApp.repositor)
         }
         binding.fab.setOnClickListener {
             vm.insertarContacto(

@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.example.appciudades.MapsFragment"
+        android:name="com.example.appciudades.ui.fragment.MapsFragment"
         android:label="Mapa Cervecero"
         tools:layout="@layout/fragment_maps" />
 </navigation>

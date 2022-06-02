@@ -12,6 +12,8 @@ data class Cerveza(
     val ciudad: String,
     val pais: String,
     val grados: Int,
+    val latitud: Int,
+    val Longitud: Int,
 //    val img: Image?,
     val probado: Boolean,
     val Ubi: String,
