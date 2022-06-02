@@ -9,7 +9,7 @@
         android:id="@+id/listaFragment"
         android:name="com.example.appciudades.ListaFragment"
         android:label="Lista de cervezas"
-        tools:layout="@layout/fragment_lista" >
+        tools:layout="@layout/fragment_lista">
         <action
             android:id="@+id/action_listaFragment_to_mapsFragment"
             app:destination="@id/mapsFragment" />
