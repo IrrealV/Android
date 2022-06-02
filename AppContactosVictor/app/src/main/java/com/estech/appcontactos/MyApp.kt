@@ -12,7 +12,7 @@ import com.estech.appcontactos.domain.room.Repositorio
 
 class MyApp : Application() {
     val database by lazy { MyDataBase.getDatabase(this) }
-    val repository by lazy { Repositorio(database.contactosDao()) }
+    val repositor by lazy { Repositorio(database.contactosDao()) }
 
 
 }

@@ -12,11 +12,11 @@ data class Cerveza(
     val ciudad: String,
     val pais: String,
     val grados: Int,
-    val img: Image,
+//    val img: Image?,
     val probado: Boolean,
-    val Ubi: LatLng,
+    val Ubi: String,
 
-){
+    ){
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 }

@@ -8,9 +8,11 @@
         <entry key="..\:/Programas/GitHub/Android/AppCiudades/app/src/main/res/drawable/ic_baseline_map_24.xml" value="0.2715" />
         <entry key="..\:/Programas/GitHub/Android/AppCiudades/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2715" />
         <entry key="..\:/Programas/GitHub/Android/AppCiudades/app/src/main/res/drawable/mapa.xml" value="0.2715" />
-        <entry key="..\:/Programas/GitHub/Android/AppCiudades/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
-        <entry key="..\:/Programas/GitHub/Android/AppCiudades/app/src/main/res/layout/fragment_lista.xml" value="0.3009833262077811" />
+        <entry key="..\:/Programas/GitHub/Android/AppCiudades/app/src/main/res/layout/activity_main.xml" value="0.3087719298245614" />
+        <entry key="..\:/Programas/GitHub/Android/AppCiudades/app/src/main/res/layout/cerveza_celda.xml" value="0.3087719298245614" />
+        <entry key="..\:/Programas/GitHub/Android/AppCiudades/app/src/main/res/layout/fragment_lista.xml" value="0.3087719298245614" />
         <entry key="..\:/Programas/GitHub/Android/AppCiudades/app/src/main/res/layout/fragment_lista_list.xml" value="0.358695652173913" />
+        <entry key="..\:/Programas/GitHub/Android/AppCiudades/app/src/main/res/layout/fragment_maps.xml" value="0.2969298245614035" />
         <entry key="..\:/Users/victor.heras/Documents/GitHub/Android/AppCiudades/app/src/main/res/drawable/ic_baseline_sentiment_dissatisfied_24.xml" value="0.3585" />
         <entry key="..\:/Users/victor.heras/Documents/GitHub/Android/AppCiudades/app/src/main/res/layout/cerveza_celda.xml" value="0.365625" />
         <entry key="..\:/Users/victor.heras/Documents/GitHub/Android/AppCiudades/app/src/main/res/layout/fragment_lista.xml" value="0.36666666666666664" />

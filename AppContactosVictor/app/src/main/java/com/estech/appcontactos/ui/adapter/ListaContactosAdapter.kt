@@ -42,7 +42,7 @@ class ListaContactosAdapter: RecyclerView.Adapter<ListaContactosAdapter.Micelda>
         val bind = holder.binding
 
         bind.Perona.text = persona.nombre
-        val vm= MyViewModel(miapp.repository)
+        val vm= MyViewModel(miapp.repositor)
 
         bind.celdaCont.setOnLongClickListener {
             vm.eliminarContacto(persona)
