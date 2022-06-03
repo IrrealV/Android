@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "38541811206",
+    "firebase_url": "https://testing-fcm-msg-data.firebaseio.com",
+    "project_id": "testing-fcm-msg-data",
+    "storage_bucket": "testing-fcm-msg-data.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38541811206:android:7215345c8a5aecc2722d87",
+        "android_client_info": {
+          "package_name": "com.estech.notificationrealsample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38541811206-jiu1aevmhnoorovau3io9jlu7u4sl3eh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTioy8MIYOi0TYSfu5OMn9viDZOWq9-qE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38541811206-jiu1aevmhnoorovau3io9jlu7u4sl3eh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -16,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCiudades"
+        android:name=".MyBeer"
         tools:targetApi="31">
 
         <meta-data

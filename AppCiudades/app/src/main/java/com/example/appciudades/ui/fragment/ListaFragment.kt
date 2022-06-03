@@ -1,4 +1,4 @@
-package com.example.appciudades
+package com.example.appciudades.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -36,10 +36,10 @@ class ListaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         servesa = ArrayList()
-        if(servesa.size > 0){
-            binding.CerCont.text = servesa.size.toString()
-        }
+
         binding.toolbar.title = "Lista de Cervezas"
+
+
 
         val madrid = LatLng(40.47883646461693, -3.7692950517063832)
 
@@ -55,12 +55,13 @@ class ListaFragment : Fragment() {
                     "Linares",
                     "España",
                     17,
-                    0,
-                    0,
+                    madrid.latitude.toString(),
+                    madrid.longitude.toString(),
                     true,
                     madrid.toString()
                 )
             )
+
         }
 
 
@@ -76,15 +77,18 @@ class ListaFragment : Fragment() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 binding.map.show()
-                binding.beer.hide()
+                binding.beer.show()
             }
         })
 
         configRecicler()
 
 
+
         vm.todoCerveza.observe(viewLifecycleOwner){
             adapter.updateList(it)
+            binding.CerCont.text = adapter.itemCount.toString()
+
         }
 
 

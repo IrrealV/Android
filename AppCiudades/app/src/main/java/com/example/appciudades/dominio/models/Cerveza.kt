@@ -1,9 +1,8 @@
 package com.example.appciudades.dominio.models
 
-import android.media.Image
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.android.gms.maps.model.LatLng
+
 
 @Entity
 data class Cerveza(
@@ -12,8 +11,8 @@ data class Cerveza(
     val ciudad: String,
     val pais: String,
     val grados: Int,
-    val latitud: Int,
-    val Longitud: Int,
+    val latitud: String,
+    val Longitud: String,
 //    val img: Image?,
     val probado: Boolean,
     val Ubi: String,

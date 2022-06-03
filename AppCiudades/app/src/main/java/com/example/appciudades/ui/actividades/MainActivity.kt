@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
         navController = findNavController(R.id.map)
         appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
 
     }
 

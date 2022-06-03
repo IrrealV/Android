@@ -7,13 +7,14 @@ import com.example.appciudades.MyBeer
 import com.example.appciudades.databinding.CervezaCeldaBinding
 import com.example.appciudades.dominio.models.Cerveza
 import com.example.appciudades.viewModel.MyVM
+import kotlin.properties.Delegates
 
 class ListaBeerAdapter():RecyclerView.Adapter<ListaBeerAdapter.CerverzaCelda>() {
     inner class CerverzaCelda(val binding: CervezaCeldaBinding):RecyclerView.ViewHolder(binding.root)
 
     private val listaBeer = ArrayList<Cerveza>()
     private val miapp = MyBeer()
-
+    private var posicion= 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CerverzaCelda {
         val inflater = LayoutInflater.from(parent.context)
@@ -22,12 +23,13 @@ class ListaBeerAdapter():RecyclerView.Adapter<ListaBeerAdapter.CerverzaCelda>() 
     }
 
     override fun onBindViewHolder(holder: CerverzaCelda, position: Int) {
+        posicion = holder.adapterPosition
         val bind = holder.binding
         val cerveza = listaBeer[position]
 
         bind.name.text = cerveza.nombre
         bind.Pais.text = cerveza.ciudad
-        bind.location.text = cerveza.Ubi
+        bind.location.text = "${cerveza.latitud},${cerveza.Longitud}"
         //bind.CerImg.setImageResource(cerveza.img) preguntar mañana en clase
 
 
@@ -48,7 +50,9 @@ class ListaBeerAdapter():RecyclerView.Adapter<ListaBeerAdapter.CerverzaCelda>() 
     fun updateList(lista:List<Cerveza>){
         listaBeer.clear()
         listaBeer.addAll(lista)
-        notifyItemRangeChanged(lista.size -1, lista.size)
+        notifyItemRemoved(posicion)
+        notifyItemRangeChanged(listaBeer.size,listaBeer.size-1)
+
     }
 
 }
