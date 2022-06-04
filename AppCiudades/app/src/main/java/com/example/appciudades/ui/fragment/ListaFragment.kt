@@ -1,20 +1,21 @@
 package com.example.appciudades.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appciudades.MyBeer
+import com.example.appciudades.R
 import com.example.appciudades.databinding.FragmentListaBinding
 import com.example.appciudades.dominio.models.Cerveza
 import com.example.appciudades.ui.adapter.ListaBeerAdapter
 import com.example.appciudades.viewModel.MyVM
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.maps.model.LatLng
 
 class ListaFragment : Fragment() {
@@ -22,6 +23,7 @@ class ListaFragment : Fragment() {
     private lateinit var binding: FragmentListaBinding
     private lateinit var adapter: ListaBeerAdapter
     private lateinit var servesa: ArrayList<Cerveza>
+
 
 
 
@@ -36,32 +38,27 @@ class ListaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         servesa = ArrayList()
-
         binding.toolbar.title = "Lista de Cervezas"
-
-
-
-        val madrid = LatLng(40.47883646461693, -3.7692950517063832)
 
         val myBeer = requireActivity().application as MyBeer
         val vm: MyVM by activityViewModels(){
             MyVM.MyViewModelFactory(myBeer.repositorio)
         }
 
-        binding.beer.setOnClickListener {
-            vm.insertarCerveza(
-                Cerveza(
-                    "Mahou",
-                    "Linares",
-                    "España",
-                    17,
-                    madrid.latitude.toString(),
-                    madrid.longitude.toString(),
-                    true,
-                    madrid.toString()
-                )
-            )
+        @SuppressLint("StaticFieldLeak")
+        val nav = findNavController()
 
+
+        binding.fabPrueba.setOnClickListener {
+            pruebaBeer(vm)
+        }
+
+        binding.beer.setOnClickListener {
+            nav.navigate(R.id.action_listaFragment_to_newbeer)
+        }
+
+        binding.map.setOnClickListener {
+            nav.navigate(R.id.action_listaFragment_to_mapsFragment)
         }
 
 
@@ -94,10 +91,38 @@ class ListaFragment : Fragment() {
 
     }
 
+    private fun pruebaBeer(vm: MyVM){
 
+        val madrid = LatLng(40.47883646461693, -3.7692950517063832)
+        val Linares = LatLng(38.1737335959905, -3.7760733675386406)
+                    vm.insertarCerveza(
+                Cerveza(
+                    "Mahou",
+                    "Linares",
+                    "España",
+                    17,
+                    madrid.latitude.toString(),
+                    madrid.longitude.toString(),
+                    true,
+                    madrid.toString()
+                )
+            )
+            vm.insertarCerveza(
+                Cerveza(
+                    "Castillo",
+                    "Baños de la encina",
+                    "España",
+                    200,
+                    Linares.latitude.toString(),
+                    Linares.longitude.toString(),
+                    true,
+                    Linares.toString()
+                )
+            )
+    }
 
     private fun configRecicler(){
-        adapter = ListaBeerAdapter()
+        adapter = ListaBeerAdapter(requireContext())
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
     }

@@ -9,14 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.appgatos.R
 import com.example.appgatos.databinding.VistaVotoBinding
-import com.example.appgatos.dataclass.EnvioVoto
 import com.example.appgatos.dataclass.Voto
 import com.example.appgatos.retrofit.Repositorio
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.internal.notify
 
 class VotoAdapter(var listVotos : ArrayList<Voto>, val context: Context):
     RecyclerView.Adapter<VotoAdapter.CeldaVoto>() {

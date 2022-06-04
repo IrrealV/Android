@@ -12,6 +12,8 @@ import kotlinx.coroutines.launch
 class MyVM(private val repositorio: Repositorio): ViewModel(){
     val todoCerveza: LiveData<List<Cerveza>> = repositorio.allBeer
 
+
+
     fun insertarCerveza(cerveza: Cerveza){
         CoroutineScope(Dispatchers.IO).launch {
             repositorio.addCerveza(cerveza)

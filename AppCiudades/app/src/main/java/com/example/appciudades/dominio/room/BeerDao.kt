@@ -7,6 +7,7 @@ import com.example.appciudades.dominio.models.Cerveza
 
 @Dao
 interface BeerDao {
+
     @Insert
     suspend fun addcerveza(vararg cerveza: Cerveza)
 

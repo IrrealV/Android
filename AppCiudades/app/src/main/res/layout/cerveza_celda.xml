@@ -23,13 +23,24 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/location"
+                android:id="@+id/lat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Location"
+                android:maxLength="10"
+                android:text="Latitud"
                 app:layout_constraintStart_toStartOf="@+id/Pais"
                 app:layout_constraintTop_toBottomOf="@+id/Pais" />
+
+            <TextView
+                android:id="@+id/lon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:maxLength="10"
+                android:text="Longitud"
+                app:layout_constraintStart_toEndOf="@+id/lat"
+                app:layout_constraintTop_toTopOf="@+id/lat" />
 
             <TextView
                 android:id="@+id/name"

@@ -11,6 +11,7 @@ class Repositorio(private val BeerDao: BeerDao) {
         BeerDao.addcerveza(cerveza)
     }
 
+
     suspend fun delCerveza(cerveza: Cerveza){
         BeerDao.delOneCerveza(cerveza)
     }
