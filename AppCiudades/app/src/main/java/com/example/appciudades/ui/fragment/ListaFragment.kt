@@ -101,8 +101,8 @@ class ListaFragment : Fragment() {
                     "Linares",
                     "España",
                     17,
-                    madrid.latitude.toString(),
-                    madrid.longitude.toString(),
+                    madrid.latitude,
+                    madrid.longitude,
                     true,
                     madrid.toString()
                 )
@@ -113,8 +113,8 @@ class ListaFragment : Fragment() {
                     "Baños de la encina",
                     "España",
                     200,
-                    Linares.latitude.toString(),
-                    Linares.longitude.toString(),
+                    Linares.latitude,
+                    Linares.longitude,
                     true,
                     Linares.toString()
                 )

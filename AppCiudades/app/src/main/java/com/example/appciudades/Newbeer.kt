@@ -1,59 +1,148 @@
 package com.example.appciudades
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.example.appciudades.databinding.FragmentMapsBinding
+import com.example.appciudades.databinding.FragmentNewbeerBinding
+import com.example.appciudades.viewModel.MyVM
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MarkerOptions
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Newbeer.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Newbeer : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private lateinit var binding: FragmentNewbeerBinding
+    private lateinit var mMap: GoogleMap
+    private lateinit var locationClient: FusedLocationProviderClient
+    private val  granted = PackageManager.PERMISSION_GRANTED
+    private val acl = Manifest.permission.ACCESS_COARSE_LOCATION
+    private val ubicacionPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ){
+
+        ifPermiso(mMap)
+    }
+
+    private val callback = OnMapReadyCallback { googleMap ->
+        mMap = googleMap
+        mMap.mapType = GoogleMap.MAP_TYPE_HYBRID
+        locationClient = context?.let { LocationServices.getFusedLocationProviderClient(it) }!!
+
+        checkPermiso(googleMap)
+
+        googleMap.setMinZoomPreference(0.5f)
+        googleMap.setMaxZoomPreference(17.5f)
+
+        binding.miubi.setOnClickListener{
+            localizacion(googleMap)
         }
+
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_newbeer, container, false)
+        binding = FragmentNewbeerBinding.inflate(inflater,container,false)
+        return (binding.root)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Newbeer.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Newbeer().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        mapFragment?.getMapAsync(callback)
+        @SuppressLint("StaticFieldLeak")
+        val nav = findNavController()
+        val toolbar = binding.toolbar3
+        toolbar.title = "Mapa de Cervezas"
+
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
+        toolbar.setOnClickListener {
+            nav.navigate(R.id.listaFragment)
+
+        }
+
     }
+
+    private fun localizacion(mapa:GoogleMap){
+        if (context?.let { ActivityCompat.checkSelfPermission(it, acl) }
+            != granted && context?.let { ActivityCompat.checkSelfPermission(it, acl)
+            } != granted) {
+            return
+        }
+        locationClient.lastLocation.addOnSuccessListener { location ->
+            val aqui = LatLng(location.latitude, location.longitude)
+            val precision = LatLngBounds.builder()
+                .include(aqui)
+                .build()
+
+            val mov = MarkerOptions()
+                .position(aqui)
+                .title(binding.brand.toString())
+                .snippet("pulsa para ver mas detalles")
+
+            val marcador = mapa.addMarker(mov)
+            marcador?.tag = "marcadorlugar"
+
+            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(precision, 10))
+
+        }
+    }
+
+
+    private fun ifPermiso(googleMap: GoogleMap): Boolean {
+            if (context?.let { permiso(it, Manifest.permission.ACCESS_FINE_LOCATION) } == granted
+                && context?.let { permiso(it, Manifest.permission.ACCESS_COARSE_LOCATION) } == granted
+            ) {
+                if (context?.let {
+                        ActivityCompat.checkSelfPermission(
+                            it,
+                            Manifest.permission.ACCESS_FINE_LOCATION
+                        )
+                    } != PackageManager.PERMISSION_GRANTED && context?.let {
+                        ActivityCompat.checkSelfPermission(
+                            it,
+                            Manifest.permission.ACCESS_COARSE_LOCATION
+                        )
+                    } != PackageManager.PERMISSION_GRANTED
+                ) {
+                    return googleMap.isMyLocationEnabled
+                }
+                googleMap.isMyLocationEnabled = true
+
+
+            }
+            return googleMap.isMyLocationEnabled
+    }
+
+    private fun permiso(context: Context, permission: String): Int {
+        return ActivityCompat.checkSelfPermission(context,permission)
+    }
+
+    private fun checkPermiso(googleMap: GoogleMap){
+        ifPermiso(googleMap)
+        if (!ifPermiso(googleMap)){
+            ubicacionPermissionLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION ))
+        }
+    }
+
 }

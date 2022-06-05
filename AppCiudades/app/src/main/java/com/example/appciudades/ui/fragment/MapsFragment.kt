@@ -52,12 +52,7 @@ class MapsFragment : Fragment() {
         locationClient = context?.let { LocationServices.getFusedLocationProviderClient(it) }!!
 
         checkPermiso(googleMap)
-        val madrid = LatLng(40.47883646461693, -3.7692950517063832)
-        val cuZoom = CameraUpdateFactory.newLatLngZoom(
-            madrid,
-            7.5f)
 
-        googleMap.moveCamera(cuZoom)
 
         googleMap.setMinZoomPreference(0.5f)
         googleMap.setMaxZoomPreference(17.5f)
@@ -105,7 +100,7 @@ class MapsFragment : Fragment() {
         }
 
         vm.todoCerveza.value?.forEach{ place->
-            val lugares = LatLng(place.latitud.toDouble(),place.Longitud.toDouble())
+            val lugares = LatLng(place.latitud,place.longitud)
 
             val mov = MarkerOptions()
                 .position(lugares)

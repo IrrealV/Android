@@ -36,7 +36,7 @@ class ListaBeerAdapter(val context: Context):RecyclerView.Adapter<ListaBeerAdapt
         bind.name.text = cerveza.nombre
         bind.Pais.text = cerveza.ciudad
         bind.lat.text = "${cerveza.latitud},"
-        bind.lon.text = cerveza.Longitud
+        bind.lon.text = cerveza.longitud.toString()
         //bind.CerImg.setImageResource(cerveza.img) preguntar mañana en clase
 
 
