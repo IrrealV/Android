@@ -8,12 +8,15 @@ import androidx.fragment.app.Fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.estech.mybeers.utils.MyMapView
 import com.example.appciudades.MyBeer
 import com.example.appciudades.R
 import com.example.appciudades.databinding.FragmentListaBinding
@@ -33,6 +36,7 @@ import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 
 class MapsFragment : Fragment() {
+
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: FragmentMapsBinding
@@ -87,11 +91,14 @@ class MapsFragment : Fragment() {
         binding.toolbar2.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
         binding.toolbar2.setOnClickListener {
             nav.navigate(R.id.listaFragment)
-
         }
 
 
+
+
     }
+
+
 
     private fun cadalugar(mapa:GoogleMap){
         val myBeer = requireActivity().application as MyBeer

@@ -28,7 +28,7 @@
         tools:layout="@layout/fragment_maps" />
     <fragment
         android:id="@+id/newbeer"
-        android:name="com.example.appciudades.Newbeer"
+        android:name="com.example.appciudades.ui.fragment.NewbeerFragment"
         android:label="fragment_newbeer"
         tools:layout="@layout/fragment_newbeer" />
 </navigation>

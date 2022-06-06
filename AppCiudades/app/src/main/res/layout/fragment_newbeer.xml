@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/black"
     android:backgroundTintMode="add"
-    tools:context=".Newbeer">
+    tools:context=".ui.fragment.NewbeerFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar3"
@@ -20,9 +20,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/submir"
+        app:layout_constraintBottom_toTopOf="@+id/submit"
         app:layout_constraintTop_toBottomOf="@+id/toolbar3">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -112,6 +113,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/transparent"
+                    android:inputType="number"
+                    android:maxLength="3"
                     android:text="5.0" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -155,7 +158,7 @@
                 app:layout_constraintTop_toTopOf="@+id/probado" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/posicion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Marcar dónde se fabrica"
@@ -199,7 +202,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/submir"
+        android:id="@+id/submit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

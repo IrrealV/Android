@@ -26,6 +26,12 @@ class MyVM(private val repositorio: Repositorio): ViewModel(){
         }
     }
 
+    fun eliminarAllCerveza(){
+        CoroutineScope(Dispatchers.IO).launch {
+            repositorio.eliminarTodos()
+        }
+    }
+
     class MyViewModelFactory(private val repository: Repositorio) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return modelClass.getConstructor(Repositorio::class.java)

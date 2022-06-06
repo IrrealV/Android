@@ -1,11 +1,14 @@
 package com.example.appciudades.ui.fragment
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,7 +53,22 @@ class ListaFragment : Fragment() {
 
 
         binding.fabPrueba.setOnClickListener {
-            pruebaBeer(vm)
+            if(vm.todoCerveza.value!!.isEmpty()){
+                Toast.makeText(requireContext(), "Mi loco no tienes nada que borrar", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle("¿Estás seguro de borrar todas las cervezas?")
+            builder.setPositiveButton("Si") { dialog, which ->
+                pruebaBeer(vm)
+            }
+            builder.setNegativeButton("No") { dialog, which ->
+                Toast.makeText(context, "Pues nada", Toast.LENGTH_SHORT).show()
+            }
+            val dialog = builder.create()
+            dialog.show()
+
         }
 
         binding.beer.setOnClickListener {
@@ -69,12 +87,14 @@ class ListaFragment : Fragment() {
                 if (dy > 0 || dy < 0) {
                     binding.map.hide()
                     binding.beer.hide()
+                    binding.fabPrueba.hide()
                 }
             }
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 binding.map.show()
                 binding.beer.show()
+                binding.fabPrueba.show()
             }
         })
 
@@ -92,33 +112,7 @@ class ListaFragment : Fragment() {
     }
 
     private fun pruebaBeer(vm: MyVM){
-
-        val madrid = LatLng(40.47883646461693, -3.7692950517063832)
-        val Linares = LatLng(38.1737335959905, -3.7760733675386406)
-                    vm.insertarCerveza(
-                Cerveza(
-                    "Mahou",
-                    "Linares",
-                    "España",
-                    17,
-                    madrid.latitude,
-                    madrid.longitude,
-                    true,
-                    madrid.toString()
-                )
-            )
-            vm.insertarCerveza(
-                Cerveza(
-                    "Castillo",
-                    "Baños de la encina",
-                    "España",
-                    200,
-                    Linares.latitude,
-                    Linares.longitude,
-                    true,
-                    Linares.toString()
-                )
-            )
+        vm.eliminarAllCerveza()
     }
 
     private fun configRecicler(){
