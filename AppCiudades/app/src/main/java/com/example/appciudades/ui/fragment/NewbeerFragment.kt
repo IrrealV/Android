@@ -7,17 +7,14 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.estech.mybeers.utils.MyMapView
 import com.example.appciudades.MyBeer
 import com.example.appciudades.R
 import com.example.appciudades.databinding.FragmentNewbeerBinding
@@ -86,14 +83,6 @@ class NewbeerFragment : Fragment() {
 
     }
 
-    private fun enableScrollView() {
-        binding.scroll.requestDisallowInterceptTouchEvent(false)
-    }
-
-    private fun blockScrollView() {
-        binding.scroll.requestDisallowInterceptTouchEvent(true)
-    }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -105,7 +94,7 @@ class NewbeerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        val mapFragment = childFragmentManager.findFragmentById(R.id.mapa) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
         @SuppressLint("StaticFieldLeak")
         val nav = findNavController()
@@ -157,6 +146,13 @@ class NewbeerFragment : Fragment() {
 
     }
 
+    private fun enableScrollView() {
+        binding.scroll.requestDisallowInterceptTouchEvent(false)
+    }
+
+    private fun blockScrollView() {
+        binding.scroll.requestDisallowInterceptTouchEvent(true)
+    }
 
     @SuppressLint("SetTextI18n")
     private fun localizacion(mapa:GoogleMap){

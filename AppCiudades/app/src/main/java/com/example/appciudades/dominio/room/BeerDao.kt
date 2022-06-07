@@ -14,13 +14,13 @@ interface BeerDao {
     @Query("select * from cerveza")
     fun  allCervezas():LiveData<List<Cerveza>>
 
-    @Query("select * from cerveza where id = :id")
-    fun  oneCerveza(id : Int):LiveData<Cerveza>
+    @Query("select * from Cerveza where id = :id")
+    fun  oneCerveza(id : Int): Cerveza
 
     @Delete
     suspend fun delOneCerveza(cerveza: Cerveza)
 
-    @Query("delete from cerveza")
+    @Query("delete from Cerveza")
     suspend fun delAllCerveza()
 
     @Update

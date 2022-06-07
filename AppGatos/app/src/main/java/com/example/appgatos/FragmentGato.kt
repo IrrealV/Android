@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide
 import com.example.appgatos.databinding.FragmentGatoBinding
 import com.example.appgatos.dataclass.EnvioVoto
 import com.example.appgatos.dataclass.Gato
-import com.example.appgatos.dataclass.RespuestaVoto
 import com.example.appgatos.retrofit.Repositorio
 import com.example.appgatos.tablayout.info_fragment
 import com.example.appgatos.tablayout.stats_fragment
@@ -50,7 +49,6 @@ class FragmentGato : Fragment() {
         val gatico: Gato? =arguments?.getParcelable("gato")
         val url = gatico?.wikipediaUrl
         val intent = Intent(Intent.ACTION_VIEW )
-
 
         //Verificación de contenido no Null
         if (gatico != null) {

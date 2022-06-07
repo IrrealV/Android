@@ -6,7 +6,6 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.appciudades.R
 import com.example.appciudades.databinding.ActivityMainBinding
 
@@ -21,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        navController = findNavController(R.id.map)
+        navController = findNavController(R.id.mapa)
         appBarConfiguration = AppBarConfiguration(navController.graph)
 
     }

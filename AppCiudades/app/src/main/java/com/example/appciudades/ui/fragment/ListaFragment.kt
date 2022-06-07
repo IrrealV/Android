@@ -1,7 +1,6 @@
 package com.example.appciudades.ui.fragment
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,7 +18,6 @@ import com.example.appciudades.databinding.FragmentListaBinding
 import com.example.appciudades.dominio.models.Cerveza
 import com.example.appciudades.ui.adapter.ListaBeerAdapter
 import com.example.appciudades.viewModel.MyVM
-import com.google.android.gms.maps.model.LatLng
 
 class ListaFragment : Fragment() {
 
@@ -75,7 +73,7 @@ class ListaFragment : Fragment() {
             nav.navigate(R.id.action_listaFragment_to_newbeer)
         }
 
-        binding.map.setOnClickListener {
+        binding.mapa.setOnClickListener {
             nav.navigate(R.id.action_listaFragment_to_mapsFragment)
         }
 
@@ -85,14 +83,14 @@ class ListaFragment : Fragment() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (dy > 0 || dy < 0) {
-                    binding.map.hide()
+                    binding.mapa.hide()
                     binding.beer.hide()
                     binding.fabPrueba.hide()
                 }
             }
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                binding.map.show()
+                binding.mapa.show()
                 binding.beer.show()
                 binding.fabPrueba.show()
             }
@@ -116,7 +114,7 @@ class ListaFragment : Fragment() {
     }
 
     private fun configRecicler(){
-        adapter = ListaBeerAdapter(requireContext())
+        adapter = ListaBeerAdapter(requireContext(),servesa)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
     }

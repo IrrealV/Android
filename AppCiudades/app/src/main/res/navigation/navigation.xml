@@ -20,15 +20,30 @@
             app:destination="@id/newbeer"
             app:popUpTo="@id/listaFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_listaFragment_to_aboutBeerFragment"
+            app:destination="@id/AboutBeerFragment"
+            app:popUpTo="@id/listaFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.example.appciudades.ui.fragment.MapsFragment"
         android:label="Mapa Cervecero"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_aboutBeerFragment"
+            app:destination="@id/AboutBeerFragment"
+            app:popUpTo="@id/mapsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/newbeer"
         android:name="com.example.appciudades.ui.fragment.NewbeerFragment"
         android:label="fragment_newbeer"
         tools:layout="@layout/fragment_newbeer" />
+    <fragment
+        android:id="@+id/AboutBeerFragment"
+        android:name="com.example.appciudades.ui.fragment.AboutBeerFragment"
+        android:label="fragment_about_beer" />
 </navigation>

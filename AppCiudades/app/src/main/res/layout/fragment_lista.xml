@@ -87,7 +87,7 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/map"
+        android:id="@+id/mapa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -120,8 +120,8 @@
         android:src="@android:drawable/ic_delete"
         app:tint="@android:color/holo_red_dark"
         app:layout_constraintEnd_toStartOf="@+id/beer"
-        app:layout_constraintStart_toEndOf="@+id/map"
-        app:layout_constraintTop_toTopOf="@+id/map"
+        app:layout_constraintStart_toEndOf="@+id/mapa"
+        app:layout_constraintTop_toTopOf="@+id/mapa"
         tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
