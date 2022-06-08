@@ -118,14 +118,14 @@ class NewbeerFragment : Fragment() {
         }
 
         binding.sumar.setOnClickListener {
-            var num = binding.grad.text.toString().toDouble()
-            num += 0.1
+            var num = binding.grad.text.toString().toFloat()
+            num += 0.1F
             binding.grad.setText(num.toString())
         }
 
         binding.restar.setOnClickListener {
-            var num = binding.grad.text.toString().toDouble()
-            num -= 0.1
+            var num = binding.grad.text.toString().toFloat()
+            num -= 0.1F
             binding.grad.setText(num.toString())
         }
 
@@ -145,6 +145,7 @@ class NewbeerFragment : Fragment() {
                         binding.grad.text.toString().toDouble(),
                         localizacion.latitude,
                         localizacion.longitude,
+                        uriCam.toString(),
                         binding.probado.isChecked,
                         localizacion.toString()
                     )
@@ -270,7 +271,7 @@ class NewbeerFragment : Fragment() {
 
     private fun tomarImagenCamara() {
         val archivoFoto =  crearArchivoParaFoto()
-        uriCam = FileProvider.getUriForFile(requireContext() ,"${packageName}.fileprovider", archivoFoto)
+        uriCam = FileProvider.getUriForFile(requireContext() ,"${requireActivity().packageName}.fileprovider", archivoFoto)
 
         ICamara.launch(uriCam)
     }
@@ -281,7 +282,7 @@ class NewbeerFragment : Fragment() {
         val timeStamp: String =
             SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         // ruta a la carpeta privada de la App
-        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val storageDir: File? = requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         // Crea un objeto File con el nombre de archivo, la extensión y la carpeta donde se almacena el archivo
         return File.createTempFile(
             "JPEG_${timeStamp}_", /* prefijo */
@@ -297,7 +298,7 @@ class NewbeerFragment : Fragment() {
             binding.Icerveza.setImageURI(uriCam)
         }
         else{
-            val rutaArchivo = getExternalFilesDir("/Imagenes/" + uriCam.path)
+            val rutaArchivo = requireActivity().getExternalFilesDir("/Imagenes/" + uriCam.path)
 
             rutaArchivo?.let {
                 val resultado = rutaArchivo.delete()

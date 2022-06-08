@@ -124,7 +124,7 @@ class ListaFragment : Fragment() {
         when(binding.megusta.isChecked){
             true -> {
                 binding.imageView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.teal_200))
-                Toast.makeText(requireContext(), "Se ha pulsado el switch", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Jajaj no hace nada, pero ahora soy azul", Toast.LENGTH_SHORT).show()
 
             }
             false ->{

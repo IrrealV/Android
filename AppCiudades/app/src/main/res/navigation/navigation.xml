@@ -13,18 +13,15 @@
         <action
             android:id="@+id/action_listaFragment_to_mapsFragment"
             app:destination="@id/mapsFragment"
-            app:popUpTo="@id/navigation"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_listaFragment_to_newbeer"
             app:destination="@id/newbeer"
-            app:popUpTo="@id/listaFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_listaFragment_to_aboutBeerFragment"
             app:destination="@id/AboutBeerFragment"
-            app:popUpTo="@id/listaFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -34,8 +31,7 @@
         <action
             android:id="@+id/action_mapsFragment_to_aboutBeerFragment"
             app:destination="@id/AboutBeerFragment"
-            app:popUpTo="@id/mapsFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/newbeer"

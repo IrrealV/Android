@@ -18,11 +18,12 @@
         <entry key="..\:/Programas/GitHub/Android/AppCiudades/app/src/main/res/layout/fragment_maps.xml" value="0.2969298245614035" />
         <entry key="..\:/Programas/GitHub/Android/AppCiudades/app/src/main/res/layout/fragment_newbeer.xml" value="0.3087719298245614" />
         <entry key="..\:/Users/victor.heras/Documents/GitHub/Android/AppCiudades/app/src/main/res/drawable/ic_baseline_sentiment_dissatisfied_24.xml" value="0.3585" />
-        <entry key="..\:/Users/victor.heras/Documents/GitHub/Android/AppCiudades/app/src/main/res/drawable/mapa.xml" value="0.3675" />
         <entry key="..\:/Users/victor.heras/Documents/GitHub/Android/AppCiudades/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/victor.heras/Documents/GitHub/Android/AppCiudades/app/src/main/res/layout/cerveza_celda.xml" value="0.365625" />
+        <entry key="..\:/Users/victor.heras/Documents/GitHub/Android/AppCiudades/app/src/main/res/layout/fragment_about_beer.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/victor.heras/Documents/GitHub/Android/AppCiudades/app/src/main/res/layout/fragment_lista.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/victor.heras/Documents/GitHub/Android/AppCiudades/app/src/main/res/layout/fragment_newbeer.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/victor.heras/Documents/GitHub/Android/AppCiudades/app/src/main/res/layout/vista_lugar.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

@@ -5,29 +5,35 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import androidx.fragment.app.Fragment
-
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.core.net.toUri
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.appciudades.MyBeer
 import com.example.appciudades.R
 import com.example.appciudades.databinding.FragmentMapsBinding
+import com.example.appciudades.databinding.VistaLugarBinding
 import com.example.appciudades.viewModel.MyVM
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
+import java.lang.Exception
+
 
 class MapsFragment : Fragment() {
 
@@ -59,6 +65,8 @@ class MapsFragment : Fragment() {
             cadalugar(googleMap)
             localizacion()
         }
+
+
 
 
     }
@@ -96,15 +104,40 @@ class MapsFragment : Fragment() {
         }
 
         vm.todoCerveza.value?.forEach{ place->
+
             val lugares = LatLng(place.latitud,place.longitud)
 
-            val mov = MarkerOptions()
-                .position(lugares)
-                .title(place.nombre)
-                .snippet("pulsa para ver mas detalles")
+            mapa.addMarker(MarkerOptions().position(lugares).title(place.nombre).snippet("Pulsa para más info")
+                .icon(BitmapDescriptorFactory.defaultMarker()))!!.tag = place.img
 
-            val marcador = mapa.addMarker(mov)
-            marcador?.tag = "marcadorlugar"
+
+            mapa.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
+                override fun getInfoContents(p0: Marker): View {
+                    val binding = VistaLugarBinding.inflate(layoutInflater)
+                    val uri = place.img.toUri()
+
+
+                    binding.sitioImg.setImageURI(uri)
+                    binding.nameTxt.text = place.nombre
+                    binding.pai.text = place.pais
+
+                    return binding.root
+                }
+
+                override fun getInfoWindow(p0: Marker): View? {
+                    return null
+                }
+
+            })
+            mapa.setOnInfoWindowClickListener {
+                val nav = findNavController()
+                val cerv = place.id
+                val bundle = bundleOf("cerveza" to cerv)
+                nav.navigate(R.id.action_mapsFragment_to_aboutBeerFragment,bundle)
+            }
+
+
+
 
         }
 
@@ -161,5 +194,7 @@ class MapsFragment : Fragment() {
             ubicacionPermissionLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION ))
         }
     }
+
+
 
 }

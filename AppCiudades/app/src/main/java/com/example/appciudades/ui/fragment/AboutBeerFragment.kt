@@ -4,22 +4,22 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
+import android.icu.util.IslamicCalendar
+import android.location.Location
+import android.location.LocationManager
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.core.net.toUri
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
 import com.example.appciudades.MyBeer
 import com.example.appciudades.R
 import com.example.appciudades.databinding.FragmentAboutBeerBinding
-import com.example.appciudades.databinding.FragmentListaBinding
-import com.example.appciudades.databinding.FragmentMapsBinding
 import com.example.appciudades.dominio.models.Cerveza
 import com.example.appciudades.viewModel.MyVM
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -38,28 +38,35 @@ import kotlinx.coroutines.launch
 class AboutBeerFragment : Fragment() {
     private lateinit var binding : FragmentAboutBeerBinding
     private lateinit var mMap: GoogleMap
+    private lateinit var localizacion: LatLng
+
+    private lateinit var escogida : Cerveza
     private lateinit var locationClient: FusedLocationProviderClient
-    private lateinit var localizacion : LatLng
     private val  granted = PackageManager.PERMISSION_GRANTED
     private val acl = Manifest.permission.ACCESS_COARSE_LOCATION
     private val ubicacionPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ){
+
         ifPermiso(mMap)
     }
 
 
+
     private val callback = OnMapReadyCallback { googleMap ->
+
         mMap = googleMap
-        localizacion = LatLng(0.0, 0.0)
-        googleMap.mapType = GoogleMap.MAP_TYPE_HYBRID
         locationClient = context?.let { LocationServices.getFusedLocationProviderClient(it) }!!
+        googleMap.mapType = GoogleMap.MAP_TYPE_HYBRID
 
-        checkPermiso(googleMap)
 
-        googleMap.setMinZoomPreference(0.5f)
+        googleMap.setMinZoomPreference(0.25f)
         googleMap.setMaxZoomPreference(17.5f)
 
+        crearMarcador(escogida,googleMap)
+        googleMap.setOnMapLoadedCallback {
+            localizacion()
+        }
 
 
 
@@ -85,26 +92,52 @@ class AboutBeerFragment : Fragment() {
         binding.toolbar4.setOnClickListener {
             nav.navigate(R.id.listaFragment)
         }
+        corrutina()
+
+    }
+
+    private fun corrutina(){
         val serve = arguments?.getInt("cerveza")
         val myBeer = requireActivity().application as MyBeer
         val vm: MyVM by activityViewModels(){
             MyVM.MyViewModelFactory(myBeer.repositorio)
         }
 
-
         if (serve != null) {
-
             CoroutineScope(Dispatchers.IO).launch {
-              val escogida = vm.unaBeer(serve)
+                escogida = vm.unaBeer(serve)
+                val distance = Location(LocationManager.GPS_PROVIDER).apply {
+                    latitude = escogida.latitud
+                    longitude = escogida.longitud
+                }
 
+                binding.CervImg.setImageURI(escogida.img.toUri())
                 binding.toolbar4.title = escogida.nombre
                 binding.ciudad.text = escogida.ciudad
                 binding.pais.text = escogida.pais
                 binding.nam.text = escogida.nombre
                 binding.grado.text = escogida.grados.toString()+"º"
-            }
 
+            }
         }
+    }
+
+    private fun crearMarcador(cerveza: Cerveza,mapa:GoogleMap){
+        localizacion = LatLng(cerveza.latitud,cerveza.longitud)
+
+
+        val precision = LatLngBounds.builder()
+            .include(localizacion)
+            .build()
+
+        val mov = MarkerOptions()
+            .position(localizacion)
+
+
+        val marcador = mapa.addMarker(mov)
+        marcador?.tag = "marcadorlugar"
+
+        mapa.animateCamera(CameraUpdateFactory.newLatLngBounds(precision, 10))
 
 
     }
@@ -116,6 +149,15 @@ class AboutBeerFragment : Fragment() {
             != granted && context?.let { ActivityCompat.checkSelfPermission(it, acl)
             } != granted) {
             return
+        }
+        locationClient.lastLocation.addOnSuccessListener { location ->
+
+            val distance = Location(LocationManager.GPS_PROVIDER).apply {
+                latitude = escogida.latitud
+                longitude = escogida.longitud
+            }
+            val distanciaTotal = location.distanceTo(distance).toString()
+            binding.dstancia.text = "${distanciaTotal.toDouble().toInt()} km"
         }
     }
 
@@ -154,4 +196,7 @@ class AboutBeerFragment : Fragment() {
             ubicacionPermissionLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION ))
         }
     }
+
+
+
 }

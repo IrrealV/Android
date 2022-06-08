@@ -4,16 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-<<<<<<< Updated upstream
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
-=======
 import androidx.core.content.ContextCompat
->>>>>>> Stashed changes
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appciudades.MyBeer
 import com.example.appciudades.R
@@ -21,12 +17,10 @@ import com.example.appciudades.databinding.CervezaCeldaBinding
 import com.example.appciudades.dominio.models.Cerveza
 import com.example.appciudades.viewModel.MyVM
 
-<<<<<<< Updated upstream
+
 class ListaBeerAdapter(val context: Context, val listaBeer: ArrayList<Cerveza>)
     : RecyclerView.Adapter<ListaBeerAdapter.CerverzaCelda>() {
-=======
-class ListaBeerAdapter(val context: Context):RecyclerView.Adapter<ListaBeerAdapter.CerverzaCelda>(){
->>>>>>> Stashed changes
+
     inner class CerverzaCelda(val binding: CervezaCeldaBinding):RecyclerView.ViewHolder(binding.root)
 
     private val copiaBeer = listaBeer
@@ -44,34 +38,31 @@ class ListaBeerAdapter(val context: Context):RecyclerView.Adapter<ListaBeerAdapt
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CerverzaCelda, position: Int) {
-        val cerv : Cerveza = copiaBeer.get(position)
+        val cerv  = copiaBeer[position].id
 
 
         posicion = holder.adapterPosition
         val bind = holder.binding
-<<<<<<< Updated upstream
-        val cerveza = copiaBeer[position]
-=======
         val cerveza = listaCopia[position]
->>>>>>> Stashed changes
+
         val vm= MyVM(miapp.repositorio)
 
+        bind.CerImg.setImageURI(cerveza.img.toUri())
         bind.name.text = cerveza.nombre
         bind.Pais.text = cerveza.ciudad
         bind.lat.text = "${cerveza.latitud},"
         bind.lon.text = cerveza.longitud.toString()
-        //bind.CerImg.setImageResource(cerveza.img) preguntar mañana en clase
-<<<<<<< Updated upstream
+
 
         bind.celdaCont.setOnClickListener {
             val navigation = holder.itemView.findNavController()
-            val bundle = bundleOf("cerveza" to position+1)
+            val bundle = bundleOf("cerveza" to cerv)
             navigation.navigate(R.id.action_listaFragment_to_aboutBeerFragment,bundle)
         }
 
-=======
+
         probador(holder,listaCopia,position)
->>>>>>> Stashed changes
+
 
         bind.delete.setOnClickListener {
             verificacion(vm,cerveza, position)
