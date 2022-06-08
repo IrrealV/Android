@@ -14,7 +14,7 @@ data class Cerveza(
     val grados: Double,
     val latitud: Double,
     val longitud: Double,
-    val img: String,
+    val img: String?,
     val probado: Boolean,
     val Ubi: String,
 

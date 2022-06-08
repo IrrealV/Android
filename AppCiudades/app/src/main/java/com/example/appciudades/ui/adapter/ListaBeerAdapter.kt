@@ -18,7 +18,7 @@ import com.example.appciudades.dominio.models.Cerveza
 import com.example.appciudades.viewModel.MyVM
 
 
-class ListaBeerAdapter(val context: Context, val listaBeer: ArrayList<Cerveza>)
+class ListaBeerAdapter(val context: Context, listaBeer: ArrayList<Cerveza>)
     : RecyclerView.Adapter<ListaBeerAdapter.CerverzaCelda>() {
 
     inner class CerverzaCelda(val binding: CervezaCeldaBinding):RecyclerView.ViewHolder(binding.root)
@@ -47,7 +47,7 @@ class ListaBeerAdapter(val context: Context, val listaBeer: ArrayList<Cerveza>)
 
         val vm= MyVM(miapp.repositorio)
 
-        bind.CerImg.setImageURI(cerveza.img.toUri())
+        bind.CerImg.setImageURI(cerveza.img?.toUri())
         bind.name.text = cerveza.nombre
         bind.Pais.text = cerveza.ciudad
         bind.lat.text = "${cerveza.latitud},"
@@ -111,5 +111,4 @@ class ListaBeerAdapter(val context: Context, val listaBeer: ArrayList<Cerveza>)
         }
     }
 
-  //Pedir filtro
 }

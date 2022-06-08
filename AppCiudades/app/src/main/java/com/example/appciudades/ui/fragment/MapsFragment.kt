@@ -6,17 +6,14 @@ import android.content.Context
 import android.content.pm.PackageManager
 import androidx.fragment.app.Fragment
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.appciudades.MyBeer
 import com.example.appciudades.R
@@ -30,9 +27,6 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
-import java.lang.Exception
 
 
 class MapsFragment : Fragment() {
@@ -114,7 +108,7 @@ class MapsFragment : Fragment() {
             mapa.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
                 override fun getInfoContents(p0: Marker): View {
                     val binding = VistaLugarBinding.inflate(layoutInflater)
-                    val uri = place.img.toUri()
+                    val uri = place.img?.toUri()
 
 
                     binding.sitioImg.setImageURI(uri)

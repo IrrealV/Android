@@ -4,7 +4,6 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
-import android.icu.util.IslamicCalendar
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
@@ -111,7 +110,7 @@ class AboutBeerFragment : Fragment() {
                     longitude = escogida.longitud
                 }
 
-                binding.CervImg.setImageURI(escogida.img.toUri())
+                binding.CervImg.setImageURI(escogida.img?.toUri())
                 binding.toolbar4.title = escogida.nombre
                 binding.ciudad.text = escogida.ciudad
                 binding.pais.text = escogida.pais
@@ -156,8 +155,8 @@ class AboutBeerFragment : Fragment() {
                 latitude = escogida.latitud
                 longitude = escogida.longitud
             }
-            val distanciaTotal = location.distanceTo(distance).toString()
-            binding.dstancia.text = "${distanciaTotal.toDouble().toInt()} km"
+            val distanciaTotal =  location.distanceTo(distance).toInt() / 1000
+            binding.dstancia.text = "$distanciaTotal km"
         }
     }
 
@@ -190,12 +189,7 @@ class AboutBeerFragment : Fragment() {
         return ActivityCompat.checkSelfPermission(context,permission)
     }
 
-    private fun checkPermiso(googleMap: GoogleMap){
-        ifPermiso(googleMap)
-        if (!ifPermiso(googleMap)){
-            ubicacionPermissionLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION ))
-        }
-    }
+
 
 
 

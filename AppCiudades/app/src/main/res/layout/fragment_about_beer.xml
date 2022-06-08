@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.aboutBeerFragment">
+    tools:context=".ui.fragment.AboutBeerFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar4"
@@ -28,18 +28,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar4" />
 
-    <fragment
-        android:id="@+id/mapa"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/grado"
-        tools:context=".ui.fragment.MapsFragment" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -51,6 +39,18 @@
         android:textStyle="italic"
         app:layout_constraintStart_toEndOf="@+id/CervImg"
         app:layout_constraintTop_toBottomOf="@+id/toolbar4" />
+
+    <fragment
+        android:id="@+id/mapa"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/grado"
+        tools:context=".ui.fragment.AboutBeerFragment" />
 
     <TextView
         android:id="@+id/ciudad"
@@ -105,7 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="Calculando..."
         android:textColor="@android:color/holo_orange_dark"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />

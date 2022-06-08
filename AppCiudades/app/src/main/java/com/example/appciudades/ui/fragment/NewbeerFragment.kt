@@ -119,13 +119,13 @@ class NewbeerFragment : Fragment() {
 
         binding.sumar.setOnClickListener {
             var num = binding.grad.text.toString().toFloat()
-            num += 0.1F
+            num += 0.1f
             binding.grad.setText(num.toString())
         }
 
         binding.restar.setOnClickListener {
             var num = binding.grad.text.toString().toFloat()
-            num -= 0.1F
+            num -= 0.1f
             binding.grad.setText(num.toString())
         }
 
@@ -217,7 +217,7 @@ class NewbeerFragment : Fragment() {
         val bpais =checkVacio(binding.country,pais)
         val bgrados =checkVacio(binding.grad,grados)
 
-        val comprobarTrue = arrayOf(bMarca,bciudad,bpais,bgrados,checkMapa())
+        val comprobarTrue = arrayOf(bMarca,bciudad,bpais,bgrados,checkMapa(),checkImg())
         comprobarTrue.forEach {
             if(!it){
                 contador += 1
@@ -228,6 +228,14 @@ class NewbeerFragment : Fragment() {
     private fun checkMapa() : Boolean{
         if(localizacion.latitude == 0.0){
             Toast.makeText(context, "Oye que no has metido donde es", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
+    }
+
+    private fun checkImg():Boolean{
+        if(uriCam == Uri.EMPTY ){
+            Toast.makeText(context, "Porfavor escoje una imagen", Toast.LENGTH_SHORT).show()
             return false
         }
         return true
@@ -298,6 +306,7 @@ class NewbeerFragment : Fragment() {
             binding.Icerveza.setImageURI(uriCam)
         }
         else{
+
             val rutaArchivo = requireActivity().getExternalFilesDir("/Imagenes/" + uriCam.path)
 
             rutaArchivo?.let {
