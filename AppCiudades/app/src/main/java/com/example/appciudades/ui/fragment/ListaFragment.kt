@@ -6,8 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -59,7 +63,8 @@ class ListaFragment : Fragment() {
             val builder = AlertDialog.Builder(requireContext())
             builder.setTitle("¿Estás seguro de borrar todas las cervezas?")
             builder.setPositiveButton("Si") { dialog, which ->
-                pruebaBeer(vm)
+                vm.eliminarAllCerveza()
+                adapter.updateList(servesa)
             }
             builder.setNegativeButton("No") { dialog, which ->
                 Toast.makeText(context, "Pues nada", Toast.LENGTH_SHORT).show()
@@ -69,6 +74,10 @@ class ListaFragment : Fragment() {
 
         }
 
+        binding.megusta.setOnClickListener {
+            switchActivado()
+        }
+
         binding.beer.setOnClickListener {
             nav.navigate(R.id.action_listaFragment_to_newbeer)
         }
@@ -76,6 +85,7 @@ class ListaFragment : Fragment() {
         binding.mapa.setOnClickListener {
             nav.navigate(R.id.action_listaFragment_to_mapsFragment)
         }
+
 
 
         //Cuando se hace scroll en el recicler el fab se oculta, en cambio cuando se detiene se muestra
@@ -109,9 +119,22 @@ class ListaFragment : Fragment() {
 
     }
 
-    private fun pruebaBeer(vm: MyVM){
-        vm.eliminarAllCerveza()
+
+    private fun switchActivado(){
+        when(binding.megusta.isChecked){
+            true -> {
+                binding.imageView.setColorFilter(ContextCompat.getColor(requireContext(), R.color.teal_200))
+                Toast.makeText(requireContext(), "Se ha pulsado el switch", Toast.LENGTH_SHORT).show()
+
+            }
+            false ->{
+                binding.imageView.setColorFilter(R.color.black)
+            }
+        }
     }
+
+
+
 
     private fun configRecicler(){
         adapter = ListaBeerAdapter(requireContext(),servesa)

@@ -4,7 +4,9 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +15,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.appciudades.MyBeer
@@ -29,12 +32,17 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class NewbeerFragment : Fragment() {
 
     private lateinit var binding: FragmentNewbeerBinding
     private lateinit var mMap: GoogleMap
+    private lateinit var uriCam : Uri
     private lateinit var localizacion : LatLng
     private lateinit var locationClient: FusedLocationProviderClient
     private var contador = 0
@@ -111,16 +119,19 @@ class NewbeerFragment : Fragment() {
 
         binding.sumar.setOnClickListener {
             var num = binding.grad.text.toString().toDouble()
-            num += 0.10
+            num += 0.1
             binding.grad.setText(num.toString())
         }
 
         binding.restar.setOnClickListener {
             var num = binding.grad.text.toString().toDouble()
-            num -= 0.10
+            num -= 0.1
             binding.grad.setText(num.toString())
         }
 
+        binding.selectImg.setOnClickListener{
+            tomarImagenCamara()
+        }
 
 
         binding.submit.setOnClickListener{
@@ -254,6 +265,45 @@ class NewbeerFragment : Fragment() {
         ifPermiso(googleMap)
         if (!ifPermiso(googleMap)){
             ubicacionPermissionLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION ))
+        }
+    }
+
+    private fun tomarImagenCamara() {
+        val archivoFoto =  crearArchivoParaFoto()
+        uriCam = FileProvider.getUriForFile(requireContext() ,"${packageName}.fileprovider", archivoFoto)
+
+        ICamara.launch(uriCam)
+    }
+
+    @Throws(IOException::class)
+    private fun crearArchivoParaFoto(): File {
+        //nombre de archivo con fecha y hora actual
+        val timeStamp: String =
+            SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        // ruta a la carpeta privada de la App
+        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        // Crea un objeto File con el nombre de archivo, la extensión y la carpeta donde se almacena el archivo
+        return File.createTempFile(
+            "JPEG_${timeStamp}_", /* prefijo */
+            ".jpg", /* sufijo */
+            storageDir /* directorio */
+        )
+    }
+
+    private val ICamara = registerForActivityResult(
+        ActivityResultContracts.TakePicture()
+    ) { isSaved ->
+        if (isSaved) {
+            binding.Icerveza.setImageURI(uriCam)
+        }
+        else{
+            val rutaArchivo = getExternalFilesDir("/Imagenes/" + uriCam.path)
+
+            rutaArchivo?.let {
+                val resultado = rutaArchivo.delete()
+                if (resultado) Toast.makeText(requireContext(), "Imagen Eliminada", Toast.LENGTH_SHORT).show()
+                else Toast.makeText(requireContext(), "ERROR BORRANDO", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

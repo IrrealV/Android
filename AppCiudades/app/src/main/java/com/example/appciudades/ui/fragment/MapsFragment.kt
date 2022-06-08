@@ -61,8 +61,6 @@ class MapsFragment : Fragment() {
         }
 
 
-
-
     }
 
     override fun onCreateView(
@@ -86,9 +84,6 @@ class MapsFragment : Fragment() {
         binding.toolbar2.setOnClickListener {
             nav.navigate(R.id.listaFragment)
         }
-
-
-
 
     }
 

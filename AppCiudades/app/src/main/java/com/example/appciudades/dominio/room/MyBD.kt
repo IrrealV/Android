@@ -10,7 +10,7 @@ import com.example.appciudades.dominio.models.Cerveza
 abstract class MyBD : RoomDatabase() {
     abstract fun BeerDao(): BeerDao
     companion object {
-        const val DBNAME = "contactos_database"
+        const val DBNAME = "cerveza_database"
 
         @Volatile
         private var INSTANCE: MyBD? = null
