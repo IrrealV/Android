@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+
         val drawerLayout: DrawerLayout = binding.drawerlayout
         val navView: NavigationView = binding.navigationview
         val navController = findNavController(R.id.fragmentContainerView)
@@ -59,68 +60,64 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    @SuppressLint("RestrictedApi")
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.topmenu, menu)
-        val usuario = findViewById<TextView>(R.id.usuario)
-        val fecha = findViewById<TextView>(R.id.fecha)
-        val bundle = intent.extras
-        val user = bundle?.getString("user")
-        val fechaHoy = Calendar.getInstance()
-        val sdf = SimpleDateFormat("yyyy/MM/dd HH-mm:ss", Locale.getDefault())
-        val textoFecha = sdf.format(fechaHoy.time)
-        fecha.text = textoFecha
+//    @SuppressLint("RestrictedApi")
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.topmenu, menu)
+//        val usuario = findViewById<TextView>(R.id.usuario)
+//        val fecha = findViewById<TextView>(R.id.fecha)
+//        val bundle = intent.extras
+//        val user = bundle?.getString("user")
+//        val fechaHoy = Calendar.getInstance()
+//        val sdf = SimpleDateFormat("yyyy/MM/dd HH-mm:ss", Locale.getDefault())
+//        val textoFecha = sdf.format(fechaHoy.time)
+//        fecha.text = textoFecha
+//
+//        if(user!!.isNotEmpty()){
+//            usuario.text = user
+//
+//        }
+//        return true
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        val builder = AlertDialog.Builder(this)
+//
+//
+//        return when (item.itemId) {
+//            R.id.cerrarses -> {
+//                builder.setTitle("¿Cerrar sesión?")
+//
+//                builder.setPositiveButton("Si") { dialog, which ->
+//                    val intent = Intent(this, LoginActivity::class.java)
+//                    startActivity(intent)
+//                    finish()
+//                }
+//
+//                builder.setNegativeButton("No") { dialog, which ->
+//
+//                }
+//
+//                val dialog = builder.create()
+//                dialog.show()
+//
+//                true
+//            }
+//            else -> return super.onOptionsItemSelected(item)
+//        }
+//    }
 
-        if(user!!.isNotEmpty()){
-            usuario.text = user
-
-        }
-
-
-
-
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val builder = AlertDialog.Builder(this)
-
-
-        return when (item.itemId) {
-            R.id.cerrarses -> {
-                builder.setTitle("¿Cerrar sesión?")
-
-                builder.setPositiveButton("Si") { dialog, which ->
-                    val intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-
-                builder.setNegativeButton("No") { dialog, which ->
-
-                }
-
-                val dialog = builder.create()
-                dialog.show()
-
-                true
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
-
-    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("¿Quieres salir de la aplicación?")
-        builder.setPositiveButton("Si") { dialog, which ->
-            Toast.makeText(this@MainActivity, "Has salido de la aplicación", Toast.LENGTH_SHORT).show()
-            finish()
-        }
-        builder.setNegativeButton("No") { dialog, which ->
-            Toast.makeText(this@MainActivity, "¡Gracias por quedarte!", Toast.LENGTH_SHORT).show()
-        }
-        val dialog = builder.create()
-        dialog.show()
-        return true
-    }
+//    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+//        val builder = AlertDialog.Builder(this)
+//        builder.setTitle("¿Quieres salir de la aplicación?")
+//        builder.setPositiveButton("Si") { dialog, which ->
+//            Toast.makeText(this@MainActivity, "Has salido de la aplicación", Toast.LENGTH_SHORT).show()
+//            finish()
+//        }
+//        builder.setNegativeButton("No") { dialog, which ->
+//            Toast.makeText(this@MainActivity, "¡Gracias por quedarte!", Toast.LENGTH_SHORT).show()
+//        }
+//        val dialog = builder.create()
+//        dialog.show()
+//        return true
+//    }
 }

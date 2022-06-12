@@ -110,6 +110,7 @@ class NewbeerFragment : Fragment() {
         val vm: MyVM by activityViewModels(){
             MyVM.MyViewModelFactory(myBeer.repositorio)
         }
+        uriCam = Uri.EMPTY
         val toolbar = binding.toolbar3
         toolbar.title = "Mapa de Cervezas"
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
@@ -311,10 +312,14 @@ class NewbeerFragment : Fragment() {
 
             rutaArchivo?.let {
                 val resultado = rutaArchivo.delete()
-                if (resultado) Toast.makeText(requireContext(), "Imagen Eliminada", Toast.LENGTH_SHORT).show()
+                if (resultado){
+                    Toast.makeText(requireContext(), "Imagen Eliminada", Toast.LENGTH_SHORT).show()
+                    uriCam = Uri.EMPTY
+                }
                 else Toast.makeText(requireContext(), "ERROR BORRANDO", Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 
 

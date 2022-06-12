@@ -38,8 +38,6 @@ class ListaBeerAdapter(val context: Context, listaBeer: ArrayList<Cerveza>)
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CerverzaCelda, position: Int) {
-        val cerv  = copiaBeer[position].id
-
 
         posicion = holder.adapterPosition
         val bind = holder.binding
@@ -55,6 +53,7 @@ class ListaBeerAdapter(val context: Context, listaBeer: ArrayList<Cerveza>)
 
 
         bind.celdaCont.setOnClickListener {
+            val cerv  = copiaBeer[position].id
             val navigation = holder.itemView.findNavController()
             val bundle = bundleOf("cerveza" to cerv)
             navigation.navigate(R.id.action_listaFragment_to_aboutBeerFragment,bundle)
